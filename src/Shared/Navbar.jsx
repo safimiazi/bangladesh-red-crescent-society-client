@@ -20,7 +20,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Register</a>
+                <a className="py-2 px-4 bg-green-400">Register</a>
             </div>
         </div>
     );
