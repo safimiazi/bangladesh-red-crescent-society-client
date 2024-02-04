@@ -1,9 +1,9 @@
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import { Outlet } from "react-router-dom";
 
 const Root = () => {
     return (
         <div>
-            <Dashboard/>
+            <Outlet/>
         </div>
     );
 };
