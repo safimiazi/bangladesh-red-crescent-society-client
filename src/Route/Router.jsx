@@ -4,6 +4,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Root from "../Root/Root";
 import Home from "../Pages/Home";
+import DRoot from "../DashRoot.jsx/DRoot";
 
 const router = createBrowserRouter([
     {
@@ -26,9 +27,12 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard/>,
+        element: <DRoot/>,
         children: [
-
+          {
+            path: "/dashboard",
+            element: <Dashboard/>
+        },
         ]
     }
   ]);

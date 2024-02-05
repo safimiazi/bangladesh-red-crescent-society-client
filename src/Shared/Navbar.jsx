@@ -13,7 +13,7 @@ const Navbar = () => {
                         <Link to={"/dashboard"}> <li><a>Dashboard</a></li></Link>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Safi Miazi</a>
+                <Link to={"/"} className="btn btn-ghost text-xl">Safi Miazi</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
