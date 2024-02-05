@@ -3,7 +3,7 @@ const HumanAsset = () => {
     return (
         <div>
             <div>
-                <h4 className="text-xl">Add New Member</h4>
+                <h4 className="text-xl font-bold">Add New Member</h4>
             </div>
         </div>
     );
