@@ -5,6 +5,7 @@ import Register from "../Pages/Register";
 import Root from "../Root/Root";
 import Home from "../Pages/Home";
 import DRoot from "../DashRoot.jsx/DRoot";
+import HumanAsset from "../Pages/Dashboard/HumanAsset";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard",
             element: <Dashboard/>
+        },
+          {
+            path: "/dashboard/human-asset",
+            element: <HumanAsset/>
         },
         ]
     }
