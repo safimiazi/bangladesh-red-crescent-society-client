@@ -12,7 +12,7 @@ const DashSidebar = () => {
                 <img className="w-44" src={tile} alt="" />
             </div>
             <div>
-                <ul className="menu gap-2">
+                <ul className="menu gap-2 overflow-y-auto">
                     <li><NavLink exact to={"/dashboard"} className={({ isActive, isPending }) =>
                         isPending ? "pending" : isActive ? "bg-green-300" : ""
                     }><FaHome /> Dashboard</NavLink></li>
