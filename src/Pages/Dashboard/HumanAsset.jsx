@@ -97,7 +97,7 @@ console.log(errors);
     return (
         <div>
             <div>
-                <h4 className="text-xl font-bold">Add New Member</h4>
+                <h4 className="text-[#878FA7] text-[20px] pb-4">Add New Member</h4>
             </div>
             <div className="bg-white p-5">
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -310,8 +310,8 @@ console.log(errors);
 
                         </div>
                         <div className="grid md:grid-cols-2 gap-2">
-                            <button type="submit" className="px-1 py-4 bg-green-400">Save</button>
-                            <button className="px-1 py-4 bg-slate-500">Cancel</button>
+                            <button type="submit" className="px-1 py-2 text-white font-semibold rounded-lg bg-[#2AA778]">Save</button>
+                            <button className="px-1 py-2 rounded-lg text-white font-semibold  bg-[#878FA7]">Cancel</button>
                         </div>
                     </div>
                 </form>
