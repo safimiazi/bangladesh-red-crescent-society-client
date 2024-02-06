@@ -11,7 +11,7 @@ const DRoot = () => {
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Navbar */}
                 <DashNavbar/>
-                <main className="flex-1 bg-gray-200 overflow-x-hidden overflow-y-auto p-4">
+                <main className="flex-1 bg-[#F2F2F2] min-h-screen overflow-x-hidden overflow-y-auto p-4">
             
                    <Outlet/>
                 </main>

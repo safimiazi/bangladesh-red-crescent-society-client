@@ -4,8 +4,8 @@ import { IoIosLogOut } from "react-icons/io";
 
 const DashNavbar = () => {
     return (
-        <div className="navbar bg-base-200 grid grid-cols-5 gap-2">
-            <div className="col-span-4 relative">
+        <div className="navbar bg-base-200 border-b-2  grid grid-cols-5 gap-2">
+            <div className="col-span-4 pl-4 relative">
                 <input
                     type="search"
                     name="search"
