@@ -6,6 +6,34 @@ import Unit from "./Unit";
 import Upazila from "./Upazila";
 import Blood from "./Blood";
 import Religion from "./Religion";
+import * as Yup from 'yup';
+import { useFormik } from "formik";
+
+
+
+const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    memberIdCard: Yup.string().required('Member ID Card is required'),
+    enrollmentDate: Yup.date().nullable().required('Enrollment Date is required'),
+    birthDate: Yup.date().nullable().required('Birth Date is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    motherName: Yup.string().required('Mother\'s Name is required'),
+    spouseName: Yup.string(),
+    permanentAddress: Yup.string().required('Permanent Address is required'),
+    Occupation: Yup.string(),
+    birthCertificateNo: Yup.string(),
+    passportNo: Yup.string(),
+    memberFormSerial: Yup.string(),
+    moneyReceiptNo: Yup.string(),
+    emergencyContactNo: Yup.string(),
+    contactNo: Yup.string(),
+    fatherName: Yup.string().required('Father\'s Name is required'),
+    presentAddress: Yup.string(),
+    nationalId: Yup.string(),
+    education: Yup.string(),
+    projectActivities: Yup.string(),
+});
+
 const HumanAsset = () => {
 
 
@@ -51,59 +79,34 @@ const HumanAsset = () => {
     const [isMale, setIsMale] = useState(false);
     const [isFemale, setIsFemale] = useState(false);
 
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            // ... other form fields
+        },
+        validationSchema,
+        onSubmit: (values) => {
+            console.log("form data", values);
+            // Additional logic or API calls can be done here
+        }
+    });
+
+    const { values, handleBlur, handleChange, handleSubmit, errors } = formik;
 
 
-
-
-    //handle Form
-    const handleForm = (event) => {
-        event.preventDefault()
-        const form = event?.target;
-        const name = form.name.value;
-        const memberIdCard = form.memberIdCard.value;
-        const enrollmentDate = form.enrollmentDate.value;
-        const birthDate = form.birthDate.value;
-        const email = form.email.value;
-        const motherName = form.motherName.value;
-        const spouseName = form.spouseName.value;
-        const permanentAddress = form.permanentAddress.value;
-        const Occupation = form.Occupation.value;
-        const birthCertificateNo = form.birthCertificateNo.value;
-        const passportNo = form.passportNo.value;
-        const memberFormSerial = form.memberFormSerial.value;
-        const moneyReceiptNo = form.moneyReceiptNo.value;
-        const emergencyContactNo = form.emergencyContactNo.value;
-        const contactNo = form.contactNo.value;
-        const fatherName = form.fatherName.value;
-        const presentAddress = form.presentAddress.value;
-        const nationalId = form.nationalId.value;
-        const education = form.education.value;
-        const projectActivities = form.projectActivities.value;
-
-        console.log(name, memberFormSerial, memberIdCard, enrollmentDate, birthDate, email, motherName, spouseName, presentAddress, permanentAddress, Occupation, 
-           birthCertificateNo, passportNo, moneyReceiptNo, emergencyContactNo, contactNo, fatherName, nationalId, education, projectActivities );
-
-        // Accessing checked values
-        // console.log("Is Alive:", isAlive);
-        // console.log("Managing Board Member:", isManagingBoardMember);
-        // console.log("Unit Executive Committee Member:", isUnitExecutiveCommitteeMember);
-        // console.log("Chairman:", isChairman);
-        // console.log("Male:", isMale);
-        // console.log("Female:", isFemale);
-        // console.log(selectedMemberType, selectedPrefixType, selectedUnitType, selectedUpazilaType, selectedBloodType, selectedReligionType);
-    }
     return (
         <div>
             <div>
                 <h4 className="text-xl font-bold">Add New Member</h4>
             </div>
             <div className="bg-white p-5">
-                <form onSubmit={handleForm} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="col-span-2 grid md:grid-cols-7 grid-cols-1 gap-2 items-center justify-between">
                         <Prefix onPrefixChange={handlePrefixTypeChange} />
                         <div className="col-span-3">
                             <label>Name<span className="text-red-500">*</span></label><br />
-                            <input name="name" type="text" className="border-2 w-full" id="" />
+                            <input name="name" onBlur={handleBlur} onChange={handleChange} type="text" className="border-2 w-full" id="" />
+                            {errors.name && <small className="text-red-600">{errors.name}</small>}
                         </div>
                         <div className="md:ml-3">
                             <label></label><br />
@@ -163,7 +166,7 @@ const HumanAsset = () => {
                             </div>
                             <div className="col-span-4">
                                 <label>Email</label><br />
-                                <input type="email" className="border-2 w-full" name="email" id="" />
+                                <input type="text" className="border-2 w-full" name="email" id="" />
                             </div>
                             <Blood onBloodChange={handleBloodChange} />
                             <Religion onReligionChange={handleReligionChange} />
