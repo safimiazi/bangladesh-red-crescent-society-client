@@ -4,7 +4,7 @@ import tile from "../assets/Group1.png";
 
 const DashSidebar = () => {
   return (
-    <div className="p-6 py-2">
+    <div className="p-6 py-2 h-screen">
       <div className="flex gap-2 items-center justify-between">
         <img src={logo} alt="" />
         <img className="w-44" src={tile} alt="" />
