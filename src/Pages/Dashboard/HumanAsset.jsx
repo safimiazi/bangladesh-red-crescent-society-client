@@ -8,6 +8,7 @@ import Blood from "./Blood";
 import Religion from "./Religion";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
+import { useRef } from "react";
 
 
 
@@ -46,8 +47,26 @@ const HumanAsset = () => {
     const [selectedBloodType, setSelectedBloodType] = useState(null);
     const [selectedReligionType, setSelectedReligionType] = useState(null);
 
+    // Checked state variables
+    const [isAlive, setIsAlive] = useState(false);
+    const [isManagingBoardMember, setIsManagingBoardMember] = useState(false);
+    const [isUnitExecutiveCommitteeMember, setIsUnitExecutiveCommitteeMember] = useState(false);
+    const [isChairman, setIsChairman] = useState(false);
+    const [isMale, setIsMale] = useState(false);
+    const [isFemale, setIsFemale] = useState(false);
 
-    //checked related  state:
+    //photo upload related state
+    const inputRef = useRef(null);
+    const [image, setImage] = useState()
+
+    //photo upload related function:
+    const handleImageClick = () => {
+        inputRef.current.click();
+    };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setImage(file)
+    };
 
 
     //all selected input functions
@@ -71,13 +90,7 @@ const HumanAsset = () => {
     }
 
 
-    // Checked state variables
-    const [isAlive, setIsAlive] = useState(false);
-    const [isManagingBoardMember, setIsManagingBoardMember] = useState(false);
-    const [isUnitExecutiveCommitteeMember, setIsUnitExecutiveCommitteeMember] = useState(false);
-    const [isChairman, setIsChairman] = useState(false);
-    const [isMale, setIsMale] = useState(false);
-    const [isFemale, setIsFemale] = useState(false);
+
 
     const formik = useFormik({
         initialValues: {
@@ -92,7 +105,6 @@ const HumanAsset = () => {
     });
 
     const { values, handleBlur, handleChange, handleSubmit, errors } = formik;
-console.log(errors);
 
     return (
         <div>
@@ -243,13 +255,19 @@ console.log(errors);
 
                         <div className="mb-4">
                             <label>Photo</label><br />
-                            <div className=" border-2 grid md:grid-cols-2 grid-cols-1 md:gap-20 items-center justify-center p-2">
+                            <div onClick={handleImageClick} className=" border-2 grid md:grid-cols-2 grid-cols-1 md:gap-20 items-center justify-center p-2">
                                 <div>
-                                    <input type="file" name="" id="" />
+                                    <input type="file" ref={inputRef} onChange={handleImageChange} name="" id="" />
                                     <p>*Maximum allowed image size is 2 MB</p>
                                 </div>
-                                <div className="w-32 h-32">
-                                    <img src={before_image} className="rounded-full border-2 w-full h-full" alt="" />
+                                <div className="w-28 h-28">
+                                    {image ? (
+                                        <img src={URL.createObjectURL(image)} className="rounded-full border-2 w-full h-full" alt="" />
+
+                                    ) : (
+                                        <img src={before_image} className="rounded-full border-2 w-full h-full" alt="" />
+
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -293,7 +311,7 @@ console.log(errors);
                         </div>
                         <div className="mb-6">
                             <label>National ID</label><br />
-                            <input type="text"  onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="nationalId" id="" />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="nationalId" id="" />
                             {errors.nationalId && <small className="text-red-600">{errors?.nationalId}</small>}
 
                         </div>
