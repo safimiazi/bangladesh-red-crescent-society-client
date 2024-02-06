@@ -19,7 +19,7 @@ const MemberTypeSelect = ({ onMemberTypeChange }) => {
   return (
 
     <div className="mb-2">
-      <label>Member Type<span className="text-red-500">*</span></label><br />
+      <label className="text-[#777] text-[18px] font-normal">2. Member Type<span className="text-red-500">*</span></label><br />
       <Select
         options={options}
         isSearchable={true}

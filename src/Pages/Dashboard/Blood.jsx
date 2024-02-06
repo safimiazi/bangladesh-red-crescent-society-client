@@ -20,7 +20,7 @@ const Blood = ({ onBloodChange }) => {
 
 
         <div className="col-span-4">
-        <label>Blood Group</label><br />
+        <label className="text-[#777] text-[18px] font-normal">12. Blood Group</label><br />
         <Select
                 options={options}
                 isSearchable={true}
