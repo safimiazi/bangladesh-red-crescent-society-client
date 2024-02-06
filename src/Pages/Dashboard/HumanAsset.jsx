@@ -92,7 +92,7 @@ const HumanAsset = () => {
     });
 
     const { values, handleBlur, handleChange, handleSubmit, errors } = formik;
-
+console.log(errors);
 
     return (
         <div>
@@ -106,7 +106,7 @@ const HumanAsset = () => {
                         <div className="col-span-3">
                             <label>Name<span className="text-red-500">*</span></label><br />
                             <input name="name" onBlur={handleBlur} onChange={handleChange} type="text" className="border-2 w-full" id="" />
-                            {errors.name && <small className="text-red-600">{errors.name}</small>}
+                            {errors.name && <small className="text-red-600">{errors?.name}</small>}
                         </div>
                         <div className="md:ml-3">
                             <label></label><br />
@@ -130,21 +130,21 @@ const HumanAsset = () => {
                             <div className="col-span-3">
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" name="isManagingBoardMember" id="isManagingBoardMember" checked={isManagingBoardMember} onChange={() => setIsManagingBoardMember(!isManagingBoardMember)} className="w-5 h-5" />
+                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isManagingBoardMember" id="isManagingBoardMember" checked={isManagingBoardMember} onChange={() => setIsManagingBoardMember(!isManagingBoardMember)} className="w-5 h-5" />
                                     <label>Managing Board Member</label>
                                 </div>
                             </div>
                             <div className="col-span-4">
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" name="isUnitExecutiveCommitteeMember" checked={isUnitExecutiveCommitteeMember} onChange={() => setIsUnitExecutiveCommitteeMember(!isUnitExecutiveCommitteeMember)} className="w-5 h-5" id="isUnitExecutiveCommitteeMember" />
+                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isUnitExecutiveCommitteeMember" checked={isUnitExecutiveCommitteeMember} onChange={() => setIsUnitExecutiveCommitteeMember(!isUnitExecutiveCommitteeMember)} className="w-5 h-5" id="isUnitExecutiveCommitteeMember" />
                                     <label>Unit Executive Committee Member</label>
                                 </div>
                             </div>
                             <div>
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" name="isChairman" checked={isChairman} onChange={() => setIsChairman(!isChairman)} className="w-5 h-5" id="isChairman" />
+                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isChairman" checked={isChairman} onChange={() => setIsChairman(!isChairman)} className="w-5 h-5" id="isChairman" />
                                     <label>Chairman</label>
                                 </div>
                             </div>
@@ -153,58 +153,84 @@ const HumanAsset = () => {
                         <div className="col-span-7 grid items-center justify-between md:grid-cols-8 grid-cols-1 gap-4">
                             <div className="col-span-4">
                                 <label>Member Id Card<span className="text-red-500">*</span></label><br />
-                                <input type="text" className="border-2 w-full" name="memberIdCard" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="memberIdCard" id="" />
+                                {errors.memberIdCard && <small className="text-red-600">{errors?.memberIdCard}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Enrollment Date</label><br />
-                                <input type="date" className="border-2 w-full" name="enrollmentDate" id="" />
+                                <input type="date" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="enrollmentDate" id="" />
+                                {errors.enrollmentDate && <small className="text-red-600">{errors?.enrollmentDate}</small>}
+
                             </div>
 
                             <div className="col-span-4">
                                 <label>Birth Date</label><br />
-                                <input type="date" className="border-2 w-full" name="birthDate" id="" />
+                                <input type="date" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="birthDate" id="" />
+                                {errors.birthDate && <small className="text-red-600">{errors?.birthDate}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Email</label><br />
-                                <input type="text" className="border-2 w-full" name="email" id="" />
+                                <input type="email" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="email" id="" />
+                                {errors.email && <small className="text-red-600">{errors?.email}</small>}
+
                             </div>
                             <Blood onBloodChange={handleBloodChange} />
                             <Religion onReligionChange={handleReligionChange} />
                             <div className="col-span-4">
                                 <label>Mother's Name</label><br />
-                                <input type="text" className="border-2 w-full" name="motherName" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="motherName" id="" />
+                                {errors.motherName && <small className="text-red-600">{errors?.motherName}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Spouse's Name</label><br />
-                                <input type="text" className="border-2 w-full" name="spouseName" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="spouseName" id="" />
+                                {errors.spouseName && <small className="text-red-600">{errors?.spouseName}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Permanent Address<span className="text-red-500">*</span></label><br />
-                                <input type="text" className="border-2 w-full" name="permanentAddress" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="permanentAddress" id="" />
+                                {errors.permanentAddress && <small className="text-red-600">{errors?.permanentAddress}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Occupation</label><br />
-                                <input type="text" className="border-2 w-full" name="Occupation" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="Occupation" id="" />
+                                {errors.Occupation && <small className="text-red-600">{errors?.Occupation}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Birth Certificate No</label><br />
-                                <input type="text" className="border-2 w-full" name="birthCertificateNo" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="birthCertificateNo" id="" />
+                                {errors.birthCertificateNo && <small className="text-red-600">{errors?.birthCertificateNo}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Passport No </label><br />
-                                <input type="text" className="border-2 w-full" name="passportNo" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="passportNo" id="" />
+                                {errors.passportNo && <small className="text-red-600">{errors?.passportNo}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Member Form Serial </label><br />
-                                <input type="text" className="border-2 w-full" name="memberFormSerial" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="memberFormSerial" id="" />
+                                {errors.memberFormSerial && <small className="text-red-600">{errors?.memberFormSerial}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Money Receipt No.</label><br />
-                                <input type="text" className="border-2 w-full" name="moneyReceiptNo" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="moneyReceiptNo" id="" />
+                                {errors.moneyReceiptNo && <small className="text-red-600">{errors?.moneyReceiptNo}</small>}
+
                             </div>
                             <div className="col-span-4">
                                 <label>Emergency Contact No</label><br />
-                                <input type="text" className="border-2 w-full" name="emergencyContactNo" id="" />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="emergencyContactNo" id="" />
+                                {errors.emergencyContactNo && <small className="text-red-600">{errors?.emergencyContactNo}</small>}
+
                             </div>
                         </div>
 
@@ -255,23 +281,33 @@ const HumanAsset = () => {
 
                         <div className="mb-6">
                             <label>Father's Name</label><br />
-                            <input type="text" className="border-2 w-full" name="fatherName" id="" />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="fatherName" id="" />
+                            {errors.fatherName && <small className="text-red-600">{errors?.fatherName}</small>}
+
                         </div>
                         <div className="mb-6">
                             <label>Present Address</label><br />
-                            <input type="text" className="border-2 w-full" name="presentAddress" id="" />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="presentAddress" id="" />
+                            {errors.presentAddress && <small className="text-red-600">{errors?.presentAddress}</small>}
+
                         </div>
                         <div className="mb-6">
                             <label>National ID</label><br />
-                            <input type="text" className="border-2 w-full" name="nationalId" id="" />
+                            <input type="text"  onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="nationalId" id="" />
+                            {errors.nationalId && <small className="text-red-600">{errors?.nationalId}</small>}
+
                         </div>
                         <div className="mb-6">
                             <label>Education</label><br />
-                            <input type="text" className="border-2 w-full" name="education" id="" />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="education" id="" />
+                            {errors.education && <small className="text-red-600">{errors?.education}</small>}
+
                         </div>
                         <div className="mb-6">
                             <label>Project Activities in Last 10 years</label><br />
-                            <input type="text" className="border-2 w-full" name="projectActivities" id="" />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="projectActivities" id="" />
+                            {errors.projectActivities && <small className="text-red-600">{errors?.projectActivities}</small>}
+
                         </div>
                         <div className="grid md:grid-cols-2 gap-2">
                             <button type="submit" className="px-1 py-4 bg-green-400">Save</button>
