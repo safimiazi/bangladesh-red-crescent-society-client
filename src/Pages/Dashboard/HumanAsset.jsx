@@ -19,6 +19,9 @@ const HumanAsset = () => {
     const [selectedReligionType, setSelectedReligionType] = useState(null);
 
 
+    //checked related  state:
+
+
     //all selected input functions
     const handleMemberTypeChange = (selectedOption) => {
         setSelectedMemberType(selectedOption);
@@ -40,6 +43,13 @@ const HumanAsset = () => {
     }
 
 
+    // Checked state variables
+    const [isAlive, setIsAlive] = useState(false);
+    const [isManagingBoardMember, setIsManagingBoardMember] = useState(false);
+    const [isUnitExecutiveCommitteeMember, setIsUnitExecutiveCommitteeMember] = useState(false);
+    const [isChairman, setIsChairman] = useState(false);
+    const [isMale, setIsMale] = useState(false);
+    const [isFemale, setIsFemale] = useState(false);
 
 
 
@@ -50,8 +60,14 @@ const HumanAsset = () => {
         event.preventDefault()
         const form = event?.target;
         const name = form.name.value;
-       
-console.log(name);
+
+        // Accessing checked values
+    console.log("Is Alive:", isAlive);
+    console.log("Managing Board Member:", isManagingBoardMember);
+    console.log("Unit Executive Committee Member:", isUnitExecutiveCommitteeMember);
+    console.log("Chairman:", isChairman);
+    console.log("Male:", isMale);
+    console.log("Female:", isFemale);
         // console.log(selectedMemberType, selectedPrefixType, selectedUnitType, selectedUpazilaType, selectedBloodType, selectedReligionType);
     }
     return (
@@ -65,12 +81,19 @@ console.log(name);
                         <Prefix onPrefixChange={handlePrefixTypeChange} />
                         <div className="col-span-3">
                             <label>Name<span className="text-red-500">*</span></label><br />
-                            <input name="name" type="text" className="border-2 w-full" name="" id="" />
+                            <input name="name" type="text" className="border-2 w-full" id="" />
                         </div>
                         <div className="md:ml-3">
                             <label></label><br />
                             <div className="flex gap-2 items-center text-center">
-                                <input type="checkbox" name="" className="w-5 h-5" id="" />
+                                <input
+                                    type="checkbox"
+                                    name="isAlive"
+                                    className="w-5 h-5"
+                                    id="isAlive"
+                                    checked={isAlive}
+                                    onChange={() => setIsAlive(!isAlive)}
+                                />
                                 <label>Is Alive</label>
                             </div>
                         </div>
@@ -82,21 +105,21 @@ console.log(name);
                             <div className="col-span-3">
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" name="" className="w-5 h-5" id="" />
+                                    <input type="checkbox" name="isManagingBoardMember" id="isManagingBoardMember" checked={isManagingBoardMember} onChange={()=> setIsManagingBoardMember(!isManagingBoardMember)}  className="w-5 h-5"  />
                                     <label>Managing Board Member</label>
                                 </div>
                             </div>
                             <div className="col-span-4">
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" name="" className="w-5 h-5" id="" />
+                                    <input type="checkbox"  name="isUnitExecutiveCommitteeMember" checked={isUnitExecutiveCommitteeMember} onChange={()=> setIsUnitExecutiveCommitteeMember(!isUnitExecutiveCommitteeMember)} className="w-5 h-5" id="isUnitExecutiveCommitteeMember" />
                                     <label>Unit Executive Committee Member</label>
                                 </div>
                             </div>
                             <div>
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" name="" className="w-5 h-5" id="" />
+                                    <input type="checkbox" name="isChairman" checked={isChairman} onChange={()=> setIsChairman(!isChairman)} className="w-5 h-5" id="isChairman" />
                                     <label>Chairman</label>
                                 </div>
                             </div>
@@ -193,14 +216,14 @@ console.log(name);
                                 <div className="col-span-4">
                                     <label></label><br />
                                     <div className="flex gap-2 items-center text-center">
-                                        <input type="checkbox" name="" className="w-5 h-5" id="" />
+                                        <input type="checkbox" name="isMale" checked={isMale} onChange={()=> setIsMale(!isMale)} className="w-5 h-5" id="isMale" />
                                         <label>Male</label>
                                     </div>
                                 </div>
                                 <div className="col-span-4">
                                     <label></label><br />
                                     <div className="flex gap-2 items-center text-center">
-                                        <input type="checkbox" name="" className="w-5 h-5" id="" />
+                                        <input type="checkbox" name="isFemale" checked={isFemale} onChange={()=> setIsFemale(!isFemale)} className="w-5 h-5" id="isFemale" />
                                         <label>Female</label>
                                     </div>
                                 </div>
