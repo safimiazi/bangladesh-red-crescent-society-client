@@ -26,6 +26,7 @@ const MemberTypeSelect = ({ onMemberTypeChange }) => {
         placeholder="Select Member Type"
         value={selectedOption}
         onChange={handleSelectChange}
+        required
       />
      
     </div>

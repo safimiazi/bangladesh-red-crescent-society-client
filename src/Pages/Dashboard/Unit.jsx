@@ -27,6 +27,7 @@ const Unit = ({ onUnitChange }) => {
                 placeholder="Select Unit"
                 value={selectedOption}
                 onChange={handleSelectChange}
+                required
                 
             />
         </div>
