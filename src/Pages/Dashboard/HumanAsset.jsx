@@ -7,6 +7,9 @@ import Upazila from "./Upazila";
 import Blood from "./Blood";
 import Religion from "./Religion";
 const HumanAsset = () => {
+
+
+
     //all selected input value
     const [selectedMemberType, setSelectedMemberType] = useState(null);
     const [selectedPrefixType, setSelectedPrefixType] = useState(null);
@@ -45,7 +48,11 @@ const HumanAsset = () => {
     //handle Form
     const handleForm = (event) => {
         event.preventDefault()
-        console.log(selectedMemberType, selectedPrefixType, selectedUnitType, selectedUpazilaType, selectedBloodType, selectedReligionType);
+        const form = event?.target;
+        const name = form.name.value;
+       
+console.log(name);
+        // console.log(selectedMemberType, selectedPrefixType, selectedUnitType, selectedUpazilaType, selectedBloodType, selectedReligionType);
     }
     return (
         <div>
@@ -58,7 +65,7 @@ const HumanAsset = () => {
                         <Prefix onPrefixChange={handlePrefixTypeChange} />
                         <div className="col-span-3">
                             <label>Name<span className="text-red-500">*</span></label><br />
-                            <input type="text" className="border-2 w-full" name="" id="" />
+                            <input name="name" type="text" className="border-2 w-full" name="" id="" />
                         </div>
                         <div className="md:ml-3">
                             <label></label><br />
