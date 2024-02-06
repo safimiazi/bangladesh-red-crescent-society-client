@@ -103,14 +103,15 @@ console.log(errors);
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="col-span-2 grid md:grid-cols-7 grid-cols-1 gap-2 items-center justify-between">
                         <Prefix onPrefixChange={handlePrefixTypeChange} />
-                        <div className="col-span-3">
-                            <label>Name<span className="text-red-500">*</span></label><br />
-                            <input name="name" onBlur={handleBlur} onChange={handleChange} type="text" className="border-2 w-full" id="" />
+                        <div className="col-span-3 ">
+                            <label className="text-[#777] text-[18px] font-normal">1. Name<span className="text-red-500">*</span></label><br />
+                            <input name="name" onBlur={handleBlur} onChange={handleChange} type="text" className="border-2 py-2 rounded-lg w-full" id="" />
+                            
                             {errors.name && <small className="text-red-600">{errors?.name}</small>}
                         </div>
                         <div className="md:ml-3">
                             <label></label><br />
-                            <div className="flex gap-2 items-center text-center">
+                            <div className="flex gap-2 -ml-3  -mt-4 items-center text-center">
                                 <input
                                     type="checkbox"
                                     name="isAlive"
@@ -119,7 +120,7 @@ console.log(errors);
                                     checked={isAlive}
                                     onChange={() => setIsAlive(!isAlive)}
                                 />
-                                <label>Is Alive</label>
+                                <label className="text-[#777] text-[18px] font-normal">Is Alive</label>
                             </div>
                         </div>
                         <Unit onUnitChange={handleUnitTypeChange} />
