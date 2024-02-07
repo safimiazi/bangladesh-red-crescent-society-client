@@ -2,8 +2,6 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/Group.png";
 import tile from "../assets/Group1.png";
 import { useContext, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoClose } from "react-icons/io5";
 import { DashboardResponsiveContext } from "../Context/ResponsiveContext";
 
 const DashSidebar = () => {
@@ -12,7 +10,9 @@ const DashSidebar = () => {
 
   const dashboardRoutes = [
     {
-      route: 'Home', path: '/', icon: <svg
+      route: 'Home',
+      path: '/',
+      icon: <svg
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -90,11 +90,11 @@ const DashSidebar = () => {
           </ul>
         </div>
       </div>
-      <div className={`lg:hidden bg-green-500 absolute w-full h-full space-y-5 bottom-0 top-16 left-0 pl-4 duration-700 ${click ? 'left-0' : 'left-[-100%]'}`}>
+      <div className={`lg:hidden bg-[#FFFFFF] absolute w-full h-full space-y-5 bottom-0 top-16 left-0 pl-4 duration-700 ${click ? 'left-0' : 'left-[-100%]'}`}>
         {/* mobile view bro */}
         <div className="p-6 py-2 h-screen">
           <div className='w-full z-50 md:w-auto px-4 py-5 flex justify-between items-center'>
-            <div className="flex gap-2 items-center justify-between">
+            <div className="mx-auto flex gap-2 items-center justify-between">
               <img src={logo} alt="" />
               <img className="w-44" src={tile} alt="" />
             </div>
@@ -112,7 +112,7 @@ const DashSidebar = () => {
                             isPending
                               ? "pending"
                               : isActive
-                                ? "  py-2 flex items-center space-x-4 rounded-lg text-[#FFF] bg-[#006F45]"
+                                ? "  py-2 flex items-center space-x-4 rounded-lg text-[black] bg-[#006F45]"
                                 : ""
                           }
                         >
@@ -121,7 +121,7 @@ const DashSidebar = () => {
                               {dashboardRoute?.icon}
                             </div>
 
-                            <h1 className="-mr-1 text-[16px]  mt-1 text-[white]">
+                            <h1 className="-mr-1 text-[16px]  mt-1 text-black ">
                               {dashboardRoute?.route}
                             </h1>
                           </div>
