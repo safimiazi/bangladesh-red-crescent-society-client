@@ -9,6 +9,8 @@ import Religion from "./Religion";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import { useRef } from "react";
+import axios from "axios";
+import Swal from 'sweetalert2'
 
 
 
@@ -37,15 +39,8 @@ const validationSchema = Yup.object().shape({
 
 const HumanAsset = () => {
 
+   
 
-
-    //all selected input value
-    const [selectedMemberType, setSelectedMemberType] = useState(null);
-    const [selectedPrefixType, setSelectedPrefixType] = useState(null);
-    const [selectedUnitType, setSelectedUnitType] = useState(null);
-    const [selectedUpazilaType, setSelectedUpazilaType] = useState(null);
-    const [selectedBloodType, setSelectedBloodType] = useState(null);
-    const [selectedReligionType, setSelectedReligionType] = useState(null);
 
     // Checked state variables
     const [isAlive, setIsAlive] = useState(false);
@@ -55,6 +50,15 @@ const HumanAsset = () => {
     const [isMale, setIsMale] = useState(false);
     const [isFemale, setIsFemale] = useState(false);
 
+
+        //all selected input value
+        const [selectedMemberType, setSelectedMemberType] = useState(null);
+        const [selectedPrefixType, setSelectedPrefixType] = useState(null);
+        const [selectedUnitType, setSelectedUnitType] = useState(null);
+        const [selectedUpazilaType, setSelectedUpazilaType] = useState(null);
+        const [selectedBloodType, setSelectedBloodType] = useState(null);
+        const [selectedReligionType, setSelectedReligionType] = useState(null);
+    
     //photo upload related state
     const inputRef = useRef(null);
     const [image, setImage] = useState()
@@ -71,36 +75,81 @@ const HumanAsset = () => {
 
     //all selected input functions
     const handleMemberTypeChange = (selectedOption) => {
-        setSelectedMemberType(selectedOption);
+        setSelectedMemberType(selectedOption.label);
     };
     const handlePrefixTypeChange = (selectedOption) => {
-        setSelectedPrefixType(selectedOption)
+        setSelectedPrefixType(selectedOption.label)
     }
     const handleUnitTypeChange = (selectedOption) => {
-        setSelectedUnitType(selectedOption)
+        setSelectedUnitType(selectedOption.label)
     }
     const handleUpazilaChange = (selectedOption) => {
-        setSelectedUpazilaType(selectedOption)
+        setSelectedUpazilaType(selectedOption.label)
     }
     const handleBloodChange = (selectedOption) => {
-        setSelectedBloodType(selectedOption)
+        setSelectedBloodType(selectedOption.label)
     }
     const handleReligionChange = (selectedOption) => {
-        setSelectedReligionType(selectedOption)
+        setSelectedReligionType(selectedOption.label)
     }
 
 
 
 
     const formik = useFormik({
+        
         initialValues: {
             name: '',
             // ... other form fields
+        
         },
+        
         validationSchema,
-        onSubmit: (values) => {
-            console.log("form data", values);
-            // Additional logic or API calls can be done here
+        onSubmit: async(values) => {
+            const formData = {
+                ...values,
+                isAlive,
+                isManagingBoardMember,
+                isUnitExecutiveCommitteeMember,
+                isChairman,
+                isMale,
+                isFemale,
+                selectedMemberType,
+                selectedPrefixType,
+                selectedUnitType,
+                selectedUpazilaType,
+                selectedBloodType,
+                selectedReligionType,
+                image,
+            };
+
+           
+
+            try {
+                // Make a POST request to your server
+                const response = await axios.post('http://localhost:3000/users', formData);
+
+                // Handle the response as needed
+                console.log('Server Response:', response.statusText);
+                if(response.statusText === "Created"){
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "successfully user created!",
+                        icon: "success"
+                      });
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                      });
+                }
+            } catch (error) {
+                // Handle errors
+                console.error('Error submitting data:', error);
+            }
+
+
         }
     });
 
