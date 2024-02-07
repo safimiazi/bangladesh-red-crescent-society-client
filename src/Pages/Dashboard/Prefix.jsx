@@ -18,7 +18,7 @@ const Prefix = ({ onPrefixChange }) => {
 
     return (
         <div className="col-span-3">
-            <label>Prefix</label><br />
+            <label className='text-[#777] text-[18px]font-normal '>Prefix</label><br />
         <Select
                 options={options}
                 isSearchable={true}

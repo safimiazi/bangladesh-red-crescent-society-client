@@ -18,7 +18,7 @@ const Religion = ({ onReligionChange }) => {
     return (
 
         <div className="col-span-4">
-            <label>Religion</label><br />
+            <label className='text-[#777] text-[18px]font-normal '>12. Religion</label><br />
             <Select
                 options={options}
                 isSearchable={true}

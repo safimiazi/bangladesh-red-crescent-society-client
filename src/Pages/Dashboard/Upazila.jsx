@@ -20,7 +20,7 @@ const Upazila = ({ onUpazilaChange }) => {
 
 
         <div className="col-span-4">
-        <label>Affiliated Upazila</label><br />
+        <label className='text-[#777] text-[18px]font-normal '>Affiliated Upazila</label><br />
         <Select
                 options={options}
                 isSearchable={true}

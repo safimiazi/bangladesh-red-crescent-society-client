@@ -19,7 +19,7 @@ const Unit = ({ onUnitChange }) => {
     return (
 
         <div className="col-span-3">
-                    <label>Unit<span className="text-red-500">*</span></label><br />
+                    <label className='text-[#777] text-[18px]font-normal '>3. Unit<span className="text-red-500">*</span></label><br />
 
             <Select
                 options={options}
