@@ -19,7 +19,7 @@ const DashSidebar = () => {
           </div>
         </div>
         <div>
-          <ul className="space-y-3 tracking-wide mt-6 overflow-y-auto ">
+          <ul className="space-y-3 tracking-wide mt-6 overflow-y-auto pb-5">
             {
               dashboardRoutes?.map((dashboardRoute, index) =>
                 <div>
@@ -53,7 +53,7 @@ const DashSidebar = () => {
           </ul>
         </div>
       </div>
-      <div className={`lg:hidden bg-[#FFFFFF] absolute w-full h-screen overflow-y-auto space-y-5 bottom-0 top-16 left-0 pl-4 duration-700 ${click ? 'left-0' : 'left-[-100%] z-50'}`}>
+      <div className={`lg:hidden bg-[#FFFFFF] absolute w-full h-screen overflow-y-auto space-y-5 bottom-0 top-16 left-0 pl-4 duration-700 ${click ? 'left-0' : 'left-[-100%] z-50 pb-5'}`}>
         {/* mobile view bro */}
         <div className="p-6 py-2 h-screen">
           <div className='w-full z-50 md:w-auto px-4 py-5 flex justify-between items-center'>

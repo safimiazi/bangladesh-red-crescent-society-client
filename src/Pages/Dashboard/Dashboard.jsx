@@ -4,7 +4,7 @@ const Dashboard = () => {
       <div className="mb-2">
         <h2 className="text-[#878FA7] text-[20px] pb-4">Dashboard</h2>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-2">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-center items-center gap-2">
         {/* box-1 */}
 
         <div className="w-[230px] h-[110px] bg-[#FFF] rounded-lg">
