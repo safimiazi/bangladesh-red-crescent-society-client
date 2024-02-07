@@ -19,7 +19,7 @@ const Upazila = ({ onUpazilaChange }) => {
     return (
 
 
-        <div className="col-span-4 relative z-10">
+        <div className="col-span-4">
         <label className='text-[#777] text-[18px]font-normal '>Affiliated Upazila</label><br />
         <Select
                 options={options}

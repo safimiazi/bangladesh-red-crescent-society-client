@@ -17,7 +17,7 @@ const Prefix = ({ onPrefixChange }) => {
     };
 
     return (
-        <div className="col-span-3 relative z-10">
+        <div className="col-span-3">
             <label className='text-[#777] text-[18px] font-normal '>Prefix</label><br />
         <Select
                 options={options}
