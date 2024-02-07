@@ -11,8 +11,8 @@ const DashSidebar = () => {
 
   return (
     <div>
-      <div className="px-6 py-2 h-screen hidden lg:block overflow-y-auto">
-        <div className='w-full z-50 md:w-auto px-4 pt-5 pb-2 flex justify-between items-center'>
+      <div className="px-6 pt-2 pb-10 h-screen hidden lg:block overflow-y-auto">
+        <div className='w-full z-50 md:w-auto px-4 pt-4 pb-2 flex justify-between items-center'>
           <div className="flex gap-2 items-center justify-between">
             <img src={logo} alt="" />
             <img className="w-44" src={tile} alt="" />
@@ -31,7 +31,7 @@ const DashSidebar = () => {
                           isPending
                             ? "pending"
                             : isActive
-                              ? "  py-2 flex items-center space-x-4 rounded-lg font-bold text-[white] bg-[#006F45]"
+                              ? "  py-2 flex items-center space-x-4 rounded-lg font-bold text-white bg-[#006F45]"
                               : ""
                         }
                       >
@@ -63,7 +63,7 @@ const DashSidebar = () => {
             </div>
           </div>
           <div>
-            <ul className="space-y-2 tracking-wide mt-6 overflow-y-auto">
+            <ul className="space-y-3 tracking-wide mt-6 overflow-y-auto">
               {
                 dashboardRoutes?.map((dashboardRoute, index) =>
                   <div>
@@ -75,7 +75,7 @@ const DashSidebar = () => {
                             isPending
                               ? "pending"
                               : isActive
-                                ? "  py-2 flex items-center space-x-4 rounded-lg text-[black] bg-[#006F45]"
+                                ? "  py-2 flex justify-center items-center space-x-4 rounded-lg text-white bg-[#006F45]"
                                 : ""
                           }
                         >
