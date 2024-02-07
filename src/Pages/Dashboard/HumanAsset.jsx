@@ -156,7 +156,7 @@ const HumanAsset = () => {
     const { values, handleBlur, handleChange, handleSubmit, errors } = formik;
 
     return (
-        <div className="z-10">
+        <div>
             <div>
                 <h4 className="text-[#878FA7] text-[20px] pb-4">Add New Member</h4>
             </div>

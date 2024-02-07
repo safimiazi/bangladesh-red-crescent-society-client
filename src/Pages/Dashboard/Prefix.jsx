@@ -18,16 +18,13 @@ const Prefix = ({ onPrefixChange }) => {
 
     return (
         <div className="col-span-3">
-            <label className='text-[#777] text-[18px] font-normal '>Prefix</label><br />
+            <label className='text-[#777] text-[18px]font-normal '>Prefix</label><br />
         <Select
                 options={options}
                 isSearchable={true}
                 placeholder="Select Prefix"
                 value={selectedOption}
                 onChange={handleSelectChange}
-               
-                
-                
             />
     </div>
 
