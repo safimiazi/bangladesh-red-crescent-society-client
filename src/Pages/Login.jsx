@@ -14,7 +14,7 @@ const Login = () => {
         .then(res => {
             console.log(res?.user);
             if(res?.user?.email){
-                navigate("/dashboard")
+                navigate("/dashboard/home")
             }
         })
         .catch(err => {

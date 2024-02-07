@@ -3,15 +3,16 @@ import Select from 'react-select';
 
 const MemberTypeSelect = ({ onMemberTypeChange }) => {
   const options = [
-    { value: 'Life Member', label: 'Life Member' },
-    { value: 'Honorary Member', label: 'Honorary Member' },
-    { value: 'Institutional Member', label: 'Institutional Member' },
+    { value: 'LifeMember', label: 'Life Member' },
+    { value: 'HonoraryMember', label: 'Honorary Member' },
+    { value: 'InstitutionalMember', label: 'Institutional Member' },
     // Add more options as needed
   ];
 
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleSelectChange = (selectedOption) => {
+   
     setSelectedOption(selectedOption);
     onMemberTypeChange(selectedOption); // Call the function from props to send the value to the parent
   };
