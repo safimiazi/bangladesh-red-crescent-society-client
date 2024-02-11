@@ -18,7 +18,8 @@ const dashboardRoutes = [
         </svg>
     },
     {
-        route: 'Beneficiaries', path: '/beneficiaries', icon: <svg
+        route: 'Beneficiaries', path: '/beneficiaries',
+        icon: <svg
             width="22"
             height="22"
             viewBox="0 0 22 22"
@@ -45,7 +46,15 @@ const dashboardRoutes = [
                 d="M11.7 11.9167C11.7 13.4338 10.4895 14.6667 9 14.6667C7.5105 14.6667 6.3 13.4338 6.3 11.9167C6.3 10.3996 7.5105 9.16667 9 9.16667C10.4895 9.16667 11.7 10.3996 11.7 11.9167ZM18 7.47725V16.9583C18 19.7386 15.7788 22 13.05 22H4.95C2.2203 22 0 19.7386 0 16.9583V5.04167C0 2.26142 2.2203 0 4.95 0H10.6587C11.9817 0 13.2246 0.524333 14.1597 1.47675L16.5501 3.91233C17.4852 4.86475 18 6.13067 18 7.47725ZM15.3 16.9583V8.25H11.7C10.7055 8.25 9.9 7.42958 9.9 6.41667V2.75H4.95C3.7098 2.75 2.7 3.7785 2.7 5.04167V16.9583C2.7 18.0996 3.5226 19.0474 4.5963 19.2216C5.0238 17.1435 6.8328 15.5833 9 15.5833C11.1672 15.5833 12.9762 17.1435 13.4037 19.2216C14.4774 19.0483 15.3 18.0996 15.3 16.9583Z"
                 fill="#B1B6CA"
             />
-        </svg>
+        </svg>,
+        nestedRoute: true,
+        nestedRoutes: [
+            {name: 'Hello', path:'/dashboard/hello'},
+            {name: 'Hi', path:'/dashboard/hello'},
+            {name: 'Colo', path:'/dashboard/hello'},
+            {name: 'Jai', path:'/dashboard/hello'},
+            {name: 'Paliye', path:'/dashboard/hello'},
+        ]
     },
     {
         route: 'Services',
@@ -81,7 +90,15 @@ const dashboardRoutes = [
                 d="M15.375 1.5H13.5V0H11.25V1.5H6.75V0H4.5V1.5H2.625C1.1775 1.5 0 2.6775 0 4.125V18H18V4.125C18 2.6775 16.8225 1.5 15.375 1.5ZM15.75 15.75H2.25V6.75H15.75V15.75ZM7.5 12H3.75V8.25H7.5V12Z"
                 fill="#B1B6CA"
             />
-        </svg>
+        </svg>,
+        nestedRoute: true,
+        nestedRoutes: [
+            { name: 'Hello', path: '/dashboard/hello' },
+            { name: 'Hi', path: '/dashboard/hello' },
+            { name: 'Colo', path: '/dashboard/hello' },
+            { name: 'Jai', path: '/dashboard/hello' },
+            { name: 'Paliye', path: '/dashboard/hello' },
+        ]
     },
     {
         route: 'Projects',

@@ -4,10 +4,13 @@ import tile from "../assets/Group1.png";
 import { useContext, useState } from "react";
 import { DashboardResponsiveContext } from "../Context/ResponsiveContext";
 import dashboardRoutes from "./dashboardRoutes";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const DashSidebar = () => {
 
   const { click } = useContext(DashboardResponsiveContext);
+  const [heading, setHeading] = useState('');
+  console.log(heading);
 
   return (
     <div>
@@ -31,21 +34,38 @@ const DashSidebar = () => {
                           isPending
                             ? "pending"
                             : isActive
-                              ? "  py-2 flex items-center space-x-4 rounded-lg font-bold text-white bg-[#006F45]"
-                              : ""
+                              ? "py-2 w-full flex items-center justify-between space-x-4 rounded-lg font-bold text-white bg-[#006F45]": ""
                         }
                       >
-                        <div className="flex pl-4   gap-3 items-center">
+                        <div className="flex pl-4 gap-3 items-center justify-start">
                           <div>
                             {dashboardRoute?.icon}
                           </div>
 
-                          <h1 className="-mr-1 text-[16px]  mt-1 text-[#878FA7]">
+                          <h1 onClick={() => heading !== dashboardRoute.route ? setHeading(dashboardRoute.route) : setHeading('')}
+                            className="-mr-1 text-[16px]  mt-1 text-[#878FA7] flex justify-between items-center w-full">
                             {dashboardRoute?.route}
+                            {dashboardRoute.nestedRoute && <RiArrowDropDownLine className='text-xl' />}
                           </h1>
                         </div>
                       </NavLink>
                     </li>
+                    <div className={`${heading === dashboardRoute.route ? 'block' : 'hidden' } duration-300 px-2 `}>
+                      {
+                        dashboardRoute?.nestedRoute && (
+                          dashboardRoute.nestedRoutes?.map((dashboardNestedRoute, index) =>
+                            <NavLink to={dashboardNestedRoute.path} key={index} className="pl-4 my-3">
+                              <div className="flex justify-start items-center gap-2 px-6">
+                                <div>
+                                  {dashboardRoute?.icon}
+                                </div>
+                                <h1>{dashboardNestedRoute?.name}</h1>
+                              </div>
+                            </NavLink>
+                          )
+                        )
+                      }
+                    </div>
                   </div>
                 </div>
               )
@@ -75,11 +95,11 @@ const DashSidebar = () => {
                             isPending
                               ? "pending"
                               : isActive
-                                ? "  py-2 flex justify-center items-center space-x-4 rounded-lg text-white bg-[#006F45]"
+                                ? "  py-2 flex justify-start items-center space-x-4 rounded-lg text-white bg-[#006F45]"
                                 : ""
                           }
                         >
-                          <div className="flex pl-4 gap-3 justify-center items-center">
+                          {/* <div className="flex pl-4 gap-3 justify-start items-center">
                             <div>
                               {dashboardRoute?.icon}
                             </div>
@@ -87,9 +107,36 @@ const DashSidebar = () => {
                             <h1 className="-mr-1 text-[16px]  mt-1 text-black ">
                               {dashboardRoute?.route}
                             </h1>
+                          </div> */}
+                          <div className="flex pl-4 gap-3 items-center justify-start">
+                            <div>
+                              {dashboardRoute?.icon}
+                            </div>
+
+                            <h1 onClick={() => heading !== dashboardRoute.route ? setHeading(dashboardRoute.route) : setHeading('')}
+                              className="-mr-1 text-[16px]  mt-1 text-[#878FA7] flex justify-between items-center w-full">
+                              {dashboardRoute?.route}
+                              {dashboardRoute.nestedRoute && <RiArrowDropDownLine className='text-xl' />}
+                            </h1>
                           </div>
                         </NavLink>
                       </li>
+                      <div className={`${heading === dashboardRoute.route ? 'block' : 'hidden'} duration-300 px-2 `}>
+                        {
+                          dashboardRoute?.nestedRoute && (
+                            dashboardRoute.nestedRoutes?.map((dashboardNestedRoute, index) =>
+                              <NavLink to={dashboardNestedRoute.path} key={index} className="pl-4 my-3">
+                                <div className="flex justify-start items-center gap-2 px-6">
+                                  <div>
+                                    {dashboardRoute?.icon}
+                                  </div>
+                                  <h1>{dashboardNestedRoute?.name}</h1>
+                                </div>
+                              </NavLink>
+                            )
+                          )
+                        }
+                      </div>
                     </div>
                   </div>
                 )
