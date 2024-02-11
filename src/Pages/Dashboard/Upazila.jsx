@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import Select from 'react-select';
 
@@ -27,7 +28,15 @@ const Upazila = ({ onUpazilaChange }) => {
                 placeholder="Select Upazila"
                 value={selectedOption}
                 onChange={handleSelectChange}
-                
+                theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 2,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'white',
+                      primary: '#2AA778',
+                    },
+                  })}
             />
     </div>
      

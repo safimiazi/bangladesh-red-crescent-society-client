@@ -26,7 +26,7 @@ const DashSidebar = () => {
           <ul className="space-y-1 tracking-wide mt-4 overflow-y-auto">
             {
               dashboardRoutes?.map((dashboardRoute, index) =>
-                <div>
+                <div key={index}>
                   <div className='group cursor-pointer hidden lg:block group'>
                     <li>
                       <NavLink
