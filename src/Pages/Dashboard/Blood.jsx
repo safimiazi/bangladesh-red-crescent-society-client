@@ -27,6 +27,15 @@ const Blood = ({ onBloodChange }) => {
                 placeholder="Select Blood"
                 value={selectedOption}
                 onChange={handleSelectChange}
+                theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 2,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'white',
+                      primary: '#2AA778',
+                    },
+                  })}
                 
             />
     </div>
