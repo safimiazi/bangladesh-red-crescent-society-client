@@ -55,7 +55,7 @@ const DashSidebar = () => {
                                 <div>
                                   {dashboardRoute?.icon}
                                 </div>
-                                <h1>{dashboardNestedRoute?.name}</h1>
+                                <h1 className="hover:text-[#006f45]">{dashboardNestedRoute?.name}</h1>
                               </div>
                             </NavLink>
                           )
@@ -82,37 +82,23 @@ const DashSidebar = () => {
             <ul className="space-y-3 tracking-wide mt-6 overflow-y-auto">
               {
                 dashboardRoutes?.map((dashboardRoute, index) =>
-                  <div>
+                  <div key={index}>
                     <div className='group cursor-pointer lg:block'>
                       <li>
                         <NavLink
                           to={dashboardRoute?.path}
-                          className={({ isActive, isPending }) =>
-                            isPending
-                              ? "pending"
-                              : isActive
-                                ? "  py-2 flex justify-start items-center space-x-4 rounded-lg text-white bg-[#006F45]"
-                                : ""
-                          }
+                          className='sideLI flex items-center gap-2 rounded-[4px] h-[48px] pl-3'
+                          
                         >
-                          {/* <div className="flex pl-4 gap-3 justify-start items-center">
-                            <div>
-                              {dashboardRoute?.icon}
-                            </div>
-
-                            <h1 className="-mr-1 text-[16px]  mt-1 text-black ">
-                              {dashboardRoute?.route}
-                            </h1>
-                          </div> */}
                           <div className="flex pl-4 gap-3 items-center justify-start">
                             <div>
                               {dashboardRoute?.icon}
                             </div>
 
                             <h1 onClick={() => heading !== dashboardRoute.route ? setHeading(dashboardRoute.route) : setHeading('')}
-                              className="-mr-1 text-[16px]  mt-1 text-[#878FA7] flex justify-between items-center w-full">
+                              className="navLink text-[14px] font-normal text-[#878FA7] mt-1 flex justify-between items-center w-[300px]">
                               {dashboardRoute?.route}
-                              {dashboardRoute.nestedRoute && <RiArrowDropDownLine className='text-xl' />}
+                              {dashboardRoute.nestedRoute && <RiArrowDropDownLine className='text-3xl' />}
                             </h1>
                           </div>
                         </NavLink>
@@ -126,7 +112,7 @@ const DashSidebar = () => {
                                   <div>
                                     {dashboardRoute?.icon}
                                   </div>
-                                  <h1>{dashboardNestedRoute?.name}</h1>
+                                  <h1 className="hover:text-[#006f45]">{dashboardNestedRoute?.name}</h1>
                                 </div>
                               </NavLink>
                             )
