@@ -69,8 +69,16 @@ const HumanAsset = () => {
         inputRef.current.click();
     };
     const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file)
+        const reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = () => {
+            console.log(reader.result);
+            setImage(reader.result)
+
+        }
+        reader.onerror = error => {
+            console.log("Error:", error);
+        }
     };
 
 
@@ -309,12 +317,12 @@ const HumanAsset = () => {
                             <label>Photo</label><br />
                             <div onClick={handleImageClick} className=" border-2 grid md:grid-cols-2 grid-cols-1 md:gap-20 items-center justify-center p-2">
                                 <div>
-                                    <input type="file" ref={inputRef} onChange={handleImageChange} name="" id="" />
+                                    <input type="file" ref={inputRef} accept="image/*" onChange={handleImageChange} name="" id="" />
                                     <p>*Maximum allowed image size is 2 MB</p>
                                 </div>
                                 <div className="w-28 h-28">
                                     {image ? (
-                                        <img src={URL.createObjectURL(image)} className="rounded-full border-2 w-full h-full" alt="" />
+                                        <img src={image} className="rounded-full border-2 w-full h-full" alt="" />
 
                                     ) : (
                                         <img src={before_image} className="rounded-full border-2 w-full h-full" alt="" />
