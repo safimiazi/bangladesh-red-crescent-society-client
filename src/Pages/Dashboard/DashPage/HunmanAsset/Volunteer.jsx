@@ -148,7 +148,7 @@ const Volunteer = () => {
           <title>BDRCS | Volunteer</title>
         </Helmet>
         <div>
-          <p className="text-[20px] text-[#5C5C5C] ml-[26px] py-3">
+          <p className="text-[20px] text-[#5C5C5C] ml-[24px] py-3">
             Add New Volunteer
           </p>
         </div>
@@ -165,7 +165,7 @@ const Volunteer = () => {
                   1. Name
                 </p>
                 <input
-                  className="w-full xl lg:w-[380px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl lg:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -187,7 +187,7 @@ const Volunteer = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full xl:w-[400px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={unitOption}
                       placeholder="Select Unit"
@@ -200,7 +200,7 @@ const Volunteer = () => {
                 />
               </div>
 
-              <div className="w-full flex gap-2 flex-col xl:flex-row xl:items-center">
+              <div className="w-full flex gap-1 flex-col xl:flex-row xl:items-center">
                 <h3 className="text-[#444444] text-[14px]">
                   Affiliated Upazila
                 </h3>
@@ -210,7 +210,7 @@ const Volunteer = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full xl:w-[380px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={upazilaOption}
                       placeholder="Select Upazila"
@@ -239,12 +239,12 @@ const Volunteer = () => {
                     3. Volunteer Type
                   </p>
                   <Controller
-                    name="Prefix"
+                    name="volunteer Type"
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
                       <Select
-                        className="custom-select w-full xl:w-[400px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                        className="custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
                         options={prefixOption}
                         placeholder="Select Prefix"
@@ -264,7 +264,7 @@ const Volunteer = () => {
                   4. Volunteer ID
                 </p>
                 <input
-                  className="w-full xl lg:w-[400px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl lg:w-[300px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -277,7 +277,7 @@ const Volunteer = () => {
                   5. Registration No.
                 </p>
                 <input
-                  className="w-full xl lg:w-[422px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl lg:w-[300px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -301,7 +301,7 @@ const Volunteer = () => {
                                             defaultValue=""
                                             render={({ field }) => (
                                                 <Select
-                                                    className='custom-select w-full xl:w-[400px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                                    className='custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                                     components={{ DropdownIndicator }}
                                                     options={unitOption}
                                                     placeholder="Select Unit"
@@ -315,7 +315,7 @@ const Volunteer = () => {
                                     </div>
                                
                               {/*7. Gender checkbox*/}
-                            <div className="lg:px-20 -mr-22">
+                            <div className="lg:px-5 -mr-22">
                                 <div className='relative w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>7. Gender</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
@@ -345,11 +345,11 @@ const Volunteer = () => {
                             {/*9. Birth date */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>9. Birth Date</p>
-                                <input className='w-full lg:w-[400px] h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+                                <input className='w-full lg:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
                             </div>
 
                                         {/*10. Marital Status*/}
-                                        <div className="lg:px-12 mt-2">
+                                        <div className="lg:px-1 mt-2">
                                 <div className='relative w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>10. Marital Status </p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
@@ -375,12 +375,12 @@ const Volunteer = () => {
                                 </div>
                             </div>
                             {/* second column according to the desktop view */}
-                            <div className="ml-5">
+                            <div className="">
                                 <div className='relative w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>8. Photo</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <div className='xl:w-[422px] xl:h-[139px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
+                                <div className='xl:w-[310px] px-3 xl:h-[149px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
                                     <div>
                                         <input
                                             accept="image/*"
