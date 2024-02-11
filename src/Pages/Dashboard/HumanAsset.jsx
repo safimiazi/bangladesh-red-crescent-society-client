@@ -91,7 +91,7 @@ const HumanAsset = () => {
     }
     const handleReligionChange = (selectedOption) => {
         setSelectedReligionType(selectedOption.label)
-    }
+    };
 
 
 
