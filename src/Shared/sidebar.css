@@ -1,0 +1,43 @@
+.active {
+    background: #006F45;
+}
+
+.active .navLink,
+.active svg path {
+    color: white;
+    font-weight: 700;
+    fill: white;
+}
+
+.active:hover svg path {
+    fill: white !important;
+}
+
+.active:hover .navLink {
+    color: white !important;
+}
+
+
+.sideLI svg path {
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+}
+
+.sideLI:hover svg path {
+    fill: #006F45;
+}
+
+.sideLI .navLink {
+    transition: all linear 0.4s;
+    -webkit-transition: all linear 0.4s;
+    -moz-transition: all linear 0.4s;
+    -ms-transition: all linear 0.4s;
+    -o-transition: all linear 0.4s;
+}
+
+.sideLI:hover .navLink {
+    color: #006F45;
+}

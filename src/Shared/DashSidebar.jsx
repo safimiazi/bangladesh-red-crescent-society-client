@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { DashboardResponsiveContext } from "../Context/ResponsiveContext";
 import dashboardRoutes from "./dashboardRoutes";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import './sidebar.css'
 
 const DashSidebar = () => {
 
@@ -22,20 +23,15 @@ const DashSidebar = () => {
           </div>
         </div>
         <div>
-          <ul className="space-y-3 tracking-wide mt-6 overflow-y-auto ">
+          <ul className="space-y-1 tracking-wide mt-4 overflow-y-auto">
             {
               dashboardRoutes?.map((dashboardRoute, index) =>
                 <div>
-                  <div className='group cursor-pointer hidden lg:block'>
+                  <div className='group cursor-pointer hidden lg:block group'>
                     <li>
                       <NavLink
                         to={dashboardRoute?.path}
-                        className={({ isActive, isPending }) =>
-                          isPending
-                            ? "pending"
-                            : isActive
-                              ? "py-2 w-full flex items-center justify-between space-x-4 rounded-lg font-bold text-white bg-[#006F45]": ""
-                        }
+                        className='sideLI flex items-center gap-2 rounded-[4px] h-[48px] pl-3'
                       >
                         <div className="flex pl-4 gap-3 items-center justify-start">
                           <div>
@@ -43,9 +39,9 @@ const DashSidebar = () => {
                           </div>
 
                           <h1 onClick={() => heading !== dashboardRoute.route ? setHeading(dashboardRoute.route) : setHeading('')}
-                            className="-mr-1 text-[16px]  mt-1 text-[#878FA7] flex justify-between items-center w-full">
+                            className="navLink text-[14px] font-normal text-[#878FA7] mt-1 flex justify-between items-center w-[190px]">
                             {dashboardRoute?.route}
-                            {dashboardRoute.nestedRoute && <RiArrowDropDownLine className='text-xl' />}
+                            {dashboardRoute.nestedRoute && <RiArrowDropDownLine className='group-hover:text-green-500 text-3xl' />}
                           </h1>
                         </div>
                       </NavLink>
@@ -54,7 +50,7 @@ const DashSidebar = () => {
                       {
                         dashboardRoute?.nestedRoute && (
                           dashboardRoute.nestedRoutes?.map((dashboardNestedRoute, index) =>
-                            <NavLink to={dashboardNestedRoute.path} key={index} className="pl-4 my-3">
+                            <NavLink to={dashboardNestedRoute.path} key={index} className="pl-4 my-1 sideLI flex items-center gap-2 rounded-[4px] h-[48px]">
                               <div className="flex justify-start items-center gap-2 px-6">
                                 <div>
                                   {dashboardRoute?.icon}
