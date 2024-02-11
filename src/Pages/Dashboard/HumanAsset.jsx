@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from "react";
 import before_image from "../../assets/before_image.png"
 import MemberTypeSelect from "./MemberTypeSelect";
@@ -39,7 +40,7 @@ const validationSchema = Yup.object().shape({
 
 const HumanAsset = () => {
 
-   
+
 
 
     // Checked state variables
@@ -51,14 +52,14 @@ const HumanAsset = () => {
     const [isFemale, setIsFemale] = useState(false);
 
 
-        //all selected input value
-        const [selectedMemberType, setSelectedMemberType] = useState(null);
-        const [selectedPrefixType, setSelectedPrefixType] = useState(null);
-        const [selectedUnitType, setSelectedUnitType] = useState(null);
-        const [selectedUpazilaType, setSelectedUpazilaType] = useState(null);
-        const [selectedBloodType, setSelectedBloodType] = useState(null);
-        const [selectedReligionType, setSelectedReligionType] = useState(null);
-    
+    //all selected input value
+    const [selectedMemberType, setSelectedMemberType] = useState(null);
+    const [selectedPrefixType, setSelectedPrefixType] = useState(null);
+    const [selectedUnitType, setSelectedUnitType] = useState(null);
+    const [selectedUpazilaType, setSelectedUpazilaType] = useState(null);
+    const [selectedBloodType, setSelectedBloodType] = useState(null);
+    const [selectedReligionType, setSelectedReligionType] = useState(null);
+
     //photo upload related state
     const inputRef = useRef(null);
     const [image, setImage] = useState()
@@ -97,15 +98,15 @@ const HumanAsset = () => {
 
 
     const formik = useFormik({
-        
+
         initialValues: {
             name: '',
             // ... other form fields
-        
+
         },
-        
+
         validationSchema,
-        onSubmit: async(values) => {
+        onSubmit: async (values) => {
             const formData = {
                 ...values,
                 isAlive,
@@ -123,7 +124,7 @@ const HumanAsset = () => {
                 image,
             };
 
-           
+
 
             try {
                 // Make a POST request to your server
@@ -131,18 +132,18 @@ const HumanAsset = () => {
 
                 // Handle the response as needed
                 console.log('Server Response:', response.statusText);
-                if(response.statusText === "Created"){
+                if (response.statusText === "Created") {
                     Swal.fire({
                         title: "Good job!",
                         text: "successfully user created!",
                         icon: "success"
-                      });
-                }else{
+                    });
+                } else {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
                         text: "Something went wrong!",
-                      });
+                    });
                 }
             } catch (error) {
                 // Handle errors
@@ -165,8 +166,8 @@ const HumanAsset = () => {
                     <div className="col-span-2 grid md:grid-cols-7 grid-cols-1 gap-2 items-center justify-between">
                         <Prefix onPrefixChange={handlePrefixTypeChange} />
                         <div className="col-span-3">
-                            <label className='text-[#777] text-[18px]font-normal '>1. Name<span className="text-red-500">*</span></label><br />
-                            <input name="name" onBlur={handleBlur} onChange={handleChange} type="text" className="border-2 w-full" id="" />
+                            <label>Name<span className="text-red-500">*</span></label><br />
+                            <input name="name" onBlur={handleBlur} onChange={handleChange} type="text" className='w-full h-[38px] border-2 focus:outline-green-700 rounded' id="" />
                             {errors.name && <small className="text-red-600">{errors?.name}</small>}
                         </div>
                         <div className="md:ml-3">
@@ -175,12 +176,12 @@ const HumanAsset = () => {
                                 <input
                                     type="checkbox"
                                     name="isAlive"
-                                    className="w-5 h-5"
+                                    className="w-5 h-5 accent-green-700"
                                     id="isAlive"
                                     checked={isAlive}
                                     onChange={() => setIsAlive(!isAlive)}
                                 />
-                                <label className='text-[#777] text-[18px]font-normal '>Is Alive</label>
+                                <label>Is Alive</label>
                             </div>
                         </div>
                         <Unit onUnitChange={handleUnitTypeChange} />
@@ -191,105 +192,107 @@ const HumanAsset = () => {
                             <div className="col-span-3">
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isManagingBoardMember" id="isManagingBoardMember" checked={isManagingBoardMember} onChange={() => setIsManagingBoardMember(!isManagingBoardMember)} className="w-5 h-5" />
-                                    <label className='text-[#777] text-[18px]font-normal '>Managing Board Member</label>
+                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isManagingBoardMember" id="isManagingBoardMember" checked={isManagingBoardMember} onChange={() => setIsManagingBoardMember(!isManagingBoardMember)}                                    className="w-5 h-5 accent-green-700"
+ />
+                                    <label>Managing Board Member</label>
                                 </div>
                             </div>
                             <div className="col-span-4">
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isUnitExecutiveCommitteeMember" checked={isUnitExecutiveCommitteeMember} onChange={() => setIsUnitExecutiveCommitteeMember(!isUnitExecutiveCommitteeMember)} className="w-5 h-5" id="isUnitExecutiveCommitteeMember" />
-                                    <label className='text-[#777] text-[18px]font-normal '>Unit Executive Committee Member</label>
+                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isUnitExecutiveCommitteeMember" checked={isUnitExecutiveCommitteeMember} onChange={() => setIsUnitExecutiveCommitteeMember(!isUnitExecutiveCommitteeMember)}                                    className="w-5 h-5 accent-green-700"
+ id="isUnitExecutiveCommitteeMember" />
+                                    <label>Unit Executive Committee Member</label>
                                 </div>
                             </div>
                             <div>
                                 <label></label><br />
                                 <div className="flex gap-2 items-center text-center">
-                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isChairman" checked={isChairman} onChange={() => setIsChairman(!isChairman)} className="w-5 h-5" id="isChairman" />
-                                    <label className='text-[#777] text-[18px]font-normal '>Chairman</label>
+                                    <input type="checkbox" onBlur={handleBlur} onChange={handleChange} name="isChairman" checked={isChairman} onChange={() => setIsChairman(!isChairman)}  className="w-5 h-5 accent-green-700" id="isChairman" />
+                                    <label>Chairman</label>
                                 </div>
                             </div>
 
                         </div>
                         <div className="col-span-7 grid items-center justify-between md:grid-cols-8 grid-cols-1 gap-4">
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>5. Member Id Card<span className="text-red-500">*</span></label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="memberIdCard" id="" />
+                                <label>Member Id Card<span className="text-red-500">*</span></label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="memberIdCard" id="" />
                                 {errors.memberIdCard && <small className="text-red-600">{errors?.memberIdCard}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>6. Enrollment Date</label><br />
-                                <input type="date" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="enrollmentDate" id="" />
+                                <label>Enrollment Date</label><br />
+                                <input type="date" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="enrollmentDate" id="" />
                                 {errors.enrollmentDate && <small className="text-red-600">{errors?.enrollmentDate}</small>}
 
                             </div>
 
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>8. Birth Date</label><br />
-                                <input type="date" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="birthDate" id="" />
+                                <label>Birth Date</label><br />
+                                <input type="date" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="birthDate" id="" />
                                 {errors.birthDate && <small className="text-red-600">{errors?.birthDate}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>9. Email</label><br />
-                                <input type="email" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="email" id="" />
+                                <label>Email</label><br />
+                                <input type="email" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="email" id="" />
                                 {errors.email && <small className="text-red-600">{errors?.email}</small>}
 
                             </div>
                             <Blood onBloodChange={handleBloodChange} />
                             <Religion onReligionChange={handleReligionChange} />
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>14. Mother's Name</label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="motherName" id="" />
+                                <label>Mother's Name</label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="motherName" id="" />
                                 {errors.motherName && <small className="text-red-600">{errors?.motherName}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>15. Spouse's Name</label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="spouseName" id="" />
+                                <label>Spouse's Name</label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="spouseName" id="" />
                                 {errors.spouseName && <small className="text-red-600">{errors?.spouseName}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>17. Permanent Address<span className="text-red-500">*</span></label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="permanentAddress" id="" />
+                                <label>Permanent Address<span className="text-red-500">*</span></label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="permanentAddress" id="" />
                                 {errors.permanentAddress && <small className="text-red-600">{errors?.permanentAddress}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>18. Occupation</label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="Occupation" id="" />
+                                <label>Occupation</label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="Occupation" id="" />
                                 {errors.Occupation && <small className="text-red-600">{errors?.Occupation}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>20. Birth Certificate No</label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="birthCertificateNo" id="" />
+                                <label>Birth Certificate No</label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="birthCertificateNo" id="" />
                                 {errors.birthCertificateNo && <small className="text-red-600">{errors?.birthCertificateNo}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>21. Passport No </label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="passportNo" id="" />
+                                <label>Passport No </label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="passportNo" id="" />
                                 {errors.passportNo && <small className="text-red-600">{errors?.passportNo}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>23. Member Form Serial </label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="memberFormSerial" id="" />
+                                <label>Member Form Serial </label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="memberFormSerial" id="" />
                                 {errors.memberFormSerial && <small className="text-red-600">{errors?.memberFormSerial}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>24. Money Receipt No.</label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="moneyReceiptNo" id="" />
+                                <label>Money Receipt No.</label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="moneyReceiptNo" id="" />
                                 {errors.moneyReceiptNo && <small className="text-red-600">{errors?.moneyReceiptNo}</small>}
 
                             </div>
                             <div className="col-span-4">
-                                <label className='text-[#777] text-[18px]font-normal '>26. Emergency Contact No</label><br />
-                                <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="emergencyContactNo" id="" />
+                                <label>Emergency Contact No</label><br />
+                                <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="emergencyContactNo" id="" />
                                 {errors.emergencyContactNo && <small className="text-red-600">{errors?.emergencyContactNo}</small>}
 
                             </div>
@@ -303,11 +306,11 @@ const HumanAsset = () => {
                         <MemberTypeSelect onMemberTypeChange={handleMemberTypeChange} />
 
                         <div className="mb-4">
-                            <label className='text-[#777] text-[18px]font-normal '>4. Photo</label><br />
+                            <label>Photo</label><br />
                             <div onClick={handleImageClick} className=" border-2 grid md:grid-cols-2 grid-cols-1 md:gap-20 items-center justify-center p-2">
                                 <div>
                                     <input type="file" ref={inputRef} onChange={handleImageChange} name="" id="" />
-                                    <p className='text-[#777] text-[14px]font-normal '>*Maximum allowed image size is 2 MB</p>
+                                    <p>*Maximum allowed image size is 2 MB</p>
                                 </div>
                                 <div className="w-28 h-28">
                                     {image ? (
@@ -321,25 +324,27 @@ const HumanAsset = () => {
                             </div>
                         </div>
                         <div className="mb-4">
-                            <label className='text-[#777] text-[18px]font-normal '>7. Contact No</label><br />
-                            <input type="text" className="border-2 w-full" name="contactNo" id="" />
+                            <label>Contact No</label><br />
+                            <input type="text" className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="contactNo" id="" />
                         </div>
                         <div className="mb-4">
-                            <label className='text-[#777] text-[18px]font-normal '>10. Gender<span className="text-red-500">*</span></label>
+                            <label>Gender<span className="text-red-500">*</span></label>
                             <div className=" grid items-center justify-between md:grid-cols-8 grid-cols-1">
 
                                 <div className="col-span-4">
                                     <label></label><br />
                                     <div className="flex gap-2 items-center text-center">
-                                        <input type="checkbox" name="isMale" checked={isMale} onChange={() => setIsMale(!isMale)} className="w-5 h-5" id="isMale" />
-                                        <label className='text-[#777] text-[18px]font-normal '>Male</label>
+                                        <input type="checkbox" name="isMale" checked={isMale} onChange={() => setIsMale(!isMale)}                                    className="w-5 h-5 accent-green-700"
+ id="isMale" />
+                                        <label>Male</label>
                                     </div>
                                 </div>
                                 <div className="col-span-4">
                                     <label></label><br />
                                     <div className="flex gap-2 items-center text-center">
-                                        <input type="checkbox" name="isFemale" checked={isFemale} onChange={() => setIsFemale(!isFemale)} className="w-5 h-5" id="isFemale" />
-                                        <label className='text-[#777] text-[18px]font-normal '>Female</label>
+                                        <input type="checkbox" name="isFemale" checked={isFemale} onChange={() => setIsFemale(!isFemale)}                                    className="w-5 h-5 accent-green-700"
+ id="isFemale" />
+                                        <label>Female</label>
                                     </div>
                                 </div>
 
@@ -347,32 +352,32 @@ const HumanAsset = () => {
                         </div>
 
                         <div className="mb-6">
-                            <label className='text-[#777] text-[18px]font-normal '>13. Father's Name</label><br />
-                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="fatherName" id="" />
+                            <label>Father's Name</label><br />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="fatherName" id="" />
                             {errors.fatherName && <small className="text-red-600">{errors?.fatherName}</small>}
 
                         </div>
                         <div className="mb-6">
-                            <label className='text-[#777] text-[18px]font-normal '>16. Present Address</label><br />
-                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="presentAddress" id="" />
+                            <label>Present Address</label><br />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="presentAddress" id="" />
                             {errors.presentAddress && <small className="text-red-600">{errors?.presentAddress}</small>}
 
                         </div>
                         <div className="mb-6">
-                            <label className='text-[#777] text-[18px]font-normal '>19. National ID</label><br />
-                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="nationalId" id="" />
+                            <label>National ID</label><br />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="nationalId" id="" />
                             {errors.nationalId && <small className="text-red-600">{errors?.nationalId}</small>}
 
                         </div>
                         <div className="mb-6">
-                            <label className='text-[#777] text-[18px]font-normal '>22. Education</label><br />
-                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="education" id="" />
+                            <label>Education</label><br />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange} className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="education" id="" />
                             {errors.education && <small className="text-red-600">{errors?.education}</small>}
 
                         </div>
                         <div className="mb-6">
-                            <label className='text-[#777] text-[18px]font-normal '>25. Project Activities in Last 10 years</label><br />
-                            <input type="text" onBlur={handleBlur} onChange={handleChange} className="border-2 w-full" name="projectActivities" id="" />
+                            <label>Project Activities in Last 10 years</label><br />
+                            <input type="text" onBlur={handleBlur} onChange={handleChange}   className='w-full h-[38px] border-2 focus:outline-green-700 rounded' name="projectActivities" id="" />
                             {errors.projectActivities && <small className="text-red-600">{errors?.projectActivities}</small>}
 
                         </div>
@@ -388,3 +393,5 @@ const HumanAsset = () => {
 };
 
 export default HumanAsset;
+
+

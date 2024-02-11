@@ -28,7 +28,15 @@ const Unit = ({ onUnitChange }) => {
                 value={selectedOption}
                 onChange={handleSelectChange}
                 required
-                
+                theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 2,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'white',
+                      primary: '#2AA778',
+                    },
+                  })}
             />
         </div>
 
