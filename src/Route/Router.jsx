@@ -7,6 +7,7 @@ import Home from "../Pages/Home";
 import DRoot from "../DashRoot.jsx/DRoot";
 import HumanAsset from "../Pages/Dashboard/HumanAsset";
 import Error from "../Shared/Error";
+import Volunteer from "../Pages/Dashboard/DashPage/HunmanAsset/Volunteer";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
         path: "/dashboard/human-asset",
         element: <HumanAsset />
       },
+      {
+        path: "/dashboard/volunteer",
+        element: <Volunteer/>
+      },
+      
     ]
   }
 ]);
