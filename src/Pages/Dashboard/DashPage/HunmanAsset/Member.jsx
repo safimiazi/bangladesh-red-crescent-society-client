@@ -205,109 +205,128 @@ const Member = () => {
                                 />
                             </div>
                         </div>
-                        {/* Second Row */}
-                        <div className='mt-5 grid lg:grid-cols-2 gap-10 grid-cols-1 md:grid-cols-2'>
-                            {/* First column according to the desktop view */}
-                            <div>
-                                <div className='grid lg:grid-cols-2  grid-cols-1 gap-2 mb-3 pr-4'>
-                                    {/* Unit select field */}
-                                    <div className='w-full xl:w-fit'>
-                                        <div className='relative w-fit'>
-                                            <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>3. Unit</p>
-                                            <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                        </div>
-                                        <Controller
-                                            name="unit"
-                                            control={control}
-                                            defaultValue=""
-                                            render={({ field }) => (
-                                                <Select
-                                                    className='custom-select w-full lg:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                                    components={{ DropdownIndicator }}
-                                                    options={unitOption}
-                                                    placeholder="Select Unit"
-                                                    styles={customStyles}
-                                                    onChange={(selectedOption) => {
-                                                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                                    }}
-                                                />
-                                            )}
+
+
+                        {/* mohibulla */}
+                        <div className='grid md:grid-cols-3  grid-cols-1 gap-6 mt-6'>
+                            <div className=''>
+                                <div className='relative w-fit'>
+                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>3. Unit</p>
+                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                                </div>
+                                <Controller
+                                    name="unit"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({ field }) => (
+                                        <Select
+                                            className='custom-select w-full border border-[#E6E6E6] rounded-[3px]'
+                                            components={{ DropdownIndicator }}
+                                            options={unitOption}
+                                            placeholder="Select Unit"
+                                            styles={customStyles}
+                                            onChange={(selectedOption) => {
+                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                                            }}
                                         />
+                                    )}
+                                />
+                            </div>
+                            <div className='flex items-center '>
+                                <h3 className='text-[#444444] text-[16px]'>Affiliated Upazila</h3>
+                                <Controller
+                                    name="affiliated_upazila"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({ field }) => (
+                                        <Select
+                                            className='custom-select w-full border border-[#E6E6E6] rounded-[3px]'
+                                            components={{ DropdownIndicator }}
+                                            options={upazilaOption}
+                                            placeholder="Select Upazila"
+                                            styles={customStyles}
+                                            onChange={(selectedOption) => {
+                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </div>
+                            <div className='row-span-2'>
+                                <div>
+                                    <div className='relative w-fit '>
+                                        <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
+                                        <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                     </div>
-                                    {/* Affiliated Upazila select field */}
-                                    <div className='w-full grid lg:grid-cols-2 lg:mt-8 grid-cols-1 gap-2 '>
-                                        <h3 className='text-[#444444] text-[16px]'>Affiliated Upazila</h3>
-                                        <Controller
-                                            name="affiliated_upazila"
-                                            control={control}
-                                            defaultValue=""
-                                            render={({ field }) => (
-                                                <Select
-                                                    className='custom-select w-full lg:w-[200px]  h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                                    components={{ DropdownIndicator }}
-                                                    options={upazilaOption}
-                                                    placeholder="Select Upazila"
-                                                    styles={customStyles}
-                                                    onChange={(selectedOption) => {
-                                                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                                    }}
-                                                />
-                                            )}
-                                        />
+                                    <div className='w-full xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
+                                        <div>
+                                            <input
+                                                accept="image/*"
+                                                type='file'
+                                                {...register("image")} // Pass only the name of the input field
+                                                ref={(e) => {
+                                                    imgInp.current = e; // Assign the input element to imgInp ref
+                                                }}
+                                                className="file-input w-full max-w-xs pl-0 mb-4"
+                                            />
+                                            {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
+                                            <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
+                                        </div>
+                                        <div className='w-[109px] h-[109px] rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
+                                            {/* Preview image */}
+                                            <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
+                                        </div>
                                     </div>
                                 </div>
-                                {/* Three checkbox section */}
-                                <div className='mb-3 grid lg:grid-cols-3 grid-cols-1 gap-10'>
-                                    <div className='flex items-center h-[41px]'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox" placeholder="Is Alive" {...register("managingBoardMember", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Managing Board Member</span>
-                                    </div>
-                                    <div className='flex items-center h-[41px]'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox" placeholder="Is Alive" {...register("unitExecutiveCommitteMemberr", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unit Executive Committee Member</span>
-                                    </div>
-                                    <div className='flex items-center h-[41px]'>
+                            </div>
+                            <div className='flex items-center col-span-2 gap-20'>
+                                <div className='flex items-center'>
+                                    <label className="b-contain">
+                                        <input className='' type="checkbox" placeholder="Is Alive" {...register("managingBoardMember", {})} />
+                                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                                    </label>
+                                    <span className='text-[#777777] text-[16px] ml-9 mt-2'>Managing Board Member</span>
+                                </div>
+                                <div className='flex items-center'>
+                                    <label className="b-contain">
+                                        <input className='' type="checkbox" placeholder="Is Alive" {...register("unitExecutiveCommitteMemberr", {})} />
+                                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                                    </label>
+                                    <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unit Executive Committee Member</span>
+                                </div>
+                                <div className='flex items-center'>
                                         <label className="b-contain">
                                             <input className='' type="checkbox" placeholder="Is Alive" {...register("chairman", {})} />
                                             <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
                                         </label>
                                         <span className='text-[#777777] text-[16px] ml-9 mt-2'>Chairman</span>
                                     </div>
-                                </div>
-                            </div>
-                            {/* second column according to the desktop view */}
-                            <div>
-                                <div className='relative w-fit '>
-                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
-                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                </div>
-                                <div className='w-full xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
-                                    <div>
-                                        <input
-                                            accept="image/*"
-                                            type='file'
-                                            {...register("image")} // Pass only the name of the input field
-                                            ref={(e) => {
-                                                imgInp.current = e; // Assign the input element to imgInp ref
-                                            }}
-                                            className="file-input w-full max-w-xs pl-0 mb-4"
-                                        />
-                                        {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
-                                        <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
-                                    </div>
-                                    <div className='w-[109px] h-[109px] rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
-                                        {/* Preview image */}
-                                        <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
-                                    </div>
-                                </div>
                             </div>
                         </div>
+
+                        {/* mohibulla */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         {/* grid section starts here */}
                         <div className='grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5'>
                             {/* 5. Member ID Card */}
