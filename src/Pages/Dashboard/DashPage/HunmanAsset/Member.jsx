@@ -191,9 +191,9 @@ const Member = () => {
                 <div>
                     <form className='bg-white max-w-screen-2xl xl:mx-auto p-4 pb-24 mb-8 rounded-[5px] ml-5 mr-5 ' onSubmit={handleSubmit(onSubmit)}>
                         {/* First row of desktop view */}
-                        <div className='flex justify-between lg:items-center flex-col lg:flex-row gap-3'>
+                        <div className='grid md:grid-cols-12 grid-cols-1 items-center gap-6 '>
                             {/* Prefix select */}
-                            <div>
+                            <div className='md:col-span-3'>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>Prefix</p>
                                 <Controller
                                     name="Prefix"
@@ -201,7 +201,7 @@ const Member = () => {
                                     defaultValue=""
                                     render={({ field }) => (
                                         <Select
-                                            className='custom-select w-full lg:w-[340px] 2xl:w-[460px]  h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={prefixOption}
                                             placeholder="Select Prefix"
@@ -214,7 +214,7 @@ const Member = () => {
                                 />
                             </div>
                             {/* Name field */}
-                            <div>
+                            <div className='md:col-span-3'>
                                 <div className='relative w-full 2xl:w-[460px]  lg:w-[340px]'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>1. Name</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 left-[58px]'>*</span>
@@ -222,7 +222,7 @@ const Member = () => {
                                 <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" placeholder="Name" {...register("Name", { required: true })} />
                             </div>
                             {/* Is Alive checkbox */}
-                            <div className='flex lg:pt-6 items-center justify-start h-[41px] '>
+                            <div className='flex lg:pt-6 items-center md:col-span-2 justify-start h-[41px] '>
                                 <label className="b-contain">
                                     <input className='' type="checkbox" placeholder="Is Alive" {...register("Is_Alive", {})} />
                                     <div className="b-input min-w-[20.93px] min-h-[20.96px]"></div>
@@ -230,7 +230,8 @@ const Member = () => {
                                 <span className='text-[#777777] text-[14px] ml-8 mt-2'>Is Alive</span>
                             </div>
                             {/* Member type select area */}
-                            <div>
+                          
+                            <div className='md:col-span-4'>
                                 <div className='relative w-full lg:w-[340px]'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>2. Member Type</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 left-[110px]'>*</span>
@@ -241,7 +242,7 @@ const Member = () => {
                                     defaultValue=""
                                     render={({ field }) => (
                                         <Select
-                                            className='custom-select w-full 2xl:w-[460px]  h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={MemberTypeOption}
                                             placeholder="Select Member Type"
@@ -301,7 +302,7 @@ const Member = () => {
                                     )}
                                 />
                             </div>
-                            <div className='row-span-2'>
+                            <div className='md:row-span-2'>
                                 <div className='w-full p-2'>
                                     <div className='relative w-fit '>
                                         <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
