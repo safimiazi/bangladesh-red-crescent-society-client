@@ -8,6 +8,7 @@ import DRoot from "../DashRoot.jsx/DRoot";
 import HumanAsset from "../Pages/Dashboard/HumanAsset";
 import Error from "../Shared/Error";
 import Volunteer from "../Pages/Dashboard/DashPage/HunmanAsset/Volunteer";
+import Member from "../Pages/Dashboard/DashPage/HunmanAsset/Member";
 
 const router = createBrowserRouter([
   {
@@ -38,12 +39,16 @@ const router = createBrowserRouter([
         element: <Dashboard />
       },
       {
-        path: "/dashboard/human-asset",
-        element: <HumanAsset />
+        path: "/dashboard/member",
+        element: <Member/>
       },
       {
         path: "/dashboard/volunteer",
         element: <Volunteer/>
+      },
+      {
+        path: "/dashboard/human-asset",
+        element: <HumanAsset/>
       },
       
     ]
