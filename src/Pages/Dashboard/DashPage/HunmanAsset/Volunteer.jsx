@@ -365,7 +365,7 @@ const Volunteer = () => {
               <div className="">
                 <div>
                   <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>9. Birth Date</p>
-                  <input className='w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+                  <input className='w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
                 </div>
 
               </div>
@@ -447,7 +447,7 @@ const Volunteer = () => {
               {/*8. Birth date */}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>13. Joining Date</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+                <input className='w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
               </div>
 
 

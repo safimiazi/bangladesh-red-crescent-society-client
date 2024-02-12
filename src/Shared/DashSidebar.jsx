@@ -5,13 +5,12 @@ import { useContext, useState } from "react";
 import { DashboardResponsiveContext } from "../Context/ResponsiveContext";
 import dashboardRoutes from "./dashboardRoutes";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import './sidebar.css'
+import './sidebar.css';
 
 const DashSidebar = () => {
 
   const { click } = useContext(DashboardResponsiveContext);
   const [heading, setHeading] = useState('');
-  console.log(heading);
 
   return (
     <div>

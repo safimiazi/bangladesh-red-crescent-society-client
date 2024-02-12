@@ -12,8 +12,9 @@ const DashNavbar = () => {
             <div className='flex justify-between items-center pl-4 pr-2 lg:pr-10 border-b-2 py-2 bg-[#F2F2F2]'>
                 <div className='flex flex-row-reverse justify-between items-center lg:w-[60%]'>
                     <div className='flex items-center justify-center'>
-                        <div className="flex w-full lg:w-[890px] mx-5 rounded-lg bg-white">
-                            <input className=" w-full border-none bg-transparent px-4 py-1  outline-none focus:outline-none text-[#878FA7] " type="search" name="search" placeholder="Search" />
+                        <div className="flex w-full lg:w-[680px] mx-5 rounded-lg bg-white relative">
+                            <input className="pl-6 w-full border-none bg-transparent px-4 py-1  outline-none focus:outline-none text-[#878FA7] " type="search" name="search" placeholder="Search" />
+                            <div className='absolute top-1/2 left-3 -translate-y-1/2 bg-[#2AA778] w-[4px] h-[27px] rounded-sm'></div>
                             <button type="submit" className="m-2 rounded  px-4 py-1  text-white">
                                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.625 16.625C13.491 16.625 16.625 13.491 16.625 9.625C16.625 5.75901 13.491 2.625 9.625 2.625C5.75901 2.625 2.625 5.75901 2.625 9.625C2.625 13.491 5.75901 16.625 9.625 16.625Z" stroke="#2AA778" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
