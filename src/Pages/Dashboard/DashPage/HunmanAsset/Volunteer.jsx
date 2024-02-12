@@ -200,7 +200,7 @@ const Volunteer = () => {
                 />
               </div>
 
-              <div className="w-full flex gap-1 flex-col xl:flex-row xl:items-center">
+              <div className="w-full flex flex-col xl:flex-row xl:items-center">
                 <h3 className="text-[#444444] text-[14px]">
                   Affiliated Upazila
                 </h3>

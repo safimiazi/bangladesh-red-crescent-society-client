@@ -34,7 +34,7 @@ const dashboardRoutes = [
     },
     {
         route: 'Human Assets',
-        path: '/dashboard/human-asset',
+        path: '/dashboard/member',
         icon: <svg
             width="18"
             height="22"
@@ -49,11 +49,10 @@ const dashboardRoutes = [
         </svg>,
         nestedRoute: true,
         nestedRoutes: [
-            { name: 'Hello Brother', path:'/asdd'},
-            { name: 'Hi Brother', path:'/asdd'},
-            { name: 'Colo Brother', path:'/asdd'},
-            { name: 'Jai Brother', path:'/asdd'},
-            { name: 'Paliye Brother', path:'/asdd'},
+            { name: 'Member', path:'/dashboard/member'},
+            { name: 'Volunteer', path:'/dashboard/volunteer'},
+  
+  
         ]
     },
     {
