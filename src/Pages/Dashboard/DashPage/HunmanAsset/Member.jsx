@@ -209,7 +209,7 @@ const Member = () => {
                         <div className='mt-5 grid lg:grid-cols-2 gap-10 grid-cols-1 md:grid-cols-2'>
                             {/* First column according to the desktop view */}
                             <div>
-                                <div className='grid grid-cols-2 gap-2 mb-3 pr-4'>
+                                <div className='grid lg:grid-cols-2  grid-cols-1 gap-2 mb-3 pr-4'>
                                     {/* Unit select field */}
                                     <div className='w-full xl:w-fit'>
                                         <div className='relative w-fit'>
