@@ -9,7 +9,56 @@ import { Helmet } from 'react-helmet';
 const Member = () => {
     // const [isImageSelected, setIsImageSelected] = useState(false);
     const { register, handleSubmit, control, setValue, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+
+        
+        const Memberinfo = {
+
+
+            prefix: data.prefix,
+            name : data.name,
+            is_alive : data.is_alive,
+            membertype : data.membertype,
+            unit: data.unit,
+            upazila: data.affiliated-upazila,
+            photo : data.photo,
+            managingboardmember : data.managingBoardMember,
+            unitexecutivecommitteemember :  data.unitExecutiveCommitteMemberr,
+            chairman : data.chairman,
+            memberidcard : data.memberIdCard,
+            enrollmentdate : data.enrollmentDate,
+            contactno : data.contactNumber,
+            birthdate : data.birthDate,
+            email :  data.email,
+            male :  data.male,
+            female : data.female,
+            bloodgroup :  data.bloodGroup,
+            religion :  data.religion,
+            fathername : data.fatherName,
+            mothername : data.motherName,
+            spousesname : data.spousesName,
+            presentaddress :  data.presentAddress,
+            permanentaddressd : data.permanentAddressd,
+            occupation :  data.Occupation,
+            nationalid : data.NID,
+            birthvertificateno : data.birth_certificate_number,
+            passport : data.passport_num  ,
+            education : data.education,
+            memberformserial : data.member_form_serial,
+            moneyreceiptno : data.money_receiptno,
+            projectactivities : data.projecta_ctivities,
+            emergencycontactno : data.emergency_contactno
+
+
+
+
+
+
+            
+    
+         }
+         console.log(Memberinfo)
+    };
     console.log(errors);
 
     // Select field arrow svg replacement style
