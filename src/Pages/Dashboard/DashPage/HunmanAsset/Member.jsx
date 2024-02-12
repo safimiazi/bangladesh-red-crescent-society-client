@@ -208,7 +208,7 @@ const Member = () => {
 
 
                         {/* mohibulla */}
-                        <div className='grid md:grid-cols-3  grid-cols-1 gap-6 mt-6'>
+                        <div className='grid md:grid-cols-3 grid-cols-1 gap-6 mt-6'>
                             <div className=''>
                                 <div className='relative w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>3. Unit</p>
@@ -232,7 +232,7 @@ const Member = () => {
                                     )}
                                 />
                             </div>
-                            <div className='flex items-center '>
+                            <div className='flex items-center gap-[2px] lg:pt-5 '>
                                 <h3 className='text-[#444444] text-[16px]'>Affiliated Upazila</h3>
                                 <Controller
                                     name="affiliated_upazila"
@@ -240,7 +240,7 @@ const Member = () => {
                                     defaultValue=""
                                     render={({ field }) => (
                                         <Select
-                                            className='custom-select w-full border border-[#E6E6E6] rounded-[3px]'
+                                            className='custom-select lg:w-[230px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={upazilaOption}
                                             placeholder="Select Upazila"
@@ -253,12 +253,12 @@ const Member = () => {
                                 />
                             </div>
                             <div className='row-span-2'>
-                                <div>
+                                <div className='w-full p-2'>
                                     <div className='relative w-fit '>
                                         <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
                                         <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                     </div>
-                                    <div className='w-full xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
+                                    <div className='w-full border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-2'>
                                         <div>
                                             <input
                                                 accept="image/*"
@@ -272,7 +272,7 @@ const Member = () => {
                                             {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                                             <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
                                         </div>
-                                        <div className='w-[109px] h-[109px] rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
+                                        <div className='w-20 h-20 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
                                             {/* Preview image */}
                                             <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
                                         </div>
