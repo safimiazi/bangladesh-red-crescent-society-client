@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 import { Controller, useForm } from 'react-hook-form';
 import '../../../../CustomCSS/HumanAssets.css'
@@ -257,7 +258,11 @@ const Member = () => {
 
 
                         {/* mohibulla */}
+
+                        <div className='grid xl:grid-cols-3  grid-cols-1 gap-6 mt-6'>
+
                         <div className='grid md:grid-cols-3 grid-cols-1 gap-6 mt-6'>
+
                             <div className=''>
                                 <div className='relative w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>3. Unit</p>
@@ -316,7 +321,7 @@ const Member = () => {
                                                 ref={(e) => {
                                                     imgInp.current = e; // Assign the input element to imgInp ref
                                                 }}
-                                                className="file-input w-full max-w-xs pl-0 mb-4"
+                                                className="file-input w-full  pl-0 mb-4"
                                             />
                                             {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                                             <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
@@ -344,12 +349,12 @@ const Member = () => {
                                     <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unit Executive Committee Member</span>
                                 </div>
                                 <div className='flex items-center'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox" placeholder="Is Alive" {...register("chairman", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Chairman</span>
-                                    </div>
+                                    <label className="b-contain">
+                                        <input className='' type="checkbox" placeholder="Is Alive" {...register("chairman", {})} />
+                                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                                    </label>
+                                    <span className='text-[#777777] text-[16px] ml-9 mt-2'>Chairman</span>
+                                </div>
                             </div>
                         </div>
 
