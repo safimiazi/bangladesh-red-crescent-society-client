@@ -169,7 +169,7 @@ const Member = () => {
     // For getting the value of the file input
     useEffect(() => {
         if (imgInp.current) {
-            imgInp.current.onchange = evt => {
+            imgInp.current.onchange = () => {
                 const [file] = imgInp.current.files;
                 if (file) {
                     inputImgPreview.src = URL.createObjectURL(file);
