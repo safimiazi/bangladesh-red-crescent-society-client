@@ -13,7 +13,58 @@ const Volunteer = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+
+   const volunteer = {
+
+
+       
+            name : data.name,
+            is_alive : data.is_alive,
+            membertype : data.membertype,
+            unit: data.unit,
+            upazila: data.affiliated-upazila,
+            photo : data.photo,
+            managingboardmember : data.managingBoardMember,
+            unitexecutivecommitteemember :  data.unitExecutiveCommitteMemberr,
+            chairman : data.chairman,
+            memberidcard : data.memberIdCard,
+            enrollmentdate : data.enrollmentDate,
+            contactno : data.contactNumber,
+            birthdate : data.birthDate,
+            email :  data.email,
+            male :  data.male,
+            married: data.married,
+            unmarried: data.unmarried,
+            female : data.female,
+            bloodgroup :  data.bloodGroup,
+            religion :  data.religion,
+            fathername : data.fatherName,
+            mothername : data.motherName,
+            spousesname : data.spousesName,
+            presentaddress :  data.presentAddress,
+            permanentaddressd : data.permanentAddressd,
+            occupation :  data.Occupation,
+            nationalid : data.NID,
+            birthvertificateno : data.birth_certificate_number,
+            passport : data.passport_num  ,
+            education : data.education,
+            PresentOccupation : data.present,
+            address :  data.address,
+            insurance :  data.insurance,
+            twitter :  data.twitter,
+            facebook : data.facebook,
+            resource : data.resource 
+
+
+
+
+
+
+   }
+
+   console.log(volunteer)
+  };
   console.log(errors);
 
   // Select field arrow svg replacement style
@@ -523,27 +574,27 @@ const Volunteer = () => {
               {/* 23. Present Occupation*/}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>23. Present Occupation</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("NID")} />
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("present")} />
               </div>
               {/* 24. Address*/}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>24. Address</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("birth_certificate_number")} />
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("address")} />
               </div>
               {/* 25. Insurance */}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>25. Insurance</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("passport_num")} />
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("insurance")} />
               </div>
               {/* 226. Twitter */}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>26. Twitter</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("education")} />
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("twitter")} />
               </div>
               {/* 27. Facebook */}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>27. Facebook</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("member_form_serial")} />
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("facebook")} />
               </div>
               {/* Resource Type*/}
 
@@ -558,6 +609,7 @@ const Volunteer = () => {
                     <Select
                       className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
                       components={{ DropdownIndicator }}
+                      {...register("resource")} 
                       options={BloodGroupOption}
                       placeholder="Resource Type"
                       styles={customStyles}
