@@ -165,7 +165,7 @@ const Volunteer = () => {
                   1. Name
                 </p>
                 <input
-                  className="w-full xl lg:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl lg:w-[320px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -187,7 +187,7 @@ const Volunteer = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full xl:w-[310px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={unitOption}
                       placeholder="Select Unit"
@@ -210,7 +210,7 @@ const Volunteer = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full xl:w-[320px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={upazilaOption}
                       placeholder="Select Upazila"
@@ -244,7 +244,7 @@ const Volunteer = () => {
                     defaultValue=""
                     render={({ field }) => (
                       <Select
-                        className="custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                        className="custom-select w-full xl:w-[345px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
                         options={prefixOption}
                         placeholder="Select Prefix"
@@ -264,7 +264,7 @@ const Volunteer = () => {
                   4. Volunteer ID
                 </p>
                 <input
-                  className="w-full xl lg:w-[300px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl lg:w-[348px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -277,7 +277,7 @@ const Volunteer = () => {
                   5. Registration No.
                 </p>
                 <input
-                  className="w-full xl lg:w-[300px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl lg:w-[350px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -376,11 +376,11 @@ const Volunteer = () => {
                             </div>
                             {/* second column according to the desktop view */}
                             <div className="">
-                                <div className='relative w-fit'>
+                                <div className='relative xl:ml-16 w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>8. Photo</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <div className='xl:w-[310px] px-3 xl:h-[149px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
+                                <div className='xl:w-[410px] xl:ml-16 px-3 xl:h-[149px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
                                     <div>
                                         <input
                                             accept="image/*"

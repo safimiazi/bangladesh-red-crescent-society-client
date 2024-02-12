@@ -192,7 +192,7 @@ const Member = () => {
                                     defaultValue=""
                                     render={({ field }) => (
                                         <Select
-                                            className='custom-select w-full xl:w-[270px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            className='custom-select w-full xl:w-[415px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={MemberTypeOption}
                                             placeholder="Select Member Type"
@@ -287,7 +287,7 @@ const Member = () => {
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <div className='xl:w-[300px] xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
+                                <div className='xl:w-[400px] xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
                                     <div>
                                         <input
                                             accept="image/*"
