@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 
 import { Controller, useForm } from 'react-hook-form';
 import '../../../../CustomCSS/HumanAssets.css'
@@ -170,7 +169,7 @@ const Member = () => {
     // For getting the value of the file input
     useEffect(() => {
         if (imgInp.current) {
-            imgInp.current.onchange = evt => {
+            imgInp.current.onchange = () => {
                 const [file] = imgInp.current.files;
                 if (file) {
                     inputImgPreview.src = URL.createObjectURL(file);
@@ -191,6 +190,7 @@ const Member = () => {
                 <div>
                     <p className='text-[20px] text-[#5C5C5C] ml-[22px] pb-3'>Add New Member</p>
                 </div>
+<<<<<<< HEAD
                 <form className='bg-white max-w-screen-2xl  xl:mx-auto p-4 pb-24 mb-8 rounded-[5px] ml-5 mr-5 ' onSubmit={handleSubmit(onSubmit)}>
                     {/* First row of desktop view */}
                     <div className='flex justify-between lg:items-center flex-col lg:flex-row gap-3'>
@@ -330,6 +330,38 @@ const Member = () => {
                                         {/* Preview image */}
                                         <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
                                     </div>
+=======
+                <div>
+                    <form className='bg-white max-w-screen-2xl xl:mx-auto p-4 pb-24 mb-8 rounded-[5px] ml-5 mr-5 ' onSubmit={handleSubmit(onSubmit)}>
+                        {/* First row of desktop view */}
+                        <div className='flex justify-between lg:items-center flex-col lg:flex-row gap-3'>
+                            {/* Prefix select */}
+                            <div>
+                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>Prefix</p>
+                                <Controller
+                                    name="Prefix"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({ field }) => (
+                                        <Select
+                                            className='custom-select w-full lg:w-[340px] 2xl:w-[460px]  h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            components={{ DropdownIndicator }}
+                                            options={prefixOption}
+                                            placeholder="Select Prefix"
+                                            styles={customStyles}
+                                            onChange={(selectedOption) => {
+                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </div>
+                            {/* Name field */}
+                            <div>
+                                <div className='relative w-full 2xl:w-[460px]  lg:w-[340px]'>
+                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>1. Name</p>
+                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 left-[58px]'>*</span>
+>>>>>>> 43e768b8cea905603efa3963cf499cd8fcb4c9d2
                                 </div>
                             </div>
                         </div>
@@ -341,6 +373,7 @@ const Member = () => {
                                 </label>
                                 <span className='text-[#777777] text-[16px] ml-9 mt-2'>Managing Board Member</span>
                             </div>
+<<<<<<< HEAD
                             <div className='flex items-center'>
                                 <label className="b-contain">
                                     <input className='' type="checkbox" placeholder="Is Alive" {...register("unitExecutiveCommitteMemberr", {})} />
@@ -354,11 +387,37 @@ const Member = () => {
                                     <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
                                 </label>
                                 <span className='text-[#777777] text-[16px] ml-9 mt-2'>Chairman</span>
+=======
+                            {/* Member type select area */}
+                            <div>
+                                <div className='relative w-full lg:w-[340px]'>
+                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>2. Member Type</p>
+                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 left-[110px]'>*</span>
+                                </div>
+                                <Controller
+                                    name="MemberType"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({ field }) => (
+                                        <Select
+                                            className='custom-select w-full 2xl:w-[460px]  h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            components={{ DropdownIndicator }}
+                                            options={MemberTypeOption}
+                                            placeholder="Select Member Type"
+                                            styles={customStyles}
+                                            onChange={(selectedOption) => {
+                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                                            }}
+                                        />
+                                    )}
+                                />
+>>>>>>> 43e768b8cea905603efa3963cf499cd8fcb4c9d2
                             </div>
                         </div>
                     </div>
 
 
+<<<<<<< HEAD
                     {/* mohibulla */}
 
 
@@ -389,6 +448,32 @@ const Member = () => {
                             <div className='relative w-fit'>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>5. Member Id Card</p>
                                 <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+=======
+                        {/* mohibulla */}
+          <div className='grid md:grid-cols-3 grid-cols-1 gap-6 mt-6'>
+                            <div className=''>
+                                <div className='relative w-fit'>
+                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>3. Unit</p>
+                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                                </div>
+                                <Controller
+                                    name="unit"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({ field }) => (
+                                        <Select
+                                            className='custom-select w-full border border-[#E6E6E6] rounded-[3px]'
+                                            components={{ DropdownIndicator }}
+                                            options={unitOption}
+                                            placeholder="Select Unit"
+                                            styles={customStyles}
+                                            onChange={(selectedOption) => {
+                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                                            }}
+                                        />
+                                    )}
+                                />
+>>>>>>> 43e768b8cea905603efa3963cf499cd8fcb4c9d2
                             </div>
                             <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("memberIdCard", { required: true })} />
                         </div>
@@ -418,8 +503,40 @@ const Member = () => {
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>10. Gender</p>
                                 <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                             </div>
+<<<<<<< HEAD
                             <div className='flex gap-16'>
                                 <div className='flex items-center h-[41px]'>
+=======
+                            <div className='row-span-2'>
+                                <div className='w-full p-2'>
+                                    <div className='relative w-fit '>
+                                        <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
+                                        <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                                    </div>
+                                    <div className='w-full border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-2'>
+                                        <div>
+                                            <input
+                                                accept="image/*"
+                                                type='file'
+                                                {...register("image")} // Pass only the name of the input field
+                                                ref={(e) => {
+                                                    imgInp.current = e; // Assign the input element to imgInp ref
+                                                }}
+                                                className="file-input w-full max-w-xs pl-0 mb-4"
+                                            />
+                                            {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
+                                            <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
+                                        </div>
+                                        <div className='w-20 h-20 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
+                                            {/* Preview image */}
+                                            <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='md:flex flex-col md:flex-row items-center col-span-2 gap-20'>
+                                <div className='flex items-center'>
+>>>>>>> 43e768b8cea905603efa3963cf499cd8fcb4c9d2
                                     <label className="b-contain">
                                         <input className='' type="checkbox"  {...register("male", {})} />
                                         <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
@@ -431,8 +548,20 @@ const Member = () => {
                                         <input className='' type="checkbox" {...register("female", {})} />
                                         <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
                                     </label>
+<<<<<<< HEAD
                                     <span className='text-[#777777] text-[16px] ml-9 mt-2'>Female</span>
                                 </div>
+=======
+                                    <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unit Executive Committee Member</span>
+                                </div>
+                                <div className='flex items-center'>
+                                        <label className="b-contain">
+                                            <input className='' type="checkbox" placeholder="Is Alive" {...register("chairman", {})} />
+                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                                        </label>
+                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Chairman</span>
+                                    </div>
+>>>>>>> 43e768b8cea905603efa3963cf499cd8fcb4c9d2
                             </div>
                         </div>
                         {/* 11. Blood Group */}
