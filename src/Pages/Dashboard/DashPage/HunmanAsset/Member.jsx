@@ -142,7 +142,7 @@ const Member = () => {
                 <div>
                     <form className='bg-white max-w-screen-2xl xl:mx-auto p-8 pb-24 mb-8 rounded-[5px] ml-5 mr-5 ' onSubmit={handleSubmit(onSubmit)}>
                         {/* First row of desktop view */}
-                        <div className='flex gap-5 flex-col xl:flex-row'>
+                        <div className='gap-5 grid lg:grid-cols-4 grid-cols-1'>
                             {/* Prefix select */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>Prefix</p>
@@ -152,7 +152,7 @@ const Member = () => {
                                     defaultValue=""
                                     render={({ field }) => (
                                         <Select
-                                            className='custom-select w-full xl:w-[270px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={prefixOption}
                                             placeholder="Select Prefix"
@@ -170,10 +170,10 @@ const Member = () => {
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>1. Name</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <input className='w-full xl:w-[270px] h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" placeholder="Name" {...register("Name", { required: true })} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" placeholder="Name" {...register("Name", { required: true })} />
                             </div>
                             {/* Is Alive checkbox */}
-                            <div className='flex items-center h-[41px] xl:pt-[43px]'>
+                            <div className='flex items-center justify-center h-[41px] xl:pt-[43px]'>
                                 <label className="b-contain">
                                     <input className='' type="checkbox" placeholder="Is Alive" {...register("Is_Alive", {})} />
                                     <div className="b-input min-w-[20.93px] min-h-[20.96px]"></div>
@@ -192,7 +192,7 @@ const Member = () => {
                                     defaultValue=""
                                     render={({ field }) => (
                                         <Select
-                                            className='custom-select w-full xl:w-[415px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                            className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={MemberTypeOption}
                                             placeholder="Select Member Type"
@@ -206,10 +206,10 @@ const Member = () => {
                             </div>
                         </div>
                         {/* Second Row */}
-                        <div className='mt-5 flex gap-6 flex-col xl:flex-row'>
+                        <div className='mt-5 grid lg:grid-cols-2 gap-10 grid-cols-1 md:grid-cols-2'>
                             {/* First column according to the desktop view */}
                             <div>
-                                <div className='flex items-end gap-4 mb-3 flex-col xl:flex-row'>
+                                <div className='grid grid-cols-2 gap-2 mb-3 pr-4'>
                                     {/* Unit select field */}
                                     <div className='w-full xl:w-fit'>
                                         <div className='relative w-fit'>
@@ -222,7 +222,7 @@ const Member = () => {
                                             defaultValue=""
                                             render={({ field }) => (
                                                 <Select
-                                                    className='custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                                    className='custom-select w-full lg:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                                     components={{ DropdownIndicator }}
                                                     options={unitOption}
                                                     placeholder="Select Unit"
@@ -235,15 +235,15 @@ const Member = () => {
                                         />
                                     </div>
                                     {/* Affiliated Upazila select field */}
-                                    <div className='w-full flex gap-1 flex-col xl:flex-row xl:items-center'>
-                                        <h3 className='text-[#444444] text-[12px]'>Affiliated Upazila</h3>
+                                    <div className='w-full grid lg:grid-cols-2 lg:mt-8 grid-cols-1 gap-2 '>
+                                        <h3 className='text-[#444444] text-[16px]'>Affiliated Upazila</h3>
                                         <Controller
                                             name="affiliated_upazila"
                                             control={control}
                                             defaultValue=""
                                             render={({ field }) => (
                                                 <Select
-                                                    className='custom-select w-full xl:w-[270px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                                                    className='custom-select w-full lg:w-[200px]  h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                                     components={{ DropdownIndicator }}
                                                     options={upazilaOption}
                                                     placeholder="Select Upazila"
@@ -257,7 +257,7 @@ const Member = () => {
                                     </div>
                                 </div>
                                 {/* Three checkbox section */}
-                                <div className='mb-3 flex flex-col xl:flex-row gap-8'>
+                                <div className='mb-3 grid lg:grid-cols-3 grid-cols-1 gap-10'>
                                     <div className='flex items-center h-[41px]'>
                                         <label className="b-contain">
                                             <input className='' type="checkbox" placeholder="Is Alive" {...register("managingBoardMember", {})} />
@@ -283,11 +283,11 @@ const Member = () => {
                             </div>
                             {/* second column according to the desktop view */}
                             <div>
-                                <div className='relative w-fit'>
+                                <div className='relative w-fit '>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>4. Photo</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <div className='xl:w-[400px] xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
+                                <div className='w-full xl:h-[129px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
                                     <div>
                                         <input
                                             accept="image/*"
