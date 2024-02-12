@@ -9,8 +9,60 @@ import { Helmet } from 'react-helmet';
 const Member = () => {
     // const [isImageSelected, setIsImageSelected] = useState(false);
     const { register, handleSubmit, control, setValue, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+
+    // form data
+    const onSubmit = data => {
+
+        const Memberinfo = {
+
+
+            prefix: data.prefix,
+            name : data.name,
+            is_alive : data.is_alive,
+            membertype : data.membertype,
+            unit: data.unit,
+            upazila: data.affiliated-upazila,
+            photo : data.photo,
+            managingboardmember : data.managingBoardMember,
+            unitexecutivecommitteemember :  data.unitExecutiveCommitteMemberr,
+            chairman : data.chairman,
+            memberidcard : data.memberIdCard,
+            enrollmentdate : data.enrollmentDate,
+            contactno : data.contactNumber,
+            birthdate : data.birthDate,
+            email :  data.email,
+            male :  data.male,
+            female : data.female,
+            bloodgroup :  data.bloodGroup,
+            religion :  data.religion,
+            fathername : data.fatherName,
+            mothername : data.motherName,
+            spousesname : data.spousesName,
+            presentaddress :  data.presentAddress,
+            permanentaddressd : data.permanentAddressd,
+            occupation :  data.Occupation,
+            nationalid : data.NID,
+            birthvertificateno : data.birth_certificate_number,
+            passport : data.passport_num  ,
+            education : data.education,
+            memberformserial : data.member_form_serial,
+            moneyreceiptno : data.money_receiptno,
+            projectactivities : data.projecta_ctivities,
+            emergencycontactno : data.emergency_contactno
+
+
+
+
+
+
+            
+    
+         }
+         console.log(Memberinfo)
+    }
     console.log(errors);
+
+    
 
     // Select field arrow svg replacement style
     const DropdownIndicator = props => {
@@ -130,6 +182,10 @@ const Member = () => {
         }
     }, [setValue]);
 
+
+
+ 
+
     return (
         <>
             <div>
@@ -137,7 +193,7 @@ const Member = () => {
                     <title>BDRCS | Member </title>
                 </Helmet>
                 <div>
-                    <p className='text-[20px] text-[#5C5C5C] ml-[26px] py-3'>Add New Member</p>
+                    <p className='text-[20px] text-[#5C5C5C] ml-[8px] pb-4'>Add New Member</p>
                 </div>
                 <div>
                     <form className='bg-white max-w-screen-2xl xl:mx-auto p-8 pb-24 mb-8 rounded-[5px] ml-5 mr-5 ' onSubmit={handleSubmit(onSubmit)}>
@@ -156,6 +212,8 @@ const Member = () => {
                                             components={{ DropdownIndicator }}
                                             options={prefixOption}
                                             placeholder="Select Prefix"
+                                            {...register('prefix')}
+
                                             styles={customStyles}
                                             onChange={(selectedOption) => {
                                                 field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -170,7 +228,7 @@ const Member = () => {
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>1. Name</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" placeholder="Name" {...register("Name", { required: true })} />
+                                <input  {...register('name', { required: true })} className='w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" placeholder="Name" {...register("Name", { required: true })} />
                             </div>
                             {/* Is Alive checkbox */}
                             <div className='flex items-center justify-center h-[41px] xl:pt-[43px]'>
@@ -194,6 +252,7 @@ const Member = () => {
                                         <Select
                                             className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
+                                            {...register('membertype', { required: true })}
                                             options={MemberTypeOption}
                                             placeholder="Select Member Type"
                                             styles={customStyles}
@@ -222,6 +281,7 @@ const Member = () => {
                                         <Select
                                             className='custom-select w-full border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
+                                            {...register('unit', { required: true })}
                                             options={unitOption}
                                             placeholder="Select Unit"
                                             styles={customStyles}
@@ -243,6 +303,7 @@ const Member = () => {
                                             className='custom-select w-full border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={upazilaOption}
+                                            {...register('affiliated-upazila')}
                                             placeholder="Select Upazila"
                                             styles={customStyles}
                                             onChange={(selectedOption) => {
@@ -262,6 +323,7 @@ const Member = () => {
                                         <div>
                                             <input
                                                 accept="image/*"
+                                                {...register('photo', { required: true })}
                                                 type='file'
                                                 {...register("image")} // Pass only the name of the input field
                                                 ref={(e) => {
@@ -392,6 +454,7 @@ const Member = () => {
                                             className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
                                             options={BloodGroupOption}
+                                            {...register('bloodGroup', { required: true })}
                                             placeholder="Select Blood Group"
                                             styles={customStyles}
                                             onChange={(selectedOption) => {
@@ -412,6 +475,7 @@ const Member = () => {
                                         <Select
                                             className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
                                             components={{ DropdownIndicator }}
+                                            {...register('religion', { required: true })}
                                             options={ReligionOption}
                                             placeholder="Select Religion"
                                             styles={customStyles}
@@ -425,22 +489,22 @@ const Member = () => {
                             {/* 13. Father's Name */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>13. Father's Name</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("FatherName")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("fatherName")} />
                             </div>
                             {/* 14. Mother's Name */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>14. Mother's Name</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("MotherName")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("motherName")} />
                             </div>
                             {/* 15. Spouse's Name */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>15. Spouse's Name</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("SpouseName")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("spouseName")} />
                             </div>
                             {/* 16. Present Address */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>16. Present Address</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PresentAddress")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("presentAddress")} />
                             </div>
                             {/* 17. Permanent Address Required */}
                             <div>
@@ -448,12 +512,12 @@ const Member = () => {
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>17. Permanent Addressd</p>
                                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                                 </div>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PermanentAddress", { required: true })} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("permanentAddress", { required: true })} />
                             </div>
                             {/* 18. Occupation */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>18. Occupation</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("Occupation")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("occupation")} />
                             </div>
                             {/* 19. National ID */}
                             <div>
@@ -483,12 +547,12 @@ const Member = () => {
                             {/* 24. Money Receipt No. */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>24. Money Receipt No.</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("member_form_serial")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register(" money_receipt")} />
                             </div>
                             {/* 25. Project Activities in Last 10 years */}
                             <div>
                                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>25. Project Activities in Last 10 years</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("member_form_serial")} />
+                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("project_activities")} />
                             </div>
                         </div>
                         {/* last row with flex */}
