@@ -57,15 +57,15 @@ const Volunteer = () => {
 
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? "#2AA778" : "inherit", //  background color for selected option
-      color: state.isSelected ? "white" : "#777777E5", // text color for selected option
+      backgroundColor: state.isSelected ? "#2AA778" : "inherit",
+      color: state.isSelected ? "white" : "#777777E5",
       fontSize: "13px",
       fontWeight: state.isSelected ? "700" : "600",
       borderRadius: "5px",
       marginTop: "2px",
       "&:hover": {
         backgroundColor: state.isSelected ? "#2AA778" : "#2AA778",
-        color: "white", // background color on hover
+        color: "white",
       },
     }),
 
@@ -77,12 +77,11 @@ const Volunteer = () => {
 
     singleValue: (provided) => ({
       ...provided,
-      color: "#777777A1", // Change the color of the single value
-      fontSize: "14px", // Change the font size of the single value
+      color: "#777777A1",
+      fontSize: "14px",
     }),
   };
 
-  // React Select filed provided options there
   const prefixOption = [
     { value: "Prefix Demo 1", label: "Prefix Demo 1" },
     { value: "Prefix Demo 2", label: "Prefix Demo 2" },
@@ -311,12 +310,12 @@ const Volunteer = () => {
                 </div>
               </div>
               <div className="">
-                <div className="lg:px-5 ">
+                <div className="">
                   <div className='relative w-fit'>
                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>7. Gender</p>
                     <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                   </div>
-                  <div className='flex gap-16 justify-around'>
+                  <div className='flex gap-16 justify-start'>
                     <div className='flex items-center h-[41px]'>
                       <label className="b-contain">
                         <input className='' type="checkbox"  {...register("male", {})} />
@@ -337,11 +336,11 @@ const Volunteer = () => {
               <div className=" row-span-2">
 
 
-              <div className="w-full ">
+              <div className="w-full">
                 <div className='relative'>
                   <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>8. Photo   <span className='text-[20px] text-[#FF000A]'>*</span></p>
                 </div>
-                <div className=' p-12 xl:h-[149px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center xl:p-0'>
+                <div className='p-2 border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center'>
                   <div>
                     <input
                       accept="image/*"
@@ -355,7 +354,7 @@ const Volunteer = () => {
                     {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                     <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
                   </div>
-                  <div className='w-32 h-32 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
+                  <div className='w-24 h-20 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
                     {/* Preview image */}
                     <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
                   </div>
@@ -370,12 +369,12 @@ const Volunteer = () => {
 
               </div>
               <div className="">
-              <div className="lg:px-1 ">
+              <div className="">
                     <div className='relative w-fit'>
                       <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>10. Marital Status </p>
                       <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
                     </div>
-                    <div className='flex gap-16 justify-around'>
+                    <div className='flex gap-16 justify-start'>
                       <div className='flex items-center h-[41px]'>
                         <label className="b-contain">
                           <input className='' type="checkbox"  {...register("married", {})} />
