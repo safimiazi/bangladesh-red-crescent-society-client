@@ -257,7 +257,7 @@ const Member = () => {
 
 
                         {/* mohibulla */}
-                        <div className='grid md:grid-cols-3 grid-cols-1 gap-6 mt-6'>
+          <div className='grid md:grid-cols-3 grid-cols-1 gap-6 mt-6'>
                             <div className=''>
                                 <div className='relative w-fit'>
                                     <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>3. Unit</p>
@@ -281,7 +281,7 @@ const Member = () => {
                                     )}
                                 />
                             </div>
-                            <div className='flex items-center gap-[2px] lg:pt-5 '>
+                            <div className='md:flex md:flex-row flex-col items-center gap-[2px] lg:pt-5 '>
                                 <h3 className='text-[#444444] text-[16px]'>Affiliated Upazila</h3>
                                 <Controller
                                     name="affiliated_upazila"
@@ -328,7 +328,7 @@ const Member = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex items-center col-span-2 gap-20'>
+                            <div className='md:flex flex-col md:flex-row items-center col-span-2 gap-20'>
                                 <div className='flex items-center'>
                                     <label className="b-contain">
                                         <input className='' type="checkbox" placeholder="Is Alive" {...register("managingBoardMember", {})} />
@@ -352,6 +352,7 @@ const Member = () => {
                                     </div>
                             </div>
                         </div>
+                       
 
                         {/* mohibulla */}
 
@@ -557,6 +558,7 @@ const Member = () => {
                             </div>
                         </div>
                     </form>
+                    
 
                 </div >
             </div >
