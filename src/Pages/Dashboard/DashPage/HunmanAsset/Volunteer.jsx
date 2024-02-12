@@ -148,7 +148,7 @@ const Volunteer = () => {
           <title>BDRCS | Volunteer</title>
         </Helmet>
         <div>
-          <p className="text-[20px] text-[#5C5C5C] ml-[24px] py-3">
+          <p className="text-[20px] text-[#5C5C5C] ml-[24px] md:ml-16 py-3">
             Add New Volunteer
           </p>
         </div>
@@ -158,21 +158,21 @@ const Volunteer = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             {/* First row of desktop view */}
-            <div className="flex gap-5 flex-col xl:flex-row">
+            <div className="grid xl:grid-cols-3 grid-cols-1 gap-6 items-center justify-between">
               {/* Name field */}
               <div>
                 <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                   1. Name
                 </p>
                 <input
-                  className="w-full xl lg:w-[320px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
               </div>
 
               {/* Unit select field */}
-              <div className="w-full xl:w-fit">
+              <div className="w-full ">
                 <div className="relative w-fit">
                   <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                     3. Unit
@@ -187,7 +187,7 @@ const Volunteer = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full xl:w-[310px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={unitOption}
                       placeholder="Select Unit"
@@ -200,7 +200,7 @@ const Volunteer = () => {
                 />
               </div>
 
-              <div className="w-full flex flex-col xl:flex-row xl:items-center">
+              <div className="w-full mt-2">
                 <h3 className="text-[#444444] text-[14px]">
                   Affiliated Upazila
                 </h3>
@@ -210,7 +210,7 @@ const Volunteer = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full xl:w-[320px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={upazilaOption}
                       placeholder="Select Upazila"
@@ -224,7 +224,7 @@ const Volunteer = () => {
               </div>
             </div>
             {/* Second Row */}
-            <div className="mt-5 flex gap-6 flex-col xl:flex-row">
+            <div className="mt-5  gap-6  grid xl:grid-cols-3 grid-cols-1 items-center justify-between">
               {/* First column according to the desktop view */}
               <div>
                 <div className="flex items-end gap-4 mb-3 flex-col xl:flex-row">
@@ -244,7 +244,7 @@ const Volunteer = () => {
                     defaultValue=""
                     render={({ field }) => (
                       <Select
-                        className="custom-select w-full xl:w-[345px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                        className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
                         options={prefixOption}
                         placeholder="Select Prefix"
@@ -264,7 +264,7 @@ const Volunteer = () => {
                   4. Volunteer ID
                 </p>
                 <input
-                  className="w-full xl lg:w-[348px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
@@ -277,307 +277,305 @@ const Volunteer = () => {
                   5. Registration No.
                 </p>
                 <input
-                  className="w-full xl lg:w-[350px] h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full xl  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("contactNumber")}
                 />
               </div>
             </div>
+
+            <div className="grid xl:grid-cols-3 grid-cols-1 gap-6 mt-4">
+              <div className="">
+                <div className='w-full'>
+                  <div className='relative w-fit'>
+                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>6. Volunteer Position</p>
+                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                  </div>
+                  <Controller
+                    name="unit"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select
+                        className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                        components={{ DropdownIndicator }}
+                        options={unitOption}
+                        placeholder="Select Unit"
+                        styles={customStyles}
+                        onChange={(selectedOption) => {
+                          field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="">
+                <div className="lg:px-5 ">
+                  <div className='relative w-fit'>
+                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>7. Gender</p>
+                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                  </div>
+                  <div className='flex gap-16 justify-around'>
+                    <div className='flex items-center h-[41px]'>
+                      <label className="b-contain">
+                        <input className='' type="checkbox"  {...register("male", {})} />
+                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                      </label>
+                      <span className='text-[#777777] text-[16px] ml-9 mt-2'>Male</span>
+                    </div>
+                    <div className='flex items-center h-[41px]'>
+                      <label className="b-contain">
+                        <input className='' type="checkbox" {...register("female", {})} />
+                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                      </label>
+                      <span className='text-[#777777] text-[16px] ml-9 mt-2'>Female</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className=" row-span-2">
+
+
+              <div className="w-full ">
+                <div className='relative'>
+                  <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>8. Photo   <span className='text-[20px] text-[#FF000A]'>*</span></p>
+                </div>
+                <div className=' p-12 xl:h-[149px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center xl:p-0'>
+                  <div>
+                    <input
+                      accept="image/*"
+                      type='file'
+                      {...register("image")} // Pass only the name of the input field
+                      ref={(e) => {
+                        imgInp.current = e; // Assign the input element to imgInp ref
+                      }}
+                      className="file-input w-full  pl-0 mb-4"
+                    />
+                    {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
+                    <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
+                  </div>
+                  <div className='w-32 h-32 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
+                    {/* Preview image */}
+                    <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div className="">
+                <div>
+                  <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>9. Birth Date</p>
+                  <input className='w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+                </div>
+
+              </div>
+              <div className="">
+              <div className="lg:px-1 ">
+                    <div className='relative w-fit'>
+                      <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>10. Marital Status </p>
+                      <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                    </div>
+                    <div className='flex gap-16 justify-around'>
+                      <div className='flex items-center h-[41px]'>
+                        <label className="b-contain">
+                          <input className='' type="checkbox"  {...register("married", {})} />
+                          <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                        </label>
+                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Married</span>
+                      </div>
+                      <div className='flex items-center h-[41px]'>
+                        <label className="b-contain">
+                          <input className='' type="checkbox" {...register("unmarried", {})} />
+                          <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
+                        </label>
+                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unmarried</span>
+                      </div>
+                    </div>
+                  </div>
+
+
+              </div>
+
+            </div>
+
+
             {/* grid section starts here */}
-            {/* Second Row */}
-            <div className='mt-5 flex gap-6 flex-col xl:flex-row'>
-                            {/* First column according to the desktop view */}
-                            <div>
-                                <div className='flex items-end gap-4 mb-3 flex-col xl:flex-row'>
-                                    {/* Unit select field */}
-                                    <div className='w-full xl:w-fit'>
-                                        <div className='relative w-fit'>
-                                            <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>6. Volunteer Position</p>
-                                            <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                        </div>
-                                        <Controller
-                                            name="unit"
-                                            control={control}
-                                            defaultValue=""
-                                            render={({ field }) => (
-                                                <Select
-                                                    className='custom-select w-full xl:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                                    components={{ DropdownIndicator }}
-                                                    options={unitOption}
-                                                    placeholder="Select Unit"
-                                                    styles={customStyles}
-                                                    onChange={(selectedOption) => {
-                                                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                                    }}
-                                                />
-                                            )}
-                                        />
-                                    </div>
-                               
-                              {/*7. Gender checkbox*/}
-                            <div className="lg:px-5 -mr-22">
-                                <div className='relative w-fit'>
-                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>7. Gender</p>
-                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                </div>
-                                <div className='flex gap-16'>
-                                    <div className='flex items-center h-[41px]'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox"  {...register("male", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Male</span>
-                                    </div>
-                                    <div className='flex items-center h-[41px]'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox" {...register("female", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Female</span>
-                                    </div>
-                                </div>
-                            </div>
-                                </div>
-                                {/* Three checkbox section */}
-                                <div className='mb-3 flex flex-col xl:flex-row gap-10'>
-                                    
-                       
-                            {/*9. Birth date */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>9. Birth Date</p>
-                                <input className='w-full lg:w-[280px] h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
-                            </div>
+            <div className='grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5'>
+              {/* 11. Religion */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>11. Religion</p>
+                <Controller
+                  name="Religion"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      components={{ DropdownIndicator }}
+                      options={ReligionOption}
+                      placeholder="Select Religion"
+                      styles={customStyles}
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                      }}
+                    />
+                  )}
+                />
+              </div>
+              {/* 12. Enrollment date */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>12. BloodGroup</p>
+                <Controller
+                  name="BloodGroup"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      components={{ DropdownIndicator }}
+                      options={BloodGroupOption}
+                      placeholder="Select Blood Group"
+                      styles={customStyles}
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                      }}
+                    />
+                  )}
+                />
+              </div>
 
-                                        {/*10. Marital Status*/}
-                                        <div className="lg:px-1 mt-2">
-                                <div className='relative w-fit'>
-                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>10. Marital Status </p>
-                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                </div>
-                                <div className='flex gap-16'>
-                                    <div className='flex items-center h-[41px]'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox"  {...register("married", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Married</span>
-                                    </div>
-                                    <div className='flex items-center h-[41px]'>
-                                        <label className="b-contain">
-                                            <input className='' type="checkbox" {...register("unmarried", {})} />
-                                            <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                                        </label>
-                                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unmarried</span>
-                                    </div>
-                                </div>
-                            </div>
-                                   
-                                </div>
-                            </div>
-                            {/* second column according to the desktop view */}
-                            <div className="">
-                                <div className='relative xl:ml-16 w-fit'>
-                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>8. Photo</p>
-                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                </div>
-                                <div className='xl:w-[410px] xl:ml-16 px-3 xl:h-[149px] border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-0'>
-                                    <div>
-                                        <input
-                                            accept="image/*"
-                                            type='file'
-                                            {...register("image")} // Pass only the name of the input field
-                                            ref={(e) => {
-                                                imgInp.current = e; // Assign the input element to imgInp ref
-                                            }}
-                                            className="file-input w-full max-w-xs pl-0 mb-4"
-                                        />
-                                        {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
-                                        <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
-                                    </div>
-                                    <div className='w-[109px] h-[109px] rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
-                                        {/* Preview image */}
-                                        <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        {/* grid section starts here */}
-        <div className='grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5'>
-                                   {/* 11. Religion */}
-                                   <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>11. Religion</p>
-                                <Controller
-                                    name="Religion"
-                                    control={control}
-                                    defaultValue=""
-                                    render={({ field }) => (
-                                        <Select
-                                            className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                            components={{ DropdownIndicator }}
-                                            options={ReligionOption}
-                                            placeholder="Select Religion"
-                                            styles={customStyles}
-                                            onChange={(selectedOption) => {
-                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                            }}
-                                        />
-                                    )}
-                                />
-                            </div>
-                            {/* 12. Enrollment date */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>12. BloodGroup</p>
-                                <Controller
-                                    name="BloodGroup"
-                                    control={control}
-                                    defaultValue=""
-                                    render={({ field }) => (
-                                        <Select
-                                            className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                            components={{ DropdownIndicator }}
-                                            options={BloodGroupOption}
-                                            placeholder="Select Blood Group"
-                                            styles={customStyles}
-                                            onChange={(selectedOption) => {
-                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                            }}
-                                        />
-                                    )}
-                                />
-                            </div>
+              {/*8. Birth date */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>13. Joining Date</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+              </div>
 
-                              {/*8. Birth date */}
-                              <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>13. Joining Date</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
-                            </div>
-                     
 
-                      {/* 12. Mobile Number */}
-                      <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>14. Mobile No</p>
-                                <Controller
-                                    name="BloodGroup"
-                                    control={control}
-                                    defaultValue=""
-                                    render={({ field }) => (
-                                        <Select
-                                            className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                            components={{ DropdownIndicator }}
-                                            options={BloodGroupOption}
-                                            placeholder="Select Blood Group"
-                                            styles={customStyles}
-                                            onChange={(selectedOption) => {
-                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                            }}
-                                        />
-                                    )}
-                                />
-                            </div>
+              {/* 12. Mobile Number */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>14. Mobile No</p>
+                <Controller
+                  name="BloodGroup"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      components={{ DropdownIndicator }}
+                      options={BloodGroupOption}
+                      placeholder="Select Blood Group"
+                      styles={customStyles}
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                      }}
+                    />
+                  )}
+                />
+              </div>
 
 
 
-                            {/* 7. Contact Number */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>15. Emergency Contact No.</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("contactNumber")} />
-                            </div>
-                          
-                            {/*9. Email Address */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>16. Email</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="email" {...register("email")} />
-                            </div>
-                  
-                      
-                            {/* 17. Father's Name */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>17. Father's Name</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("FatherName")} />
-                            </div>
-                            {/* 18. Mother's Name */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>18. Mother's Name</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("MotherName")} />
-                            </div>
-                            {/* 19. Education */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>19. Education</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("SpouseName")} />
-                            </div>
-                            {/* 20. National ID */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>20. National ID</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PresentAddress")} />
-                            </div>
-                            {/* 21. Birth Certificate No*/}
-                            <div>
-                                <div className='relative w-fit'>
-                                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>21. Birth Certificate No</p>
-                                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                                </div>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PermanentAddress", { required: true })} />
-                            </div>
-                            {/* 22. Passport No*/}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>22. Passport No</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("Occupation")} />
-                            </div>
-                            {/* 23. Present Occupation*/}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>23. Present Occupation</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("NID")} />
-                            </div>
-                            {/* 24. Address*/}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>24. Address</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("birth_certificate_number")} />
-                            </div>
-                            {/* 25. Insurance */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>25. Insurance</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("passport_num")} />
-                            </div>
-                            {/* 226. Twitter */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>26. Twitter</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("education")} />
-                            </div>
-                            {/* 27. Facebook */}
-                            <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>27. Facebook</p>
-                                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("member_form_serial")} />
-                            </div>
-                            {/* Resource Type*/}
-                            
-           
-                      <div>
-                                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>28. Resource Type</p>
-                                <Controller
-                                    name="BloodGroup"
-                                    control={control}
-                                    defaultValue=""
-                                    render={({ field }) => (
-                                        <Select
-                                            className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                                            components={{ DropdownIndicator }}
-                                            options={BloodGroupOption}
-                                            placeholder="Resource Type"
-                                            styles={customStyles}
-                                            onChange={(selectedOption) => {
-                                                field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                                            }}
-                                        />
-                                    )}
-                                />
-                            </div>
-                          
-                           
-                        </div>
+              {/* 7. Contact Number */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>15. Emergency Contact No.</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("contactNumber")} />
+              </div>
+
+              {/*9. Email Address */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>16. Email</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="email" {...register("email")} />
+              </div>
+
+
+              {/* 17. Father's Name */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>17. Father's Name</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("FatherName")} />
+              </div>
+              {/* 18. Mother's Name */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>18. Mother's Name</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("MotherName")} />
+              </div>
+              {/* 19. Education */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>19. Education</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("SpouseName")} />
+              </div>
+              {/* 20. National ID */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>20. National ID</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PresentAddress")} />
+              </div>
+              {/* 21. Birth Certificate No*/}
+              <div>
+                <div className='relative w-fit'>
+                  <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>21. Birth Certificate No</p>
+                  <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                </div>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PermanentAddress", { required: true })} />
+              </div>
+              {/* 22. Passport No*/}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>22. Passport No</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("Occupation")} />
+              </div>
+              {/* 23. Present Occupation*/}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>23. Present Occupation</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("NID")} />
+              </div>
+              {/* 24. Address*/}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>24. Address</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("birth_certificate_number")} />
+              </div>
+              {/* 25. Insurance */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>25. Insurance</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("passport_num")} />
+              </div>
+              {/* 226. Twitter */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>26. Twitter</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("education")} />
+              </div>
+              {/* 27. Facebook */}
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>27. Facebook</p>
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("member_form_serial")} />
+              </div>
+              {/* Resource Type*/}
+
+
+              <div>
+                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>28. Resource Type</p>
+                <Controller
+                  name="BloodGroup"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select
+                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      components={{ DropdownIndicator }}
+                      options={BloodGroupOption}
+                      placeholder="Resource Type"
+                      styles={customStyles}
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                      }}
+                    />
+                  )}
+                />
+              </div>
+
+
+            </div>
             <div className="flex flex-col mr-3 float-end xl:flex-row justify-between mt-6">
-      
-       
-                
+
+
+
               <div className="flex gap-6 mt-8 xl:mt-3">
                 <button className="bg-[#2AA778] w-[132px] h-[36px] rounded-[3px]">
                   <input
