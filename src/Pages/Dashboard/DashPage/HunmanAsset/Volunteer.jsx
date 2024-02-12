@@ -20,7 +20,6 @@ const Volunteer = () => {
 
        
             name : data.name,
-            is_alive : data.is_alive,
             membertype : data.membertype,
             unit: data.unit,
             upazila: data.affiliated-upazila,
