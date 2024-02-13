@@ -505,7 +505,7 @@ const Member = () => {
                           {...register("male")}
                           type="radio"
                           name="radio-10"
-                          className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]"
+                          className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                           checked
                         />
                         <span className="text-[#777777] text-[16px] ml-2">
@@ -521,7 +521,7 @@ const Member = () => {
                           {...register("female")}
                           type="radio"
                           name="radio-10"
-                          className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]"
+                          className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                           checked
                         />
                         <span className="text-[#777777] text-[16px] ml-2">
