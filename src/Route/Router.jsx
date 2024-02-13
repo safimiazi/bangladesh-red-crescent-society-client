@@ -5,7 +5,7 @@ import Register from "../Pages/Register";
 import Root from "../Root/Root";
 import Home from "../Pages/Home";
 import DRoot from "../DashRoot.jsx/DRoot";
-import HumanAsset from "../Pages/Dashboard/HumanAsset";
+
 import Error from "../Shared/Error";
 import Volunteer from "../Pages/Dashboard/DashPage/HunmanAsset/Volunteer";
 import Member from "../Pages/Dashboard/DashPage/HunmanAsset/Member";
@@ -46,11 +46,7 @@ const router = createBrowserRouter([
         path: "/dashboard/volunteer",
         element: <Volunteer/>
       },
-      {
-        path: "/dashboard/human-asset",
-        element: <HumanAsset/>
-      },
-      
+ 
     ]
   }
 ]);
