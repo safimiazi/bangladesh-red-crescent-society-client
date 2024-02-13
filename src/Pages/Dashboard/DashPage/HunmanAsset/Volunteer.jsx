@@ -324,18 +324,22 @@ const Volunteer = () => {
                   </div>
                   <div className='flex gap-16 justify-start'>
                     <div className='flex items-center h-[41px]'>
-                      <label className="b-contain">
-                        <input className='' type="checkbox"  {...register("male", {})} />
-                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                      </label>
-                      <span className='text-[#777777] text-[16px] ml-9 mt-2'>Male</span>
+                    <div className="form-control">
+  <label className="label cursor-pointer">
+  <input  {...register('male', )}  type="radio" name="radio-10" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
+  <span className='text-[#777777] text-[16px] ml-2'>Male</span>
+   
+  </label>
+</div>
                     </div>
                     <div className='flex items-center h-[41px]'>
-                      <label className="b-contain">
-                        <input className='' type="checkbox" {...register("female", {})} />
-                        <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                      </label>
-                      <span className='text-[#777777] text-[16px] ml-9 mt-2'>Female</span>
+                    <div className="form-control">
+  <label className="label cursor-pointer">
+  <input  {...register('male', )}  type="radio" name="radio-10" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
+  <span className='text-[#777777] text-[16px] ml-2'>Male</span>
+   
+  </label>
+</div>
                     </div>
                   </div>
                 </div>
@@ -383,18 +387,22 @@ const Volunteer = () => {
                     </div>
                     <div className='flex gap-16 justify-start'>
                       <div className='flex items-center h-[41px]'>
-                        <label className="b-contain">
-                          <input className='' type="checkbox"  {...register("married", {})} />
-                          <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                        </label>
-                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Married</span>
+                      <div className="form-control">
+  <label className="label cursor-pointer">
+  <input  {...register('marreid', )}  type="radio" name="radio-11" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
+  <span className='text-[#777777] text-[16px] ml-2'>Married</span>
+   
+  </label>
+</div>
                       </div>
                       <div className='flex items-center h-[41px]'>
-                        <label className="b-contain">
-                          <input className='' type="checkbox" {...register("unmarried", {})} />
-                          <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                        </label>
-                        <span className='text-[#777777] text-[16px] ml-9 mt-2'>Unmarried</span>
+                      <div className="form-control">
+  <label className="label cursor-pointer">
+  <input  {...register('unmarreid', )}  type="radio" name="radio-11" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
+  <span className='text-[#777777] text-[16px] ml-2'>Unmarried</span>
+   
+  </label>
+</div>
                       </div>
                     </div>
                   </div>
@@ -460,23 +468,8 @@ const Volunteer = () => {
               {/* 12. Mobile Number */}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>14. Mobile No</p>
-                <Controller
-                  name="BloodGroup"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <Select
-                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
-                      components={{ DropdownIndicator }}
-                      options={BloodGroupOption}
-                      placeholder="Select Blood Group"
-                      styles={customStyles}
-                      onChange={(selectedOption) => {
-                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
-                      }}
-                    />
-                  )}
-                />
+               
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("contactNumber")} />
               </div>
 
 
@@ -484,7 +477,7 @@ const Volunteer = () => {
               {/* 7. Contact Number */}
               <div>
                 <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>15. Emergency Contact No.</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("contactNumber")} />
+                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("emergencyNumber")} />
               </div>
 
               {/*9. Email Address */}
