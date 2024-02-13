@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const StockSummarynav = () => {
-
   return (
     <div>
       <div className="flex flex-col pb-3 lg:flex-row justify-between  items-center">
@@ -14,22 +13,34 @@ const StockSummarynav = () => {
 
           {/* show rows button */}
           <div>
-
-          <div className="dropdown">
-  <div tabIndex={0} role="button" className="bg-[#3C8DBC] lg:px-0 px-3 text-[15px] font-samibold text-white lg:w-[132px] h-[36px] text-center pt-2 rounded-[3px]"> Show 10 rows</div>
-  <ul tabIndex={0} className="dropdown-content z-[1] mt-2 sp space-y-1 menu p-2  rounded-lg shadow bg-base-100  w-42">
-    <li className="border-2  "><a className=" px-20 font-semibold text-[16px]">10</a></li>
-    <li className="border-2  "><a className=" px-20 font-semibold text-[16px]">25</a></li>
-    <li className="border-2   "><a className=" px-20 font-semibold text-[16px]">50</a></li>
-    <li className="border-2   "><a className=" px-20 font-semibold text-[16px]">All</a></li>
-  </ul>
-</div>
-
-         
-           
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="bg-[#3C8DBC] lg:px-0 px-3 text-[15px] font-samibold text-white lg:w-[132px] h-[36px] text-center pt-2 rounded-[3px]"
+              >
+                {" "}
+                Show 10 rows
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] mt-2 sp space-y-1 menu p-2  rounded-lg shadow bg-base-100  w-42"
+              >
+                <li className="border-2  ">
+                  <a className=" px-20 font-semibold text-[16px]">10</a>
+                </li>
+                <li className="border-2  ">
+                  <a className=" px-20 font-semibold text-[16px]">25</a>
+                </li>
+                <li className="border-2   ">
+                  <a className=" px-20 font-semibold text-[16px]">50</a>
+                </li>
+                <li className="border-2   ">
+                  <a className=" px-20 font-semibold text-[16px]">All</a>
+                </li>
+              </ul>
+            </div>
           </div>
-
-         
         </div>
 
         <div className="py-2">
@@ -71,9 +82,6 @@ const StockSummarynav = () => {
           </div>
         </div>
       </div>
-
- 
-     
     </div>
   );
 };

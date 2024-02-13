@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import StockSummarynav from "../../DashComponent/StockSummarynav";
+import StockSummarynav from "../../DashComponent/StockManagesment/StockSummarynav";
 import DataTable from "react-data-table-component";
 const StockSummary = () => {
 
