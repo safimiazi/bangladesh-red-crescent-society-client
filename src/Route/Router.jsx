@@ -9,6 +9,8 @@ import Error from "../Shared/Error";
 import Volunteer from "../Pages/Dashboard/DashPage/HunmanAsset/Volunteer";
 import Member from "../Pages/Dashboard/DashPage/HunmanAsset/Member";
 import StockSummary from "../Pages/Dashboard/DashPage/Stock Managesment/StockSummary";
+import StockIntems from "../Pages/Dashboard/DashPage/Stock Managesment/StockIntems";
+import Addnewstock from "../Pages/Dashboard/Form/StockManagesment/Addnewstock";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,8 @@ const router = createBrowserRouter([
         path: "/dashboard/home",
         element: <Dashboard />
       },
+
+      // human asset
       {
         path: "/dashboard/member",
         element: <Member/>
@@ -47,11 +51,19 @@ const router = createBrowserRouter([
         element: <Volunteer/>
       },
 
+      //  stock managesment
       {
         path: '/dashboard/stocksummary',
         element: <StockSummary/>
+      },
+      {
+        path: '/dashboard/stockinitem',
+        element: <StockIntems/>
+      },
+      {
+        path: '/dashboard/addnewstock',
+        element: <Addnewstock/>
       }
-
  
 
     

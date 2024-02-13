@@ -269,7 +269,7 @@ const dashboardRoutes = [
         nestedRoute: true,
         nestedRoutes: [
             { name: 'Stock Summary', path: '/dashboard/stocksummary' },
-            { name: 'Hi Brother', path: '/dashboard/abcd' },
+            { name: 'Stock In Items', path: '/dashboard/stockinitem' },
             { name: 'Colo Brother', path: '/dashboard/abcd' },
             { name: 'Jai Brother', path: '/dashboard/abcd' },
             { name: 'Paliye Brother', path: '/dashboard/abcd' },
