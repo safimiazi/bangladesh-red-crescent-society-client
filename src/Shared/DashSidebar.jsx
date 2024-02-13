@@ -13,7 +13,7 @@ const DashSidebar = () => {
   const [heading, setHeading] = useState('');
 
   return (
-    <div>
+    <div className="z-50">
       <div className="px-6 pt-2 pb-10 h-screen hidden lg:block overflow-y-auto">
         <div className='w-full z-50 md:w-auto px-4 pt-4 pb-2 flex justify-between items-center'>
           <div className="flex gap-2 items-center justify-between">

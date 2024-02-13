@@ -13,7 +13,47 @@ const Volunteer = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const volunteer = {
+      name: data.name,
+      membertype: data.membertype,
+      unit: data.unit,
+      upazila: data.affiliated - upazila,
+      photo: data.photo,
+      managingboardmember: data.managingBoardMember,
+      unitexecutivecommitteemember: data.unitExecutiveCommitteMemberr,
+      chairman: data.chairman,
+      memberidcard: data.memberIdCard,
+      enrollmentdate: data.enrollmentDate,
+      contactno: data.contactNumber,
+      birthdate: data.birthDate,
+      email: data.email,
+      male: data.male,
+      married: data.married,
+      unmarried: data.unmarried,
+      female: data.female,
+      bloodgroup: data.bloodGroup,
+      religion: data.religion,
+      fathername: data.fatherName,
+      mothername: data.motherName,
+      spousesname: data.spousesName,
+      presentaddress: data.presentAddress,
+      permanentaddressd: data.permanentAddressd,
+      occupation: data.Occupation,
+      nationalid: data.NID,
+      birthvertificateno: data.birth_certificate_number,
+      passport: data.passport_num,
+      education: data.education,
+      PresentOccupation: data.present,
+      address: data.address,
+      insurance: data.insurance,
+      twitter: data.twitter,
+      facebook: data.facebook,
+      resource: data.resource,
+    };
+
+    console.log(volunteer);
+  };
   console.log(errors);
 
   // Select field arrow svg replacement style
@@ -140,12 +180,7 @@ const Volunteer = () => {
     }
   }, [setValue]);
 
-
-// form data 
-
-
-
-
+  // form data
 
   return (
     <>
@@ -292,10 +327,14 @@ const Volunteer = () => {
 
             <div className="grid xl:grid-cols-3 grid-cols-1 gap-6 mt-4">
               <div className="">
-                <div className='w-full'>
-                  <div className='relative w-fit'>
-                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>6. Volunteer Position</p>
-                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                <div className="w-full">
+                  <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      6. Volunteer Position
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span>
                   </div>
                   <Controller
                     name="unit"
@@ -303,7 +342,7 @@ const Volunteer = () => {
                     defaultValue=""
                     render={({ field }) => (
                       <Select
-                        className='custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                        className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
                         options={unitOption}
                         placeholder="Select Unit"
@@ -318,113 +357,159 @@ const Volunteer = () => {
               </div>
               <div className="">
                 <div className="">
-                  <div className='relative w-fit'>
-                    <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>7. Gender</p>
-                    <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                  <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      7. Gender
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span>
                   </div>
-                  <div className='flex gap-16 justify-start'>
-                    <div className='flex items-center h-[41px]'>
-                    <div className="form-control">
-  <label className="label cursor-pointer">
-  <input  {...register('male', )}  type="radio" name="radio-10" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
-  <span className='text-[#777777] text-[16px] ml-2'>Male</span>
-   
-  </label>
-</div>
+                  <div className="flex gap-16 justify-start">
+                    <div className="flex items-center h-[41px]">
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <input
+                            {...register("male")}
+                            type="radio"
+                            name="radio-10"
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]"
+                            checked
+                          />
+                          <span className="text-[#777777] text-[16px] ml-2">
+                            Male
+                          </span>
+                        </label>
+                      </div>
                     </div>
-                    <div className='flex items-center h-[41px]'>
-                    <div className="form-control">
-  <label className="label cursor-pointer">
-  <input  {...register('male', )}  type="radio" name="radio-10" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
-  <span className='text-[#777777] text-[16px] ml-2'>Male</span>
-   
-  </label>
-</div>
+                    <div className="flex items-center h-[41px]">
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <input
+                            {...register("male")}
+                            type="radio"
+                            name="radio-10"
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]"
+                            checked
+                          />
+                          <span className="text-[#777777] text-[16px] ml-2">
+                            Male
+                          </span>
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className=" row-span-2">
-
-
-              <div className="w-full">
-                <div className='relative'>
-                  <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>8. Photo   <span className='text-[20px] text-[#FF000A]'>*</span></p>
-                </div>
-                <div className='p-2 border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center'>
-                  <div>
-                    <input
-                      accept="image/*"
-                      type='file'
-                      {...register("image")} // Pass only the name of the input field
-                      ref={(e) => {
-                        imgInp.current = e; // Assign the input element to imgInp ref
-                      }}
-                      className="file-input w-full  pl-0 mb-4"
-                    />
-                    {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
-                    <p className='text-[#BFBFBF] text-[13px]'>*Maximum allowed image size is 2 MB</p>
+                <div className="w-full">
+                  <div className="relative">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      8. Photo{" "}
+                      <span className="text-[20px] text-[#FF000A]">*</span>
+                    </p>
                   </div>
-                  <div className='w-24 h-20 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0'>
-                    {/* Preview image */}
-                    <img className='min-w-full min-h-full rounded-full' id="inputImgPreview" src="#" />
+                  <div className="p-2 border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center">
+                    <div>
+                      <input
+                        accept="image/*"
+                        type="file"
+                        {...register("image")} // Pass only the name of the input field
+                        ref={(e) => {
+                          imgInp.current = e; // Assign the input element to imgInp ref
+                        }}
+                        className="file-input w-full  pl-0 mb-4"
+                      />
+                      {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
+                      <p className="text-[#BFBFBF] text-[13px]">
+                        *Maximum allowed image size is 2 MB
+                      </p>
+                    </div>
+                    <div className="w-24 h-20 rounded-full bg-[#EFEFEF] mt-3 xl:mt-0">
+                      {/* Preview image */}
+                      <img
+                        className="min-w-full min-h-full rounded-full"
+                        id="inputImgPreview"
+                        src="#"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
               <div className="">
                 <div>
-                  <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>9. Birth Date</p>
-                  <input className='w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    9. Birth Date
+                  </p>
+                  <input
+                    className="w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                    type="date"
+                    {...register("birthDate")}
+                  />
                 </div>
-
               </div>
               <div className="">
-              <div className="">
-                    <div className='relative w-fit'>
-                      <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>10. Marital Status </p>
-                      <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
-                    </div>
-                    <div className='flex gap-16 justify-start'>
-                      <div className='flex items-center h-[41px]'>
+                <div className="">
+                  <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      10. Marital Status{" "}
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span>
+                  </div>
+                  <div className="flex gap-16 justify-start">
+                    <div className="flex items-center h-[41px]">
                       <div className="form-control">
-  <label className="label cursor-pointer">
-  <input  {...register('marreid', )}  type="radio" name="radio-11" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
-  <span className='text-[#777777] text-[16px] ml-2'>Married</span>
-   
-  </label>
-</div>
+                        <label className="label cursor-pointer">
+                          <input
+                            {...register("marreid")}
+                            type="radio"
+                            name="radio-11"
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]"
+                            checked
+                          />
+                          <span className="text-[#777777] text-[16px] ml-2">
+                            Married
+                          </span>
+                        </label>
                       </div>
-                      <div className='flex items-center h-[41px]'>
+                    </div>
+                    <div className="flex items-center h-[41px]">
                       <div className="form-control">
-  <label className="label cursor-pointer">
-  <input  {...register('unmarreid', )}  type="radio" name="radio-11" className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]" checked />
-  <span className='text-[#777777] text-[16px] ml-2'>Unmarried</span>
-   
-  </label>
-</div>
+                        <label className="label cursor-pointer">
+                          <input
+                            {...register("unmarreid")}
+                            type="radio"
+                            name="radio-11"
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[27.96px]"
+                            checked
+                          />
+                          <span className="text-[#777777] text-[16px] ml-2">
+                            Unmarried
+                          </span>
+                        </label>
                       </div>
                     </div>
                   </div>
-
-
+                </div>
               </div>
-
             </div>
 
-
             {/* grid section starts here */}
-            <div className='grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5'>
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5">
               {/* 11. Religion */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>11. Religion</p>
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  11. Religion
+                </p>
                 <Controller
                   name="Religion"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={ReligionOption}
                       placeholder="Select Religion"
@@ -438,14 +523,16 @@ const Volunteer = () => {
               </div>
               {/* 12. Enrollment date */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>12. BloodGroup</p>
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  12. BloodGroup
+                </p>
                 <Controller
                   name="BloodGroup"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={BloodGroupOption}
                       placeholder="Select Blood Group"
@@ -460,104 +547,194 @@ const Volunteer = () => {
 
               {/*8. Birth date */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>13. Joining Date</p>
-                <input className='w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]' type="date" {...register("birthDate")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  13. Joining Date
+                </p>
+                <input
+                  className="w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="date"
+                  {...register("birthDate")}
+                />
               </div>
-
 
               {/* 12. Mobile Number */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>14. Mobile No</p>
-               
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("contactNumber")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  14. Mobile No
+                </p>
+
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("contactNumber")}
+                />
               </div>
-
-
 
               {/* 7. Contact Number */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>15. Emergency Contact No.</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("emergencyNumber")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  15. Emergency Contact No.
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("emergencyNumber")}
+                />
               </div>
 
               {/*9. Email Address */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>16. Email</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="email" {...register("email")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  16. Email
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="email"
+                  {...register("email")}
+                />
               </div>
-
 
               {/* 17. Father's Name */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>17. Father's Name</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("FatherName")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  17. Father's Name
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("FatherName")}
+                />
               </div>
               {/* 18. Mother's Name */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>18. Mother's Name</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("MotherName")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  18. Mother's Name
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("MotherName")}
+                />
               </div>
               {/* 19. Education */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>19. Education</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("SpouseName")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  19. Education
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("SpouseName")}
+                />
               </div>
               {/* 20. National ID */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>20. National ID</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PresentAddress")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  20. National ID
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("PresentAddress")}
+                />
               </div>
               {/* 21. Birth Certificate No*/}
               <div>
-                <div className='relative w-fit'>
-                  <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>21. Birth Certificate No</p>
-                  <span className='text-[20px] text-[#FF000A] absolute -top-1 -right-3'>*</span>
+                <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    21. Birth Certificate No
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
                 </div>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("PermanentAddress", { required: true })} />
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("PermanentAddress", { required: true })}
+                />
               </div>
               {/* 22. Passport No*/}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>22. Passport No</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("Occupation")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  22. Passport No
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("Occupation")}
+                />
               </div>
               {/* 23. Present Occupation*/}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>23. Present Occupation</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("NID")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  23. Present Occupation
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("present")}
+                />
               </div>
               {/* 24. Address*/}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>24. Address</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("birth_certificate_number")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  24. Address
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("address")}
+                />
               </div>
               {/* 25. Insurance */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>25. Insurance</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("passport_num")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  25. Insurance
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("insurance")}
+                />
               </div>
               {/* 226. Twitter */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>26. Twitter</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("education")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  26. Twitter
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("twitter")}
+                />
               </div>
               {/* 27. Facebook */}
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>27. Facebook</p>
-                <input className='w-full h-[40px] border border-[#E6E6E6] rounded-[3px]' type="text" {...register("member_form_serial")} />
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  27. Facebook
+                </p>
+                <input
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  type="text"
+                  {...register("facebook")}
+                />
               </div>
               {/* Resource Type*/}
 
-
               <div>
-                <p className='text-[15px] text-[#777777] mb-1 ml-[2px]'>28. Resource Type</p>
+                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  28. Resource Type
+                </p>
                 <Controller
                   name="BloodGroup"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className='custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]'
+                      className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
+                      {...register("resource")}
                       options={BloodGroupOption}
                       placeholder="Resource Type"
                       styles={customStyles}
@@ -568,13 +745,8 @@ const Volunteer = () => {
                   )}
                 />
               </div>
-
-
             </div>
             <div className="flex flex-col mr-3 float-end xl:flex-row justify-between mt-6">
-
-
-
               <div className="flex gap-6 mt-8 xl:mt-3">
                 <button className="bg-[#2AA778] w-[132px] h-[36px] rounded-[3px]">
                   <input
