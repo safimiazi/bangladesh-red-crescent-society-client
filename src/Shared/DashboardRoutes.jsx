@@ -271,8 +271,8 @@ const dashboardRoutes = [
             { name: 'Stock Summary', path: '/dashboard/stocksummary' },
             { name: 'Stock In Items', path: '/dashboard/stockinitem' },
             { name: 'Stock Out Item', path: '/dashboard/stockOutitems' },
-            { name: 'Jai Brother', path: '/dashboard/abcd' },
-            { name: 'Paliye Brother', path: '/dashboard/abcd' },
+            { name: 'Items', path: '/dashboard/item' },
+            { name: 'Stock Warehouse', path: '/dashboard/stockwarehouse' },
         ]
     },
     {
