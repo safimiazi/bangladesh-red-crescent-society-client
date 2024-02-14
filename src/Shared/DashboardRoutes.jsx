@@ -273,6 +273,8 @@ const dashboardRoutes = [
             { name: 'Stock Out Item', path: '/dashboard/stockOutitems' },
             { name: 'Items', path: '/dashboard/item' },
             { name: 'Stock Warehouse', path: '/dashboard/stockwarehouse' },
+            { name: 'Stock Items Group', path: '/dashboard/stockitemsgroup' },
+            
         ]
     },
     {
