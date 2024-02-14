@@ -13,6 +13,10 @@ import StockIntems from "../Pages/Dashboard/DashPage/Stock Managesment/StockInte
 import Addnewstock from "../Pages/Dashboard/Form/StockManagesment/Addnewstock";
 import StockOutItems from "../Pages/Dashboard/DashPage/Stock Managesment/StockOutItems";
 import Stockout from "../Pages/Dashboard/Form/StockManagesment/Stockout";
+import Items from "../Pages/Dashboard/DashPage/Stock Managesment/Items";
+import AddItem from "../Pages/Dashboard/Form/StockManagesment/AddItem";
+import StockWarehouse from "../Pages/Dashboard/DashPage/Stock Managesment/StockWarehouse";
+import AddNewWarehouse from "../Pages/Dashboard/Form/StockManagesment/AddNewWarehouse";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +78,24 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/stockout',
         element: <Stockout/>
+      },
+      {
+        path: '/dashboard/item',
+        element: <Items/>
+      },
+      {
+        path: '/dashboard/additem',
+        element: <AddItem/>
+      },
+      {
+        path: '/dashboard/stockwarehouse',
+        element: <StockWarehouse/>
+      },
+      {
+        path: '/dashboard/addnewwarehouse',
+        element: <AddNewWarehouse/>
       }
+       
        
       
 
