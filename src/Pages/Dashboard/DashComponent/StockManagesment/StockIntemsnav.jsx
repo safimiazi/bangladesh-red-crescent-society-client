@@ -16,9 +16,9 @@ const StockIntemsnav = () => {
       {/* 1st nav */}
       <div className="flex justify-between items-center lg:flex-row ">
         <div>
-          <h1 className=" text-[18px] underline font-medium text-[#2AA778]">
-            Stock In Information
-          </h1>
+        <p className="text-[20px] text-[#5C5C5C] ml-[8px] pb-4">
+           Stock In Formation
+          </p>
         </div>
 
         <div>
