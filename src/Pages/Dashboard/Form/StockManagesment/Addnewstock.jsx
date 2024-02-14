@@ -145,7 +145,7 @@ const Addnewstock = () => {
         </div>
         <div>
           <form
-            className="bg-white max-w-screen-2xl xl:mx-auto p-8 pb-24 mb-8 rounded-[5px] ml-5 mr-5 "
+            className="bg-white max-w-[500px]  p-6  my-8 rounded-[5px] ml-5 mr-5 "
             onSubmit={handleSubmit(onSubmit)}
           >
          
@@ -165,7 +165,7 @@ const Addnewstock = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select  w-full h-[40px] border border-[#E6E6E6]  rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={Item}
                       {...register("Item", { required: true })}
@@ -234,7 +234,7 @@ const Addnewstock = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="date"
-                  {...register("eDate")}
+                  {...register("Date")}
                 />
               </div>
 
