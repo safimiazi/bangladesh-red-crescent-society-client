@@ -11,6 +11,8 @@ import Member from "../Pages/Dashboard/DashPage/HunmanAsset/Member";
 import StockSummary from "../Pages/Dashboard/DashPage/Stock Managesment/StockSummary";
 import StockIntems from "../Pages/Dashboard/DashPage/Stock Managesment/StockIntems";
 import Addnewstock from "../Pages/Dashboard/Form/StockManagesment/Addnewstock";
+import StockOutItems from "../Pages/Dashboard/DashPage/Stock Managesment/StockOutItems";
+import Stockout from "../Pages/Dashboard/Form/StockManagesment/Stockout";
 
 const router = createBrowserRouter([
   {
@@ -63,9 +65,20 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/addnewstock',
         element: <Addnewstock/>
-      }
- 
+      },
+      {
+        path: '/dashboard/stockOutitems',
+        element: <StockOutItems/>
+      },
 
+      {
+        path: '/dashboard/stockout',
+        element: <Stockout/>
+      }
+       
+      
+
+      
     
       
 
