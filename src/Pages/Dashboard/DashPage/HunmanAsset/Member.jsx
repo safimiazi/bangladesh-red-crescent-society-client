@@ -4,12 +4,16 @@ import '../../../../CustomCSS/HumanAssets.css'
 import Select, { components } from 'react-select'
 import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { getMemberType } from '../../../../Api/HumanAsset/Selector/MemberType';
+
+import { getMemberType, getPrefix, getReligion, getUnit } from '../../../../Api/HumanAsset/Selector/Selector';
 
 
 const Member = () => {
 
     const [memberTypeData, setMemberTypeData] = useState()
+    const [PrefixData, setPrefixData] = useState()
+    const[Religion,setReligion] = useState()
+    const [Unit,setUnit] = useState()
     // const [isImageSelected, setIsImageSelected] = useState(false);
     const { register, handleSubmit, control, setValue, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -123,15 +127,9 @@ const Member = () => {
         }),
     };
 
-    // React Select filed provided options there
-    const prefixOption = [
-        { value: 'Prefix Demo 1', label: 'Prefix Demo 1' },
-        { value: 'Prefix Demo 2', label: 'Prefix Demo 2' },
-        { value: 'Prefix Demo 3', label: 'Prefix Demo 3' }
-    ]
 
-    // get membertype
-    useEffect(() => {
+       // get membertype
+       useEffect(() => {
         const fetchData = async () => {
           try {
             const data = await getMemberType();
@@ -143,17 +141,71 @@ const Member = () => {
     
         fetchData();
       }, []);
+
       const MemberTypeOption = (memberTypeData && memberTypeData.map(singleData => ({
         value: singleData.id,
         label: singleData.name
       }))) || [];
 
-    const unitOption = [
-        { value: 'National Headquarters', label: 'National Headquarters' },
-        { value: 'Narayanganj RC Unit', label: 'Narayanganj RC Unit' },
-        { value: 'Narsingdi RC Unit', label: 'Narsingdi RC Unit' },
-        { value: 'Madaripur RC Unit', label: 'Madaripur RC Unit' },
-    ]
+    // getReligion
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await getReligion();
+            setReligion(data.Religion);
+          } catch (error) {
+            console.error('Error fetching member types:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+      const ReligionOption = (Religion && Religion.map(singleData => ({
+        value: singleData.id,
+        label: singleData.name
+      }))) || [];
+
+
+      
+    // get Unit
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await getUnit();
+            setUnit(data.Unit);
+          } catch (error) {
+            console.error('Error fetching Prefix:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+      const unitOption = (Unit && Unit.map(singleData => ({
+        value: singleData.id,
+        label: singleData.name
+      }))) || [];
+
+
+    //   prefix
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await getPrefix();
+            setPrefixData(data.PrefixData);
+          } catch (error) {
+            console.error('Error fetching Unit:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+      const prefixOption = (PrefixData && PrefixData.map(singleData => ({
+        value: singleData.id,
+        label: singleData.name
+      }))) || [];
 
     const upazilaOption = [
         { value: 'O+', label: 'Upazila Demo 1' },
@@ -171,12 +223,10 @@ const Member = () => {
         { value: 'AB negative', label: 'AB negative' },
     ]
 
-    const ReligionOption = [
-        { value: 'Islam', label: 'Islam' },
-        { value: 'Hindu', label: 'Hindu' },
-        { value: 'Christian', label: 'Christian' },
-        { value: 'Buddhism', label: 'Buddhism' },
-    ]
+  
+ 
+
+
     const imgInp = useRef(null);
 
     // For getting the value of the file input
