@@ -4,6 +4,7 @@ import '../../../../CustomCSS/HumanAssets.css'
 import Select, { components } from 'react-select'
 import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { getMemberType } from '../../../../Api/HumanAsset/Selector/MemberType';
 
 
 const Member = () => {
@@ -127,13 +128,16 @@ const Member = () => {
         { value: 'Prefix Demo 3', label: 'Prefix Demo 3' }
     ]
 
-    const MemberTypeOption = [
-        { value: 'Life Member', label: 'Life Member' },
-        { value: 'Annual Member', label: 'Annual Member' },
-        { value: 'Honorary Member', label: 'Honorary Member' },
-        { value: 'Institutional Member', label: 'Institutional Member' },
-        { value: 'Patron Member', label: 'Patron Member' }
-    ]
+    // get membertype
+      const membertype = getMemberType()
+      console.log(membertype)
+    // const MemberTypeOption = [
+    //     { value: 'Life Member', label: 'Life Member' },
+    //     { value: 'Annual Member', label: 'Annual Member' },
+    //     { value: 'Honorary Member', label: 'Honorary Member' },
+    //     { value: 'Institutional Member', label: 'Institutional Member' },
+    //     { value: 'Patron Member', label: 'Patron Member' }
+    // ]
 
     const unitOption = [
         { value: 'National Headquarters', label: 'National Headquarters' },
