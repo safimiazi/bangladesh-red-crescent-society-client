@@ -8,6 +8,8 @@ import { getMemberType } from '../../../../Api/HumanAsset/Selector/MemberType';
 
 
 const Member = () => {
+
+    const [memberTypeData, setMemberTypeData] = useState()
     // const [isImageSelected, setIsImageSelected] = useState(false);
     const { register, handleSubmit, control, setValue, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -129,15 +131,22 @@ const Member = () => {
     ]
 
     // get membertype
-      const membertype = getMemberType()
-      console.log(membertype)
-    // const MemberTypeOption = [
-    //     { value: 'Life Member', label: 'Life Member' },
-    //     { value: 'Annual Member', label: 'Annual Member' },
-    //     { value: 'Honorary Member', label: 'Honorary Member' },
-    //     { value: 'Institutional Member', label: 'Institutional Member' },
-    //     { value: 'Patron Member', label: 'Patron Member' }
-    // ]
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await getMemberType();
+            setMemberTypeData(data.memberTypes);
+          } catch (error) {
+            console.error('Error fetching member types:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+      const MemberTypeOption = (memberTypeData && memberTypeData.map(singleData => ({
+        value: singleData.id,
+        label: singleData.name
+      }))) || [];
 
     const unitOption = [
         { value: 'National Headquarters', label: 'National Headquarters' },
