@@ -39,3 +39,12 @@ export const getUnit = async () => {
     console.log("data", data);
    return data
 }
+
+// upazila
+
+export const getUpazila = async () => {
+
+    const{data} = await axoissecure.get(`/upazila`)
+    console.log("data", data);
+   return data
+}
