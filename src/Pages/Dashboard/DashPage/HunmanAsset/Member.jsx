@@ -159,7 +159,8 @@ const Member = () => {
     const fetchData = async () => {
       try {
         const data = await getReligion();
-        setReligion(data.Religion);
+        setReligion(data.religionType);
+        console.log("data", data);
       } catch (error) {
         console.error("Error fetching member types:", error);
       }
@@ -181,7 +182,8 @@ const Member = () => {
     const fetchData = async () => {
       try {
         const data = await getUnit();
-        setUnit(data.Unit);
+        setUnit(data.uitType);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching Prefix:", error);
       }
@@ -203,7 +205,8 @@ const Member = () => {
     const fetchData = async () => {
       try {
         const data = await getPrefix();
-        setPrefixData(data.PrefixData);
+        setPrefixData(data.prefixType);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching Unit:", error);
       }
