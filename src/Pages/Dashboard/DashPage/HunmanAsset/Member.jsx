@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 
 import {
+    getBloodGroup,
   getMemberType,
   getPrefix,
   getReligion,
@@ -18,6 +19,7 @@ const Member = () => {
   const [Religion, setReligion] = useState();
   const [upazila, setUpazila] = useState();
   const [Unit, setUnit] = useState();
+  const [Blood, setBlood] = useState();
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
     register,
@@ -246,17 +248,31 @@ const Member = () => {
       }))) ||
     [];
 
-  // upazila
-  const BloodGroupOption = [
-    { value: "O positive", label: "O positive" },
-    { value: "O negative", label: "O negative" },
-    { value: "A positive", label: "A positive" },
-    { value: "A negative", label: "A negative" },
-    { value: "B positive", label: "B positive" },
-    { value: "B negative", label: "B negative" },
-    { value: "AB positive", label: "AB positive" },
-    { value: "AB negative", label: "AB negative" },
-  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBloodGroup();
+        setBlood(data.bloodGroup);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching bloodGroup:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const bgOption =
+    (Blood &&
+      Blood?.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
+    [];
+
+
+
 
   const imgInp = useRef(null);
 
@@ -627,7 +643,7 @@ const Member = () => {
                     <Select
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
-                      options={BloodGroupOption}
+                      options={bgOption}
                       placeholder="Select Blood Group"
                       styles={customStyles}
                       onChange={(selectedOption) => {
