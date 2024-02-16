@@ -513,6 +513,7 @@ const Member = () => {
                         }}
                         className="file-input w-full max-w-xs pl-0 mb-4"
                       />
+                       <p className="text-red-500">{errors.image?.message}</p>
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
@@ -606,6 +607,7 @@ const Member = () => {
                   type="date"
                   {...register("enrollmentDate")}
                 />
+                    <p className="text-red-500">{errors.enrollmentDate?.message}</p>
               </div>
               {/* 7. Contact Number */}
               <div>
@@ -617,6 +619,7 @@ const Member = () => {
                   type="text"
                   {...register("contactNumber")}
                 />
+                 <p className="text-red-500">{errors.contactNumber?.message}</p>
               </div>
               {/*8. Birth date */}
               <div>
@@ -639,6 +642,7 @@ const Member = () => {
                   type="email"
                   {...register("email")}
                 />
+                 <p className="text-red-500">{errors.email?.message}</p>
               </div>
               {/*10. Gender checkbox*/}
               <div>
@@ -663,7 +667,7 @@ const Member = () => {
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                             checked
                           />
-                              <p className="text-red-500">{errors.fmale?.message}</p>
+                              <p className="text-red-500">{errors.female?.message}</p>
                           <span className="text-[#777777] text-[16px] ml-2">
                             FeMale
                           </span>
@@ -707,7 +711,7 @@ const Member = () => {
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
 
-                      options={BloodGroupOption}
+                   
                       {...register("BloodGroup")}
 
                       options={bgOption}
@@ -827,6 +831,7 @@ const Member = () => {
                   type="text"
                   {...register("NID")}
                 />
+                <p className="text-red-500">{errors.NID?.message}</p>
               </div>
               {/* 20. Birth Certificate No */}
               <div>
@@ -838,6 +843,7 @@ const Member = () => {
                   type="text"
                   {...register("birth_certificate_number")}
                 />
+                <p className="text-red-500">{errors.birth_certificate_number?.message}</p>
               </div>
               {/* 21. Passport No */}
               <div>
@@ -849,6 +855,7 @@ const Member = () => {
                   type="text"
                   {...register("passport_num")}
                 />
+                      <p className="text-red-500">{errors.passport_num?.message}</p>
               </div>
               {/* 22. Education */}
               <div>
@@ -871,6 +878,7 @@ const Member = () => {
                   type="text"
                   {...register("member_form_serial")}
                 />
+                   <p className="text-red-500">{errors.member_form_serial?.message}</p>
               </div>
               {/* 24. Money Receipt No. */}
               <div>
@@ -882,6 +890,7 @@ const Member = () => {
                   type="text"
                   {...register("member_receipt_no")}
                 />
+                 <p className="text-red-500">{errors.member_receipt_no?.message}</p>
               </div>
               {/* 25. Project Activities in Last 10 years */}
               <div>
@@ -907,6 +916,7 @@ const Member = () => {
                   type="text"
                   {...register("emergency_contact")}
                 />
+                 <p className="text-red-500">{errors.emergency_contact?.message}</p>
               </div>
               <div className="flex gap-6 mt-8 xl:mt-3">
                 <button className="bg-[#2AA778] w-[132px] h-[36px] rounded-[3px]">
