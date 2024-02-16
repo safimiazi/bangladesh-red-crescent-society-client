@@ -5,8 +5,28 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { MdArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 const AddItem = () => {
+
+// Form data valedetio
+const schema = yup.object({
+  prefix: yup.string(),
+  Name: yup.string().required(),
+  Is_Alive: yup.boolean().oneOf([true]),
+  Member_Type: yup.string().required(),
+  Unit: yup.string().required(),
+  Upazila: yup.string(),
+  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
+  managingBoardMember: yup.boolean().oneOf([true]),
+  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
+  chairman: yup.boolean().oneOf([true]),
+  memberIdCard: yup.number().min(10).max(11),
+  enrollmentDate: yup.date().max(new Date()),
+  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),})
+
+
+
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
     register,
@@ -14,7 +34,7 @@ const AddItem = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
 
   // form data
   const onSubmit = (data) => {
@@ -107,7 +127,6 @@ const AddItem = () => {
 
 
 
-  // For getting the value of the file input
   
   return (
     <>
