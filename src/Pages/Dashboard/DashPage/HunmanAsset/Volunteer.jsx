@@ -659,6 +659,7 @@ const schema = yup.object({
                   type="text"
                   {...register("emergencyNumber")}
                 />
+                   <p className="text-red-500">{errors.emergencyNumber?.message}</p>
               </div>
 
               {/*9. Email Address */}
@@ -716,6 +717,7 @@ const schema = yup.object({
                   type="text"
                   {...register("NID")}
                 />
+                    <p className="text-red-500">{errors.NID?.message}</p>
               </div>
               {/* 21. Birth Certificate No*/}
               <div>
@@ -730,6 +732,7 @@ const schema = yup.object({
                   type="text"
                   {...register("Birth_Certificate_No")}
                 />
+                    <p className="text-red-500">{errors.Birth_Certificate_No?.message}</p>
               </div>
               {/* 22. Passport No*/}
               <div>
@@ -741,6 +744,7 @@ const schema = yup.object({
                   type="text"
                   {...register("Passport")}
                 />
+                <p className="text-red-500">{errors.Passport?.message}</p>
               </div>
               {/* 23. Present Occupation*/}
               <div>

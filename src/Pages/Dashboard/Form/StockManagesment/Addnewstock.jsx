@@ -239,6 +239,7 @@ const schema = yup.object({
                   {...register("Available")}
                   placeholder="0"
                 />
+                  <p className="text-red-500">{errors.Available?.message}</p>
               </div>
               {/* 14. Quantity to stock*/}
               <div>
@@ -251,6 +252,7 @@ const schema = yup.object({
                   {...register("Quantitystock")}
                   placeholder="0"
                 />
+                      <p className="text-red-500">{errors.Quantitystock?.message}</p>
               </div>
               {/* 5.Date */}
               <div>
