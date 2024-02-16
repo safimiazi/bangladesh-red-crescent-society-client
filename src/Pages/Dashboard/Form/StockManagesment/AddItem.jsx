@@ -11,19 +11,9 @@ const AddItem = () => {
 
 // Form data valedetio
 const schema = yup.object({
-  prefix: yup.string(),
-  Name: yup.string().required(),
-  Is_Alive: yup.boolean().oneOf([true]),
-  Member_Type: yup.string().required(),
-  Unit: yup.string().required(),
-  Upazila: yup.string(),
-  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
-  managingBoardMember: yup.boolean().oneOf([true]),
-  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
-  chairman: yup.boolean().oneOf([true]),
-  memberIdCard: yup.number().min(10).max(11),
-  enrollmentDate: yup.date().max(new Date()),
-  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),})
+  ItemGroup: yup.string(),
+  Description: yup.string()
+  })
 
 
 
@@ -136,7 +126,7 @@ const schema = yup.object({
         </Helmet>
         <div className="flex justify-between">
           <p className="text-[20px] text-[#5C5C5C] ml-[8px] pb-4">
-            Add New Stock
+            Add New Item
           </p>
 
 {/* bcak button */}
@@ -180,7 +170,7 @@ const schema = yup.object({
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6]  rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={ItemGroup}
-                      {...register("ItemGroup", { required: true })}
+                      {...register("ItemGroup")}
                       placeholder="Select Item"
                       styles={customStyles}
                       onChange={(selectedOption) => {
