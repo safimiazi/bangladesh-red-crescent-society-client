@@ -48,3 +48,11 @@ export const getUpazila = async () => {
     console.log("data", data);
    return data
 }
+
+export const getBloodGroup = async () => {
+
+    const{data} = await axoissecure.get(`/blood-group`)
+    console.log("data", data);
+   return data
+}
+

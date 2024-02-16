@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {
+    getBloodGroup,
   getMemberType,
   getPrefix,
   getReligion,
@@ -59,6 +60,7 @@ const Member = () => {
   const [Religion, setReligion] = useState();
   const [upazila, setUpazila] = useState();
   const [Unit, setUnit] = useState();
+  const [Blood, setBlood] = useState();
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
     register,
@@ -201,7 +203,8 @@ const Member = () => {
     const fetchData = async () => {
       try {
         const data = await getReligion();
-        setReligion(data.Religion);
+        setReligion(data.religionType);
+        console.log("data", data);
       } catch (error) {
         console.error("Error fetching member types:", error);
       }
@@ -223,7 +226,8 @@ const Member = () => {
     const fetchData = async () => {
       try {
         const data = await getUnit();
-        setUnit(data.Unit);
+        setUnit(data.uitType);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching Prefix:", error);
       }
@@ -245,7 +249,8 @@ const Member = () => {
     const fetchData = async () => {
       try {
         const data = await getPrefix();
-        setPrefixData(data.PrefixData);
+        setPrefixData(data.prefixType);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching Unit:", error);
       }
@@ -285,17 +290,31 @@ const Member = () => {
       }))) ||
     [];
 
-  // upazila
-  const BloodGroupOption = [
-    { value: "O positive", label: "O positive" },
-    { value: "O negative", label: "O negative" },
-    { value: "A positive", label: "A positive" },
-    { value: "A negative", label: "A negative" },
-    { value: "B positive", label: "B positive" },
-    { value: "B negative", label: "B negative" },
-    { value: "AB positive", label: "AB positive" },
-    { value: "AB negative", label: "AB negative" },
-  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBloodGroup();
+        setBlood(data.bloodGroup);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching bloodGroup:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const bgOption =
+    (Blood &&
+      Blood?.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
+    [];
+
+
+
 
   const imgInp = useRef(null);
 
@@ -687,8 +706,12 @@ const Member = () => {
                     <Select
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
+
                       options={BloodGroupOption}
                       {...register("BloodGroup")}
+
+                      options={bgOption}
+
                       placeholder="Select Blood Group"
                       styles={customStyles}
                       onChange={(selectedOption) => {
