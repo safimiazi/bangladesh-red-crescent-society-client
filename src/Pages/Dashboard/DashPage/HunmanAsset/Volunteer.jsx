@@ -7,13 +7,64 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 const Volunteer = () => {
   // const [isImageSelected, setIsImageSelected] = useState(false);
+
+
+
+
+// Form data valedetio
+const schema = yup.object({
+  Name: yup.string(),
+  unit: yup.string().required(),
+  insurance: yup.string(),
+  volunteer_Type: yup.string().required(),
+  Volunteer_ID : yup.string().required(),
+  Volunteer_Position : yup.string().required(),
+  Upazila: yup.string(),
+  Registration: yup.number(),
+  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
+  managingBoardMember: yup.boolean().oneOf([true]),
+  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
+  // eslint-disable-next-line no-dupe-keys
+  insurance: yup.string(),
+  memberIdCard: yup.number().min(10).max(11),
+  enrollmentDate: yup.date().max(new Date()),
+  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+  birthDate: yup.date(),
+  email: yup.string().email(),
+  male: yup.string(),
+  female: yup.string(),
+  marreid:yup.string(),
+  unmarreid : yup.string(),
+  BloodGroup: yup.string(),
+  Religion: yup.string().required(),
+  twitter : yup.string(),
+  resource:yup.string(),
+  facebook:yup.string(),
+  FatherName: yup.string(),
+  MotherName: yup.string(),
+  SpouseName: yup.string(),
+  Present_Occupation: yup.string().required(),
+  address: yup.string(),
+  NID: yup.string().matches(/^[0-9]{10}$/),
+  Birth_Certificate_No: yup.string().matches(/^[0-9]{17}$/),
+  Passport: yup.string().matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
+  education: yup.string(),
+  Activities: yup.string(),
+  emergencyNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+}).required();
+
+
+
+
+
+
   const {
     register,
     handleSubmit,
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
 
 
   
@@ -212,7 +263,7 @@ const Volunteer = () => {
                 <input
                   className="w-full xl  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("contactNumber")}
+                  {...register("Name")}
                 />
               </div>
 
@@ -220,7 +271,7 @@ const Volunteer = () => {
               <div className="w-full ">
                 <div className="relative w-fit">
                   <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                    3. Unit
+                    2. Unit
                   </p>
                   <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
                     *
@@ -235,6 +286,7 @@ const Volunteer = () => {
                       className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={unitOption}
+                      {...register("unit")}
                       placeholder="Select Unit"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -243,6 +295,7 @@ const Volunteer = () => {
                     />
                   )}
                 />
+                    <p className="text-red-500">{errors.unit?.message}</p>
               </div>
 
               <div className="w-full mt-2">
@@ -258,6 +311,7 @@ const Volunteer = () => {
                       className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={upazilaOption}
+                      {...register("Upazila")}
                       placeholder="Select Upazila"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -280,9 +334,14 @@ const Volunteer = () => {
 
                 {/* 3. Volunteer Type< */}
                 <div>
-                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                    3. Volunteer Type
-                  </p>
+                <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      3. Volunteer Type
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span>
+                  </div>
                   <Controller
                     name="volunteer Type"
                     control={control}
@@ -292,6 +351,7 @@ const Volunteer = () => {
                         className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
                         options={prefixOption}
+                        {...register("volunteer_Type")}
                         placeholder="Select Prefix"
                         styles={customStyles}
                         onChange={(selectedOption) => {
@@ -300,19 +360,26 @@ const Volunteer = () => {
                       />
                     )}
                   />
+                   <p className="text-red-500">{errors.volunteer_Type?.message}</p>
                 </div>
               </div>
 
               {/* 4. Volunteer ID*/}
               <div className="mt-3">
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  4. Volunteer ID
-                </p>
+              <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      4. Volunteer_ID
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span>
+                  </div>
                 <input
                   className="w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("contactNumber")}
+                  {...register("Volunteer_ID")}
                 />
+                 <p className="text-red-500">{errors.Volunteer_ID?.message}</p>
               </div>
 
               {/* second column according to the desktop view */}
@@ -324,7 +391,7 @@ const Volunteer = () => {
                 <input
                   className="w-full xl  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("contactNumber")}
+                  {...register("Registration")}
                 />
               </div>
             </div>
@@ -341,7 +408,7 @@ const Volunteer = () => {
                     </span>
                   </div>
                   <Controller
-                    name="unit"
+                    name="Volunteer_Position"
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
@@ -349,7 +416,8 @@ const Volunteer = () => {
                         className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
                         options={unitOption}
-                        placeholder="Select Unit"
+                        {...register("Volunteer_Position")}
+                        placeholder="Select Volunteer_Position"
                         styles={customStyles}
                         onChange={(selectedOption) => {
                           field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -357,6 +425,7 @@ const Volunteer = () => {
                       />
                     )}
                   />
+                   <p className="text-red-500">{errors.Volunteer_Position?.message}</p>
                 </div>
               </div>
               <div className="">
@@ -390,14 +459,14 @@ const Volunteer = () => {
                       <div className="form-control">
                         <label className="label cursor-pointer">
                           <input
-                            {...register("male")}
+                            {...register("female")}
                             type="radio"
                             name="radio-10"
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                             checked
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
-                            Male
+                          Female
                           </span>
                         </label>
                       </div>
@@ -410,7 +479,7 @@ const Volunteer = () => {
                   <div className="relative">
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       8. Photo{" "}
-                      <span className="text-[20px] text-[#FF000A]">*</span>
+                      
                     </p>
                   </div>
                   <div className="p-2 border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center">
@@ -458,9 +527,7 @@ const Volunteer = () => {
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       10. Marital Status{" "}
                     </p>
-                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                      *
-                    </span>
+                
                   </div>
                   <div className="flex gap-16 justify-start">
                     <div className="flex items-center h-[41px]">
@@ -504,9 +571,14 @@ const Volunteer = () => {
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5">
               {/* 11. Religion */}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  11. Religion
-                </p>
+              <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      11. Religion
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span>
+                  </div>
                 <Controller
                   name="Religion"
                   control={control}
@@ -518,14 +590,16 @@ const Volunteer = () => {
                       options={ReligionOption}
                       placeholder="Select Religion"
                       styles={customStyles}
+                         {...register("Religion")}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
                       }}
                     />
                   )}
                 />
+                  <p className="text-red-500">{errors.Religion?.message}</p>
               </div>
-              {/* 12. Enrollment date */}
+              {/* 12.BloodGroupOption */}
               <div>
                 <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                   12. BloodGroup
@@ -540,6 +614,7 @@ const Volunteer = () => {
                       components={{ DropdownIndicator }}
                       options={BloodGroupOption}
                       placeholder="Select Blood Group"
+                      {...register("BloodGroup")}
                       styles={customStyles}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -620,7 +695,7 @@ const Volunteer = () => {
                   {...register("MotherName")}
                 />
               </div>
-              {/* 19. Education */}
+              {/* 19. SpouseName */}
               <div>
                 <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                   19. Education
@@ -639,7 +714,7 @@ const Volunteer = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("PresentAddress")}
+                  {...register("NID")}
                 />
               </div>
               {/* 21. Birth Certificate No*/}
@@ -648,14 +723,12 @@ const Volunteer = () => {
                   <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                     21. Birth Certificate No
                   </p>
-                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                    *
-                  </span>
+                 
                 </div>
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("PermanentAddress", { required: true })}
+                  {...register("Birth_Certificate_No")}
                 />
               </div>
               {/* 22. Passport No*/}
@@ -666,7 +739,7 @@ const Volunteer = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("Occupation")}
+                  {...register("Passport")}
                 />
               </div>
               {/* 23. Present Occupation*/}
@@ -677,7 +750,7 @@ const Volunteer = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("present")}
+                  {...register("Present_Occupation")}
                 />
               </div>
               {/* 24. Address*/}
