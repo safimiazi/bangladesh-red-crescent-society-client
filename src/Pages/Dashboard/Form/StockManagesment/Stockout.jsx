@@ -5,8 +5,26 @@ import { Helmet } from "react-helmet";
 import { MdArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 const Stockout = () => {
+
+
+
+  //  Form data valedetio
+const schema = yup.object({
+  warehouse: yup.string().required(),
+  Item: yup.string().required(),
+  Available: yup.number(),
+  rackingNumber: yup.number(),
+  quantitystock: yup.number(),
+  Destinationwarehouse: yup.string(),
+  destination1 : yup.string(),
+  Date : yup.date()
+  
+})
+
+
   // State to track the checkbox status and choose which input to display
   const [isChecked, setIsChecked] = useState(false);
 
@@ -25,13 +43,13 @@ const Stockout = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
 
   // form data
   const onSubmit = (data) => {
     const StockData = {
       item: data.Item,
-      warehouse: data.Warehouse,
+      warehouse: data.warehouse,
       available: data.Available,
       quantitystock: data.quantitystock,
       rackingNumber: data.rackingNumber,
@@ -140,7 +158,7 @@ const Stockout = () => {
         </Helmet>
         <div className="flex justify-between">
           <p className="text-[20px] text-[#5C5C5C] ml-[8px] pb-4">
-            Add New Stock
+             Stock Out Item
           </p>
 
           {/* bcak button */}
@@ -163,9 +181,14 @@ const Stockout = () => {
             <div className="grid grid-cols-1  gap-y-6 gap-x-5 mt-5">
               {/* 11. Warehouse  */}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  1. Warehouse*
-                </p>
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    1. WareHouse
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <Controller
                   name="warehouse*"
                   control={control}
@@ -175,7 +198,7 @@ const Stockout = () => {
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6]  rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={warehouse}
-                      {...register("warehouse", { required: true })}
+                      {...register("warehouse")}
                       placeholder="Select warehouse"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -184,12 +207,18 @@ const Stockout = () => {
                     />
                   )}
                 />
+                   <p className="text-red-500">{errors.warehouse?.message}</p>
               </div>
               {/* 2. Item* */}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  2. Item*
-                </p>
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    2. Item
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <Controller
                   name="Item*"
                   control={control}
@@ -198,7 +227,7 @@ const Stockout = () => {
                     <Select
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
-                      {...register("Item*", { required: true })}
+                      {...register("Item")}
                       options={Item}
                       placeholder="Select Item*"
                       styles={customStyles}
@@ -208,41 +237,71 @@ const Stockout = () => {
                     />
                   )}
                 />
+                  <p className="text-red-500">{errors.Item?.message}</p>
               </div>
               {/* 3.Available*/}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  3. Available
-                </p>
+
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    3.  Available
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
+              
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("Available")}
                   placeholder="0"
                 />
+                  <p className="text-red-500">{errors.Available?.message}</p>
               </div>
               {/* 14. Quantity to stock*/}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  4. Racking Number*
-                </p>
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    4.  Raking Number
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("rackingNumber*")}
+                  {...register("rackingNumber")}
                   placeholder=""
                 />
+                 <p className="text-red-500">{errors.rackingNumber?.message}</p>
               </div>
               {/* 5.quantitystock */}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  5.Quantity to stock out*
-                </p>
+
+              <div className="relative w-fit">
+
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                  5.Quantity to stock out
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                 
+                  </p>
+                  
+                </div>
+             
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("  quantitystock*")}
+                  {...register("quantitystock")}
                 />
+                <p className="text-red-500">{errors.quantitystock?.message}</p>
               </div>
 
               <div className="py-3">

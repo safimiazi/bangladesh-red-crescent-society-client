@@ -28,7 +28,7 @@ const schema = yup.object({
   managingBoardMember: yup.boolean().oneOf([true]),
   unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
   chairman: yup.boolean().oneOf([true]),
-  memberIdCard: yup.number().min(10).max(11),
+  memberIdCard: yup.number(),
   enrollmentDate: yup.date().max(new Date()),
   contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
   birthDate: yup.date(),
@@ -667,7 +667,7 @@ const Member = () => {
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                             checked
                           />
-                              <p className="text-red-500">{errors.female?.message}</p>
+                          
                           <span className="text-[#777777] text-[16px] ml-2">
                             FeMale
                           </span>

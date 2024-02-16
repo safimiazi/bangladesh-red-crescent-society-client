@@ -493,6 +493,7 @@ const schema = yup.object({
                         }}
                         className="file-input w-full  pl-0 mb-4"
                       />
+                          <p className="text-red-500">{errors.image?.message}</p>
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
