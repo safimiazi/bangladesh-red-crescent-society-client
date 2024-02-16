@@ -3,7 +3,8 @@ import "../../../../CustomCSS/HumanAssets.css";
 import Select, { components } from "react-select";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 import {
     getBloodGroup,
   getMemberType,
@@ -13,6 +14,46 @@ import {
   getUpazila,
 } from "../../../../Api/HumanAsset/Selector/Selector";
 
+
+
+// Form data valedetio
+const schema = yup.object({
+  prefix: yup.string(),
+  Name: yup.string().required(),
+  Is_Alive: yup.boolean().oneOf([true]),
+  Member_Type: yup.string().required(),
+  Unit: yup.string().required(),
+  Upazila: yup.string(),
+  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
+  managingBoardMember: yup.boolean().oneOf([true]),
+  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
+  chairman: yup.boolean().oneOf([true]),
+  memberIdCard: yup.number().min(10).max(11),
+  enrollmentDate: yup.date().max(new Date()),
+  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+  birthDate: yup.date(),
+  email: yup.string().email(),
+  male: yup.string(),
+  female: yup.string(),
+  BloodGroup: yup.string(),
+  Religion: yup.string(),
+  FatherName: yup.string(),
+  MotherName: yup.string(),
+  SpouseName: yup.string(),
+  PresentAddress: yup.string().required(),
+  Occupation: yup.string(),
+  NID: yup.string().matches(/^[0-9]{10}$/),
+  birth_certificate_number: yup.string().matches(/^[0-9]{17}$/),
+  passport_num: yup.string().matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
+  education: yup.string(),
+  member_form_serial: yup.number(),
+  member_receipt_no: yup.number(),
+  Activities: yup.string(),
+  emergency_contact: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+}).required();
+
+  
+  // use state
 const Member = () => {
   const [memberTypeData, setMemberTypeData] = useState();
   const [PrefixData, setPrefixData] = useState();
@@ -26,8 +67,9 @@ const Member = () => {
     handleSubmit,
     control,
     setValue,
+    
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
   const onSubmit = (data) => {
     const Memberinfo = {
       prefix: data.prefix,
@@ -322,6 +364,7 @@ const Member = () => {
                       components={{ DropdownIndicator }}
                       options={prefixOption}
                       placeholder="Select Prefix"
+                      {...register("prefix")}
                       styles={customStyles}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -344,8 +387,9 @@ const Member = () => {
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   placeholder="Name"
-                  {...register("Name", { required: true })}
+                  {...register("Name")}
                 />
+                  <p className="text-red-500">{errors.Name?.message}</p>
               </div>
               {/* Is Alive checkbox */}
               <div className="flex lg:pt-6 items-center md:col-span-2 justify-start h-[41px] ">
@@ -382,14 +426,17 @@ const Member = () => {
                       className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={MemberTypeOption}
+                      {...register("Member_Type")}
                       placeholder="Select Member Type"
                       styles={customStyles}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
                       }}
                     />
+                    
                   )}
                 />
+                <p className="text-red-500">{errors.Member_Type?.message}</p>
               </div>
             </div>
 
@@ -414,6 +461,7 @@ const Member = () => {
                       components={{ DropdownIndicator }}
                       options={unitOption}
                       placeholder="Select Unit"
+                      {...register("Unit")}
                       styles={customStyles}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -421,6 +469,7 @@ const Member = () => {
                     />
                   )}
                 />
+                 <p className="text-red-500">{errors.Unit?.message}</p>
               </div>
               <div className="md:flex md:flex-row flex-col items-center gap-[2px] lg:pt-5 ">
                 <h3 className="text-[#444444] text-[16px]">
@@ -435,6 +484,7 @@ const Member = () => {
                       className="custom-select lg:w-[230px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={upazilaOption}
+                      {...register("Upazila")}
                       placeholder="Select Upazila"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -450,9 +500,7 @@ const Member = () => {
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       4. Photo
                     </p>
-                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                      *
-                    </span>
+                   
                   </div>
                   <div className="w-full border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-2">
                     <div>
@@ -487,7 +535,7 @@ const Member = () => {
                     <input
                       className=""
                       type="checkbox"
-                      placeholder="Is Alive"
+                      placeholder="managingBoardMember"
                       {...register("managingBoardMember", {})}
                     />
                     <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
@@ -501,7 +549,7 @@ const Member = () => {
                     <input
                       className=""
                       type="checkbox"
-                      placeholder="Is Alive"
+                      placeholder="unitExecutiveCommitteMemberr"
                       {...register("unitExecutiveCommitteMemberr", {})}
                     />
                     <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
@@ -515,7 +563,7 @@ const Member = () => {
                     <input
                       className=""
                       type="checkbox"
-                      placeholder="Is Alive"
+                      placeholder="chairman"
                       {...register("chairman", {})}
                     />
                     <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
@@ -544,8 +592,9 @@ const Member = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("memberIdCard", { required: true })}
+                  {...register("memberIdCard")}
                 />
+                 <p className="text-red-500">{errors.memberIdCard?.message}</p>
               </div>
               {/* 6. Enrollment date */}
               <div>
@@ -593,42 +642,56 @@ const Member = () => {
               </div>
               {/*10. Gender checkbox*/}
               <div>
-                <div className="relative w-fit">
-                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                    10. Gender
-                  </p>
-                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                    *
-                  </span>
-                </div>
-                <div className="flex gap-16">
-                  <div className="flex items-center h-[41px]">
-                    <label className="b-contain">
-                      <input
-                        className=""
-                        type="checkbox"
-                        {...register("male", {})}
-                      />
-                      <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                    </label>
-                    <span className="text-[#777777] text-[16px] ml-9 mt-2">
-                      Male
+              <div className="">
+                <div className="">
+                  <div className="relative w-fit">
+                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                      7. Gender
+                    </p>
+                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
                     </span>
                   </div>
-                  <div className="flex items-center h-[41px]">
-                    <label className="b-contain">
-                      <input
-                        className=""
-                        type="checkbox"
-                        {...register("female", {})}
-                      />
-                      <div className="b-input min-w-[26.93px] min-h-[27.96px]"></div>
-                    </label>
-                    <span className="text-[#777777] text-[16px] ml-9 mt-2">
-                      Female
-                    </span>
+                  <div className="flex gap-16 justify-start">
+                    <div className="flex items-center h-[41px]">
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <input
+                            {...register("female")}
+                            type="radio"
+                            name="radio-10"
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                            checked
+                          />
+                              <p className="text-red-500">{errors.fmale?.message}</p>
+                          <span className="text-[#777777] text-[16px] ml-2">
+                            FeMale
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="flex items-center h-[41px]">
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <input
+                            {...register("male")}
+                            type="radio"
+
+                            name="radio-10"
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                            checked
+                          />
+                          <p className="text-red-500">{errors.male?.message}</p>
+                          <span className="text-[#777777] text-[16px] ml-2">
+                            Male
+                          </span>
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
+    
               </div>
               {/* 11. Blood Group */}
               <div>
@@ -643,7 +706,12 @@ const Member = () => {
                     <Select
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
+
+                      options={BloodGroupOption}
+                      {...register("BloodGroup")}
+
                       options={bgOption}
+
                       placeholder="Select Blood Group"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -667,6 +735,7 @@ const Member = () => {
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={ReligionOption}
+                      {...register("Religion")}
                       placeholder="Select Religion"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -733,8 +802,9 @@ const Member = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("PermanentAddress", { required: true })}
+                  {...register("PermanentAddress")}
                 />
+                <p className="text-red-500">{errors.PresentAddress?.message}</p>
               </div>
               {/* 18. Occupation */}
               <div>
@@ -810,7 +880,7 @@ const Member = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("member_form_serial")}
+                  {...register("member_receipt_no")}
                 />
               </div>
               {/* 25. Project Activities in Last 10 years */}
@@ -821,7 +891,7 @@ const Member = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("member_form_serial")}
+                  {...register("Activities")}
                 />
               </div>
             </div>

@@ -3,7 +3,8 @@ import "../../../../CustomCSS/HumanAssets.css";
 import Select, { components } from "react-select";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 const Volunteer = () => {
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
@@ -13,6 +14,9 @@ const Volunteer = () => {
     setValue,
     formState: { errors },
   } = useForm();
+
+
+  
   const onSubmit = (data) => {
     const volunteer = {
       name: data.name,
