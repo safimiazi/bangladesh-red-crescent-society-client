@@ -17,7 +17,7 @@ const schema = yup.object({
   unit: yup.string().required(),
   insurance: yup.string(),
   volunteer_Type: yup.string().required(),
-  Volunteer_ID : yup.string().required(),
+  Volunteer_ID : yup.number().required(),
   Volunteer_Position : yup.string().required(),
   Upazila: yup.string(),
   Registration: yup.number(),

@@ -5,8 +5,23 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { MdArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 const Addnewstock = () => {
+
+
+
+  // Form data valedetio
+const schema = yup.object({
+  Item: yup.string().required(),
+  Warehouse: yup.string().required(),
+  Available: yup.number(),
+  Quantitystock: yup.number(),
+  Date : yup.date(),
+  })
+
+
+
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
     register,
@@ -14,7 +29,7 @@ const Addnewstock = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
 
   // form data
   const onSubmit = (data) => {
@@ -114,7 +129,6 @@ const Addnewstock = () => {
   ];
 
 
-  // For getting the value of the file input
   
   return (
     <>
@@ -156,9 +170,14 @@ const Addnewstock = () => {
            
               {/* 11. Item G */}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  1. Item
-                </p>
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    1. Item
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <Controller
                   name="Item"
                   control={control}
@@ -168,7 +187,7 @@ const Addnewstock = () => {
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6]  rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={Item}
-                      {...register("Item", { required: true })}
+                      {...register("Item")}
                       placeholder="Select Item"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -177,12 +196,18 @@ const Addnewstock = () => {
                     />
                   )}
                 />
+                 <p className="text-red-500">{errors.Item?.message}</p>
               </div>
               {/* 2. Warehouse */}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                  2. Warehouse
-                </p>
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    2. WareHouse
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <Controller
                   name="Warehouse"
                   control={control}
@@ -191,7 +216,7 @@ const Addnewstock = () => {
                     <Select
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
-                      {...register("Warehouse", { required: true })}
+                      {...register("Warehouse")}
                       options={Warehouse}
                       placeholder="Select Warehouse"
                       styles={customStyles}
@@ -201,6 +226,7 @@ const Addnewstock = () => {
                     />
                   )}
                 />
+                 <p className="text-red-500">{errors.Warehouse?.message}</p>
               </div>
               {/* 3.Available*/}
               <div>
