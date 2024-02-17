@@ -9,10 +9,7 @@ const DashNavbar = () => {
 
     return (
         <div className='grid md:grid-cols-12 gap-5 py-4 px-4 bg-[#F2F2F2] border-b-2'>
-
-
             <div className='col-span-7'>
-
                 <div className="flex w-full rounded-lg bg-white relative">
                     <input className="pl-6 w-full border-none bg-transparent px-4 py-1  outline-none focus:outline-none text-[#878FA7] " type="search" name="search" placeholder="Search" />
                     <div className='absolute top-1/2 left-3 -translate-y-1/2 bg-[#2AA778] w-[4px] h-[27px] rounded-sm'></div>
