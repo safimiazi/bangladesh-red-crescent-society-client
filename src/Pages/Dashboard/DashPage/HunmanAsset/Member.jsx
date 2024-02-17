@@ -69,49 +69,57 @@ const Member = () => {
     const { register, setError, handleSubmit, setValue, control, formState: { errors } } = methods;
 
     const onSubmit = async (data) => {
+
+        console.log(data.image);
+
+        // const formData = new FormData();
+        // formData.append('image', data?.image);
+
+        // console.log('form data',formData);
+
         try {
             //submit data to backend
             const Memberinfo = {
                 name: data.Name,
                 memberIdCard: data.memberIdCard,
-                enrollmentDate: data.enrollmentDate,
-                birthDate: data.birthDate,
+                enrollmentDate: data.enrollmentDate || null,
+                birthDate: data.birthDate || null,
                 email: data.email,
-                motherName: data.MotherName,
-                spouseName: data.SpouseName,
+                motherName: data.MotherName || null,
+                spouseName: data.SpouseName || null,
                 permanentAddress: data.PermanentAddress,
-                Occupation: data.Occupation,
-                birthCertificateNo: data.birth_certificate_number,
-                passportNo: data.passport_num,
-                memberFormSerial: data.member_form_serial,
-                moneyReceiptNo: data.member_receipt_no,
-                emergencyContactNo: data.emergency_contact,
-                contactNo: data.contactNumber,
-                fatherName: data.FatherName,
-                presentAddress: data.PresentAddress,
-                nationalId: data.NID,
-                education: data.education,
-                projectActivities: data.Activities,
-                isAlive: data?.Is_Alive,
+                Occupation: data.Occupation || null,
+                birthCertificateNo: data.birth_certificate_number || null,
+                passportNo: data.passport_num || null,
+                memberFormSerial: data.member_form_serial || null,
+                moneyReceiptNo: data.member_receipt_no || null,
+                emergencyContactNo: data.emergency_contact || null,
+                contactNo: data.contactNumber || null,
+                fatherName: data.FatherName || null,
+                presentAddress: data.PresentAddress || null,
+                nationalId: data.NID || null,
+                education: data.education || null,
+                projectActivities: data.Activities || null,
+                isAlive: data?.Is_Alive || null,
                 isMale: gender === "male" ? true : false,
                 isFemale: gender === "female" ? true : false,
                 upazilaTable: {
-                    id: parseInt(data.Upazila),
+                    id: parseInt(data.Upazila) || null,
                 },
                 memberType: {
-                    id: parseInt(data.MemberType)
+                    id: parseInt(data.MemberType),
                 },
                 prefix: {
-                    id: parseInt(data.Prefix)
+                    id: parseInt(data.Prefix) || null,
                 },
                 unit: {
-                    id: parseInt(data.Unit)
+                    id: parseInt(data.Unit) || null,
                 },
                 religion: {
-                    id: parseInt(data.Religion)
+                    id: parseInt(data.Religion) || null,
                 },
                 bloodGroupTable: {
-                    id: parseInt(data.BloodGroup)
+                    id: parseInt(data.BloodGroup) || null,
                 },
                 memberRoleTable: [
                     data.managingBoardMember && {
@@ -123,11 +131,17 @@ const Member = () => {
                     data.chairman && {
                         id: 3 
                     }
-                ].filter(Boolean)
+                ].filter(Boolean),
+                image: data.image,
             }
+
             console.log(Memberinfo);
 
-            const response = await axoissecure.post(`/members`, Memberinfo)
+            const response = await axoissecure.post(`/members`, Memberinfo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
             if (response.status === 200) {
                 console.log('Data successfully submitted to the server');
             } else {
@@ -135,7 +149,7 @@ const Member = () => {
             }
         }
         catch (error) {
-            console.log(error);
+            console.log(error.message);
             setError("afterSubmit", {
                 ...error,
                 message: error.message,
@@ -348,9 +362,7 @@ const Member = () => {
                 label: singleData.name,
             }))) ||
         [];
-
-
-
+    
 
     const imgInp = useRef(null);
 
@@ -361,16 +373,14 @@ const Member = () => {
                 const [file] = imgInp.current.files;
                 if (file) {
                     inputImgPreview.src = URL.createObjectURL(file);
-                    setValue("image", file); // Register and set the value of "image" field in React Hook Form
+                    setValue("image", file);
                 }
             };
         }
     }, [setValue]);
 
-
     const handleGenderChange = (gender) => {
         setGender(gender)
-
     }
 
     return (
@@ -385,7 +395,7 @@ const Member = () => {
                     </p>
                 </div>
                 <div>
-                    <form
+                    <form encType="multipart/form-data"
                         className="bg-white max-w-screen-2xl xl:mx-auto p-4 pb-24 mb-8 rounded-[5px] ml-5 mr-5 "
                         onSubmit={handleSubmit(onSubmit)}
                     >
