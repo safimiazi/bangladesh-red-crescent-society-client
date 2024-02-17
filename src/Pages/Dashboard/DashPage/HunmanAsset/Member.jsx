@@ -14,6 +14,7 @@ import {
   getUnit,
   getUpazila,
 } from "../../../../Api/HumanAsset/Selector/Selector";
+import axoissecure from "../../../../Hooks/Axoissecure";
 
 
 
@@ -82,7 +83,7 @@ const Member = () => {
         enrollmentDate: data.enrollmentDate,
         birthDate: data.birthDate,
         email: data.email,
-        motherName:data.MotherName,
+        motherName: data.MotherName,
         spouseName: data.SpouseName,
         permanentAddress: data.PermanentAddress,
         Occupation: data.Occupation,
@@ -91,47 +92,54 @@ const Member = () => {
         memberFormSerial: data.member_form_serial,
         moneyReceiptNo: data.member_receipt_no,
         emergencyContactNo: data.emergency_contact,
-        contactNo:data.contactNumber,
-        fatherName:  data.FatherName,
+        contactNo: data.contactNumber,
+        fatherName: data.FatherName,
         presentAddress: data.PresentAddress,
         nationalId: data.NID,
         education: data.education,
         projectActivities: data.Activities,
         isAlive: data?.Is_Alive,
-        isMale: gender === "male" ? true : false,
-        isFemale: gender === "female" ? true : false,
+        isMale: gender === "male" && 1,
+        isFemale: gender === "female" && 1,
+        
         upazilaTable: {
-            id: data.Upazila,
+          id: parseInt(data.Upazila),
         },
         memberType: {
-            id: data.MemberType
+          id: parseInt(data.MemberType)
         },
         prefix: {
-            id: data.Prefix
+          id: parseInt(data.Prefix)
         },
         unit: {
-            id: data.Unit
+          id: parseInt(data.Unit)
         },
         religion: {
-            id: data.Religion
+          id: parseInt(data.Religion)
         },
         bloodGroupTable: {
-            id: data.BloodGroup
+          id: parseInt(data.BloodGroup)
         },
         memberRoleTable: [
-            {
-                id: data.managingBoardMember ? 1 : 0 
-            },
-            {
-                id: data.unitExecutiveCommitteMemberr ? 2 : 0
-            },
-            {
-                id : data.chairman ? 3 : 0
-            }
+          {
+            id: data.managingBoardMember && 1
+          },
+          {
+            id: data.unitExecutiveCommitteMemberr && 2
+          },
+          {
+            id: data.chairman && 3
+          }
         ]
-    }
-    console.log(Memberinfo);
+      }
+      console.log(Memberinfo);
 
+      const response = await axoissecure.post(`/members`, Memberinfo)
+      if (response.status === 200) {
+        console.log('Data successfully submitted to the server');
+      } else {
+        console.error('Failed to submit data to the server');
+      }
     }
     catch (error) {
       console.log(error);
@@ -370,7 +378,7 @@ const Member = () => {
 
   const handleGenderChange = (gender) => {
     setGender(gender)
-   
+
   }
 
   return (
