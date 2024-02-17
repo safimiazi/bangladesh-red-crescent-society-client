@@ -291,14 +291,16 @@ const bgOption =
 
   // volunteerOption
 
-  const volunteerOption = [
-
+  const VolunteerOption = [
+    { value: "Internal ", label: "Internal " },
+    { value: "External", label: "External" },
   ]
 
-  // volunteerOption
+  // volunteerType
 
-  const volunteerOption =[
-
+  const volunteerType =[
+    { value: "Internal ", label: "Internal " },
+    { value: "External", label: "External" },
   ]
   
 
@@ -388,7 +390,7 @@ const bgOption =
                     />
                   )}
                 />
-                    <p className="text-red-500 text-sm">{errors.unit?.message}</p>
+                    <p className="text-red-500 fon text-sm">{errors.unit?.message}</p>
               </div>
 
               <div className="w-full mt-2">
@@ -443,7 +445,7 @@ const bgOption =
                       <Select
                         className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
-                        options={volunteerOption}
+                        options={volunteerType}
                         {...register("volunteerType")}
                         placeholder="Select Prefix"
                         styles={customStyles}
@@ -472,7 +474,7 @@ const bgOption =
                   type="text"
                   {...register("VolunteerID")}
                 />
-                 <p className="text-red-500 text-sm">{errors.Volunteer_ID?.message}</p>
+                 <p className="text-red-500 font-semibold text-sm">{errors.VolunteerID?.message}</p>
               </div>
 
               {/* second column according to the desktop view */}
@@ -508,7 +510,7 @@ const bgOption =
                       <Select
                         className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
-                        options={unitOption}
+                        options={VolunteerOption}
                         {...register("VolunteerPosition")}
                         placeholder="Select Volunteer_Position"
                         styles={customStyles}
@@ -518,7 +520,7 @@ const bgOption =
                       />
                     )}
                   />
-                   <p className="text-red-500 text-sm">{errors.Volunteer_Position?.message}</p>
+                   <p className="text-red-500 font-semibold text-sm">{errors.VolunteerPosition?.message}</p>
                 </div>
               </div>
               <div className="">
@@ -541,7 +543,7 @@ const bgOption =
                             name="radio-10"
                             onChange={() => handleGenderChange('male')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked
+                            checked={gender === "male"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
                             Male
@@ -558,7 +560,7 @@ const bgOption =
                             name="radio-10"
                             onChange={() => handleGenderChange('female')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked
+                            checked={gender === "female"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
                           Female
@@ -588,7 +590,7 @@ const bgOption =
                         }}
                         className="file-input w-full  pl-0 mb-4"
                       />
-                          <p className="text-red-500 text-sm">{errors.image?.message}</p>
+                         
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
@@ -635,7 +637,7 @@ const bgOption =
                             name="radio-11"
                             onChange={() => handlemariedChange('marreid')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked
+                             checked={gender === "marreid"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
                             Married
@@ -652,7 +654,7 @@ const bgOption =
                             name="radio-11"
                             onChange={() => handlemariedChange('unmarreid')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked
+                            checked={gender === "unmarreid"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
                             Unmarried
@@ -695,7 +697,7 @@ const bgOption =
                     />
                   )}
                 />
-                  <p className="text-red-500 text-sm">{errors.Religion?.message}</p>
+                  <p className="text-red-500 font-semibold text-sm">{errors.Religion?.message}</p>
               </div>
               {/* 12.BloodGroupOption */}
               <div>
