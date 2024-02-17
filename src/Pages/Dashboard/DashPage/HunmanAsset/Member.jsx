@@ -389,7 +389,7 @@ const Member = () => {
                   placeholder="Name"
                   {...register("Name")}
                 />
-                  <p className="text-red-500">{errors.Name?.message}</p>
+                  <p className="text-red-500 text-sm">{errors.Name?.message}</p>
               </div>
               {/* Is Alive checkbox */}
               <div className="flex lg:pt-6 items-center md:col-span-2 justify-start h-[41px] ">
@@ -436,7 +436,7 @@ const Member = () => {
                     
                   )}
                 />
-                <p className="text-red-500">{errors.Member_Type?.message}</p>
+                <p className="text-red-500 text-sm">{errors.Member_Type?.message}</p>
               </div>
             </div>
 
@@ -469,7 +469,7 @@ const Member = () => {
                     />
                   )}
                 />
-                 <p className="text-red-500">{errors.Unit?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.Unit?.message}</p>
               </div>
               <div className="md:flex md:flex-row flex-col items-center gap-[2px] lg:pt-5 ">
                 <h3 className="text-[#444444] text-[16px]">
@@ -513,7 +513,7 @@ const Member = () => {
                         }}
                         className="file-input w-full max-w-xs pl-0 mb-4"
                       />
-                       <p className="text-red-500">{errors.image?.message}</p>
+                       <p className="text-red-500 text-sm">{errors.image?.message}</p>
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
@@ -595,7 +595,7 @@ const Member = () => {
                   type="text"
                   {...register("memberIdCard")}
                 />
-                 <p className="text-red-500">{errors.memberIdCard?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.memberIdCard?.message}</p>
               </div>
               {/* 6. Enrollment date */}
               <div>
@@ -607,7 +607,7 @@ const Member = () => {
                   type="date"
                   {...register("enrollmentDate")}
                 />
-                    <p className="text-red-500">{errors.enrollmentDate?.message}</p>
+                    <p className="text-red-500 text-sm">{errors.enrollmentDate?.message}</p>
               </div>
               {/* 7. Contact Number */}
               <div>
@@ -642,7 +642,7 @@ const Member = () => {
                   type="email"
                   {...register("email")}
                 />
-                 <p className="text-red-500">{errors.email?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.email?.message}</p>
               </div>
               {/*10. Gender checkbox*/}
               <div>
@@ -685,7 +685,7 @@ const Member = () => {
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                             checked
                           />
-                          <p className="text-red-500">{errors.male?.message}</p>
+                          <p className="text-red-500 text-sm">{errors.male?.message}</p>
                           <span className="text-[#777777] text-[16px] ml-2">
                             Male
                           </span>
@@ -808,7 +808,7 @@ const Member = () => {
                   type="text"
                   {...register("PermanentAddress")}
                 />
-                <p className="text-red-500">{errors.PresentAddress?.message}</p>
+                <p className="text-red-500 text-sm">{errors.PresentAddress?.message}</p>
               </div>
               {/* 18. Occupation */}
               <div>
@@ -831,7 +831,7 @@ const Member = () => {
                   type="text"
                   {...register("NID")}
                 />
-                <p className="text-red-500">{errors.NID?.message}</p>
+                <p className="text-red-500 text-sm">{errors.NID?.message}</p>
               </div>
               {/* 20. Birth Certificate No */}
               <div>
@@ -843,7 +843,7 @@ const Member = () => {
                   type="text"
                   {...register("birth_certificate_number")}
                 />
-                <p className="text-red-500">{errors.birth_certificate_number?.message}</p>
+                <p className="text-red-500 text-sm">{errors.birth_certificate_number?.message}</p>
               </div>
               {/* 21. Passport No */}
               <div>
@@ -855,7 +855,7 @@ const Member = () => {
                   type="text"
                   {...register("passport_num")}
                 />
-                      <p className="text-red-500">{errors.passport_num?.message}</p>
+                      <p className="text-red-500 text-sm">{errors.passport_num?.message}</p>
               </div>
               {/* 22. Education */}
               <div>
@@ -878,7 +878,7 @@ const Member = () => {
                   type="text"
                   {...register("member_form_serial")}
                 />
-                   <p className="text-red-500">{errors.member_form_serial?.message}</p>
+                   <p className="text-red-500 text-sm">{errors.member_form_serial?.message}</p>
               </div>
               {/* 24. Money Receipt No. */}
               <div>
@@ -890,7 +890,7 @@ const Member = () => {
                   type="text"
                   {...register("member_receipt_no")}
                 />
-                 <p className="text-red-500">{errors.member_receipt_no?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.member_receipt_no?.message}</p>
               </div>
               {/* 25. Project Activities in Last 10 years */}
               <div>
@@ -916,7 +916,7 @@ const Member = () => {
                   type="text"
                   {...register("emergency_contact")}
                 />
-                 <p className="text-red-500">{errors.emergency_contact?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.emergency_contact?.message}</p>
               </div>
               <div className="flex gap-6 mt-8 xl:mt-3">
                 <button className="bg-[#2AA778] w-[132px] h-[36px] rounded-[3px]">
