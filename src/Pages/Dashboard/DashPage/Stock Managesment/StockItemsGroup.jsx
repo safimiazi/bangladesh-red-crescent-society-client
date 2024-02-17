@@ -13,26 +13,10 @@ const StockItemsGroup = () => {
             sortable:true,
         },
         {
-            name : 'Stock Item',
-            selector : row => row.stockitem,
+            name : 'Item Group',
+            selector : row => row.itemgroup,
             sortable:true,
         },
-        {
-            name : 'Stock Warehouse Level',
-            selector : row => row.stockwarehouselevel,
-            sortable:true,
-        },
-        {
-            name : 'Stock In Quntity',
-            selector : row => row.stockinquntity,
-            sortable:true,
-        },
-        {
-            name : 'Date',
-            selector : row => row.date,
-            sortable:true,
-        },
-     
         {
             name : 'Action',
             selector : row => row.action,

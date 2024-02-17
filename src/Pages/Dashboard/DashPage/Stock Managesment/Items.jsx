@@ -11,18 +11,18 @@ const Items = () => {
       sortable: true,
     },
     {
-      name: "Warehouse",
-      selector: (row) => row.warehouse,
+      name: "Item Group",
+      selector: (row) => row.itemgroup,
       sortable: true,
     },
     {
-      name: "Item",
-      selector: (row) => row.item,
+      name: "	Description",
+      selector: (row) => row.description,
       sortable: true,
     },
     {
-      name: "Available",
-      selector: (row) => row.available,
+      name: "Action",
+      selector: (row) => row.action,
       sortable: true,
     },
   ];

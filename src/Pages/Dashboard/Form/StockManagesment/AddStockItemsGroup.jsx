@@ -11,7 +11,7 @@ const AddStockItemsGroup = () => {
 
   // Form data valedetio
   const schema = yup.object({
-    ItemGroup: yup.string(),
+    ItemGroup: yup.string().required(),
 
     })
 
@@ -149,15 +149,22 @@ const AddStockItemsGroup = () => {
          
               {/* 3.Available*/}
               <div>
-                <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                1. Item Group*
-                </p>
+              <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    1. Item Group
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+
+                  </div>
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("ItemGroup")}
                
                 />
+                   <p className="text-red-500 text-sm">{errors.ItemGroup?.message}</p>
               </div>
 
             </div>
