@@ -5,11 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { getBloodGroup, getReligion, getUnit, getUpazila } from "../../../../Api/HumanAsset/Selector/Selector";
 const Volunteer = () => {
 
 
   const [gender, setGender] = useState(null);
   const[married,setMarried] = useState(null)
+  const [Religion, setReligion] = useState();
+  const [upazila, setUpazila] = useState();
+  const [Unit, setUnit] = useState();
+  const [Blood, setBlood] = useState();
   // const [isImageSelected, setIsImageSelected] = useState(false);
 
 
@@ -178,49 +183,126 @@ const schema = yup.object().shape({
     }),
   };
 
-  const prefixOption = [
-    { value: "Prefix Demo 1", label: "Prefix Demo 1" },
-    { value: "Prefix Demo 2", label: "Prefix Demo 2" },
-    { value: "Prefix Demo 3", label: "Prefix Demo 3" },
-  ];
 
 
 
-  const unitOption = [
-    { value: "National Headquarters", label: "National Headquarters" },
-    { value: "Narayanganj RC Unit", label: "Narayanganj RC Unit" },
-    { value: "Narsingdi RC Unit", label: "Narsingdi RC Unit" },
-    { value: "Madaripur RC Unit", label: "Madaripur RC Unit" },
-  ];
+  
+    // get Unit
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const data = await getUnit();
+              setUnit(data.uitType);
+              console.log(data);
+          } catch (error) {
+              console.error("Error fetching Prefix:", error);
+          }
+      };
 
-  const upazilaOption = [
-    { value: "O+", label: "Upazila Demo 1" },
-    { value: "Upazila Demo 2", label: "Upazila Demo 2" },
-  ];
+      fetchData();
+  }, []);
 
+  const unitOption =
+      (Unit &&
+          Unit.map((singleData) => ({
+              value: singleData.id,
+              label: singleData.name,
+          }))) ||
+      [];
+
+
+       // getReligion
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const data = await getReligion();
+              setReligion(data.religionType);
+              console.log("data", data);
+          } catch (error) {
+              console.error("Error fetching member types:", error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+  const ReligionOption =
+      (Religion &&
+          Religion.map((singleData) => ({
+              value: singleData.id,
+              label: singleData.name,
+          }))) ||
+      [];
+
+//upazilaOption
+
+useEffect(() => {
+  const fetchData = async () => {
+      try {
+          const data = await getUpazila();
+          setUpazila(data.upazila);
+      } catch (error) {
+          console.error("Error fetching upazila:", error);
+      }
+  };
+
+  fetchData();
+}, []);
+
+const upazilaOption =
+  (upazila &&
+      upazila.map((singleData) => ({
+          value: singleData.id,
+          label: singleData.name,
+      }))) ||
+  [];
+
+  // boold group
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const data = await getBloodGroup();
+            setBlood(data.bloodGroup);
+            console.log(data);
+        } catch (error) {
+            console.error("Error fetching bloodGroup:", error);
+        }
+    };
+
+    fetchData();
+}, []);
+
+const bgOption =
+    (Blood &&
+        Blood?.map((singleData) => ({
+            value: singleData.id,
+            label: singleData.name,
+        }))) ||
+    [];
+
+
+// resource
   const resourceOption = [
     { value: "Internal ", label: "Internal " },
     { value: "External", label: "External" },
     
   ]
 
-  const BloodGroupOption = [
-    { value: "O positive", label: "O positive" },
-    { value: "O negative", label: "O negative" },
-    { value: "A positive", label: "A positive" },
-    { value: "A negative", label: "A negative" },
-    { value: "B positive", label: "B positive" },
-    { value: "B negative", label: "B negative" },
-    { value: "AB positive", label: "AB positive" },
-    { value: "AB negative", label: "AB negative" },
-  ];
+  // volunteerOption
 
-  const ReligionOption = [
-    { value: "Islam", label: "Islam" },
-    { value: "Hindu", label: "Hindu" },
-    { value: "Christian", label: "Christian" },
-    { value: "Buddhism", label: "Buddhism" },
-  ];
+  const volunteerOption = [
+
+  ]
+
+  // volunteerOption
+
+  const volunteerOption =[
+
+  ]
+  
+
+  
   const imgInp = useRef(null);
 
   // For getting the value of the file input
@@ -361,7 +443,7 @@ const schema = yup.object().shape({
                       <Select
                         className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                         components={{ DropdownIndicator }}
-                        options={prefixOption}
+                        options={volunteerOption}
                         {...register("volunteerType")}
                         placeholder="Select Prefix"
                         styles={customStyles}
@@ -551,7 +633,7 @@ const schema = yup.object().shape({
                             {...register("marreid")}
                             type="radio"
                             name="radio-11"
-                            onChange={() => handlemarreidChange('marreid')}
+                            onChange={() => handlemariedChange('marreid')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                             checked
                           />
@@ -568,7 +650,7 @@ const schema = yup.object().shape({
                             {...register("unmarreid")}
                             type="radio"
                             name="radio-11"
-                            onChange={() => handlemarreidChange('unmarreid')}
+                            onChange={() => handlemariedChange('unmarreid')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
                             checked
                           />
@@ -628,7 +710,7 @@ const schema = yup.object().shape({
                     <Select
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
-                      options={BloodGroupOption}
+                      options={bgOption}
                       placeholder="Select Blood Group"
                       {...register("BloodGroup")}
                       styles={customStyles}
