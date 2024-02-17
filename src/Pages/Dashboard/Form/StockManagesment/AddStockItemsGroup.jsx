@@ -5,8 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { MdArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 const AddStockItemsGroup = () => {
+
+  // Form data valedetio
+  const schema = yup.object({
+    ItemGroup: yup.string(),
+
+    })
+
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
     register,
@@ -14,7 +22,7 @@ const AddStockItemsGroup = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
 
   // form data
   const onSubmit = (data) => {

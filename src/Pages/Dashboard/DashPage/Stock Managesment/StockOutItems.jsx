@@ -88,6 +88,41 @@ const StockOutItems = () => {
   
   ]
 
+  // table style
+  const customStyles = {
+
+    rows : {
+     style: {
+       fontSize: '14px',
+       color: 'gray',
+       fontWeight: 600,
+       border: '1px solid #F2F2F2' 
+     }
+     
+     
+    },
+
+    headCells : {
+     style: {
+       fontSize: '15px',
+       color: 'black',
+       text:'center',
+       fontWeight: 700,
+       border: '1px solid #F2F2F2' ,
+       backgroundColor: '#3C8DBC'
+     }}
+     ,
+
+     cells : {
+       style: {
+       
+      
+         border: '1px solid #F2F2F2' 
+       }
+     }
+    
+ }
+
 
     return (
         <div>
@@ -105,7 +140,7 @@ const StockOutItems = () => {
              <Stockoutnav/>
 
           <DataTable  columns={columns}
-            data={data} pagination>
+            data={data} pagination customStyles={customStyles}>
           
         </DataTable>
           </div>
