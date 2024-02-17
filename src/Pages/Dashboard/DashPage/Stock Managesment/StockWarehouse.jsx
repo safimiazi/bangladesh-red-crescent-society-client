@@ -11,18 +11,28 @@ const StockWarehouse = () => {
           sortable: true,
         },
         {
-          name: "Warehouse",
-          selector: (row) => row.warehouse,
+          name: "Item Group",
+          selector: (row) => row.itemrgoup,
           sortable: true,
         },
         {
-          name: "Item",
-          selector: (row) => row.item,
+          name: "Address",
+          selector: (row) => row.address,
           sortable: true,
         },
         {
-          name: "Available",
-          selector: (row) => row.available,
+          name: "Longitude",
+          selector: (row) => row.longitude,
+          sortable: true,
+        },
+        {
+          name: "Latitude",
+          selector: (row) => row.latitude,
+          sortable: true,
+        },
+        {
+          name: "Actions",
+          selector: (row) => row.actions,
           sortable: true,
         },
       ];

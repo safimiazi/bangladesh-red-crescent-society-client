@@ -14,31 +14,43 @@ const StockOutItems = () => {
             sortable:true,
         },
         {
-            name : 'Stock Item',
-            selector : row => row.stockitem,
+            name : 'Traking Number',
+            selector : row => row.trakingnumber,
             sortable:true,
         },
         {
-            name : 'Stock Warehouse Level',
-            selector : row => row.stockwarehouselevel,
+            name : 'From Warehouse',
+            selector : row => row.fromwarehouse,
             sortable:true,
         },
         {
-            name : 'Stock In Quntity',
-            selector : row => row.stockinquntity,
+            name : 'Stock Out Quntity',
+            selector : row => row.stockoutquntity,
             sortable:true,
         },
         {
-            name : 'Date',
-            selector : row => row.date,
+            name : 'Destination Warehouse',
+            selector : row => row.destinationwarehouse,
             sortable:true,
         },
      
         {
-            name : 'Action',
-            selector : row => row.action,
+            name : 'Destination',
+            selector : row => row.destination,
             sortable:true,
         },
+        
+        {
+          name : 'Date',
+          selector : row => row.date,
+          sortable:true,
+      },
+      
+      {
+        name : 'Action',
+        selector : row => row.action,
+        sortable:true,
+    },
      
      
       
