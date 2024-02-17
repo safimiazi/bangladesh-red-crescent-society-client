@@ -253,7 +253,7 @@ const dashboardRoutes = [
     },
     {
         route: 'Stock Management',
-        path: '/dashboard/stock-management',
+        path: '/dashboard/stocksummary',
         icon: <svg
             width="20"
             height="18"
@@ -268,11 +268,13 @@ const dashboardRoutes = [
         </svg>,
         nestedRoute: true,
         nestedRoutes: [
-            { name: 'Hello Brother', path: '/dashboard/abcd' },
-            { name: 'Hi Brother', path: '/dashboard/abcd' },
-            { name: 'Colo Brother', path: '/dashboard/abcd' },
-            { name: 'Jai Brother', path: '/dashboard/abcd' },
-            { name: 'Paliye Brother', path: '/dashboard/abcd' },
+            { name: 'Stock Summary', path: '/dashboard/stocksummary' },
+            { name: 'Stock In Items', path: '/dashboard/stockinitem' },
+            { name: 'Stock Out Item', path: '/dashboard/stockOutitems' },
+            { name: 'Items', path: '/dashboard/item' },
+            { name: 'Stock Warehouse', path: '/dashboard/stockwarehouse' },
+            { name: 'Stock Items Group', path: '/dashboard/stockitemsgroup' },
+            
         ]
     },
     {
