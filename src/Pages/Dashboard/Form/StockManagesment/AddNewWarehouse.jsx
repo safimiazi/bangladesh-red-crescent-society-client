@@ -1,12 +1,26 @@
 import { Controller, useForm } from "react-hook-form";
 import "../../../../CustomCSS/HumanAssets.css";
-import Select, { components } from "react-select";
-import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { MdArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+
 
 const AddNewWarehouse = () => {
+
+  // Form data valedetio
+const schema = yup.object({
+  Name: yup.string(),
+  Address: yup.string(),
+  Longitude: yup.string(),
+  Latitude : yup.string()
+  })
+
+
+
+
   // const [isImageSelected, setIsImageSelected] = useState(false);
   const {
     register,
@@ -14,7 +28,7 @@ const AddNewWarehouse = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({resolver: yupResolver(schema)});
 
   // form data
   const onSubmit = (data) => {

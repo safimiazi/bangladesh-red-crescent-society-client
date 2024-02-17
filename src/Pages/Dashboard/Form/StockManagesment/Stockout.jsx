@@ -207,7 +207,7 @@ const schema = yup.object({
                     />
                   )}
                 />
-                   <p className="text-red-500">{errors.warehouse?.message}</p>
+                   <p className="text-red-500 text-sm">{errors.warehouse?.message}</p>
               </div>
               {/* 2. Item* */}
               <div>
@@ -237,7 +237,7 @@ const schema = yup.object({
                     />
                   )}
                 />
-                  <p className="text-red-500">{errors.Item?.message}</p>
+                  <p className="text-red-500 text-sm">{errors.Item?.message}</p>
               </div>
               {/* 3.Available*/}
               <div>
@@ -257,7 +257,7 @@ const schema = yup.object({
                   {...register("Available")}
                   placeholder="0"
                 />
-                  <p className="text-red-500">{errors.Available?.message}</p>
+                  <p className="text-red-500 text-sm">{errors.Available?.message}</p>
               </div>
               {/* 14. Quantity to stock*/}
               <div>
@@ -275,7 +275,7 @@ const schema = yup.object({
                   {...register("rackingNumber")}
                   placeholder=""
                 />
-                 <p className="text-red-500">{errors.rackingNumber?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.rackingNumber?.message}</p>
               </div>
               {/* 5.quantitystock */}
               <div>
@@ -301,7 +301,7 @@ const schema = yup.object({
                   type="text"
                   {...register("quantitystock")}
                 />
-                <p className="text-red-500">{errors.quantitystock?.message}</p>
+                <p className="text-red-500 text-sm">{errors.quantitystock?.message}</p>
               </div>
 
               <div className="py-3">

@@ -295,7 +295,7 @@ const schema = yup.object({
                     />
                   )}
                 />
-                    <p className="text-red-500">{errors.unit?.message}</p>
+                    <p className="text-red-500 text-sm">{errors.unit?.message}</p>
               </div>
 
               <div className="w-full mt-2">
@@ -360,7 +360,7 @@ const schema = yup.object({
                       />
                     )}
                   />
-                   <p className="text-red-500">{errors.volunteer_Type?.message}</p>
+                   <p className="text-red-500 text-sm">{errors.volunteer_Type?.message}</p>
                 </div>
               </div>
 
@@ -379,7 +379,7 @@ const schema = yup.object({
                   type="text"
                   {...register("Volunteer_ID")}
                 />
-                 <p className="text-red-500">{errors.Volunteer_ID?.message}</p>
+                 <p className="text-red-500 text-sm">{errors.Volunteer_ID?.message}</p>
               </div>
 
               {/* second column according to the desktop view */}
@@ -425,7 +425,7 @@ const schema = yup.object({
                       />
                     )}
                   />
-                   <p className="text-red-500">{errors.Volunteer_Position?.message}</p>
+                   <p className="text-red-500 text-sm">{errors.Volunteer_Position?.message}</p>
                 </div>
               </div>
               <div className="">
@@ -493,7 +493,7 @@ const schema = yup.object({
                         }}
                         className="file-input w-full  pl-0 mb-4"
                       />
-                          <p className="text-red-500">{errors.image?.message}</p>
+                          <p className="text-red-500 text-sm">{errors.image?.message}</p>
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
@@ -598,7 +598,7 @@ const schema = yup.object({
                     />
                   )}
                 />
-                  <p className="text-red-500">{errors.Religion?.message}</p>
+                  <p className="text-red-500 text-sm">{errors.Religion?.message}</p>
               </div>
               {/* 12.BloodGroupOption */}
               <div>
@@ -660,7 +660,7 @@ const schema = yup.object({
                   type="text"
                   {...register("emergencyNumber")}
                 />
-                   <p className="text-red-500">{errors.emergencyNumber?.message}</p>
+                   <p className="text-red-500 text-sm">{errors.emergencyNumber?.message}</p>
               </div>
 
               {/*9. Email Address */}
@@ -718,7 +718,7 @@ const schema = yup.object({
                   type="text"
                   {...register("NID")}
                 />
-                    <p className="text-red-500">{errors.NID?.message}</p>
+                    <p className="text-red-500 text-sm">{errors.NID?.message}</p>
               </div>
               {/* 21. Birth Certificate No*/}
               <div>
@@ -733,7 +733,7 @@ const schema = yup.object({
                   type="text"
                   {...register("Birth_Certificate_No")}
                 />
-                    <p className="text-red-500">{errors.Birth_Certificate_No?.message}</p>
+                    <p className="text-red-500 text-sm">{errors.Birth_Certificate_No?.message}</p>
               </div>
               {/* 22. Passport No*/}
               <div>
@@ -745,7 +745,7 @@ const schema = yup.object({
                   type="text"
                   {...register("Passport")}
                 />
-                <p className="text-red-500">{errors.Passport?.message}</p>
+                <p className="text-red-500 text-sm">{errors.Passport?.message}</p>
               </div>
               {/* 23. Present Occupation*/}
               <div>
