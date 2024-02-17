@@ -11,8 +11,8 @@ const DashNavbar = () => {
         <div>
             <div className='flex justify-between items-center pl-4 pr-2 lg:pr-10 border-b-2 py-2 bg-[#F2F2F2]'>
                 <div className='flex flex-row-reverse justify-between items-center lg:w-[60%]'>
-                    <div className='flex items-center justify-center'>
-                        <div className="flex w-full lg:w-[675px] mx-5 rounded-lg bg-white relative">
+                    <div className='flex items-center justify-center w-full'>
+                        <div className="flex w-full mx-5 rounded-lg bg-white relative">
                             <input className="pl-6 w-full border-none bg-transparent px-4 py-1  outline-none focus:outline-none text-[#878FA7] " type="search" name="search" placeholder="Search" />
                             <div className='absolute top-1/2 left-3 -translate-y-1/2 bg-[#2AA778] w-[4px] h-[27px] rounded-sm'></div>
                             <button type="submit" className="m-2 rounded  px-4 py-1  text-white">
