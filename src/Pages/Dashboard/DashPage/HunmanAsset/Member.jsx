@@ -1,3 +1,4 @@
+
 import { Controller, useForm } from "react-hook-form";
 import "../../../../CustomCSS/HumanAssets.css";
 import Select, { components } from "react-select";
@@ -6,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {
-    getBloodGroup,
+  getBloodGroup,
   getMemberType,
   getPrefix,
   getReligion,
@@ -16,44 +17,10 @@ import {
 
 
 
-// Form data valedetio
-const schema = yup.object({
-  Prefix: yup.string(),
-  Name: yup.string().required('Name Is Required'),
-  Is_Alive: yup.boolean().oneOf([true]),
-  MemberType: yup.string().required('Number Type Is Required'),
-  Unit: yup.string().required('Unit Is Required'),
-  Upazila: yup.string(),
-  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
-  managingBoardMember: yup.boolean().oneOf([true]),
-  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
-  chairman: yup.boolean().oneOf([true]),
-  memberIdCard: yup.number(),
-  enrollmentDate: yup.date().max(new Date()),
-  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
-  birthDate: yup.date(),
-  email: yup.string().email('Valid Email Please'),
-  male: yup.string(),
-  female: yup.string(),
-  BloodGroup: yup.string(),
-  Religion: yup.string(),
-  FatherName: yup.string(),
-  MotherName: yup.string(),
-  SpouseName: yup.string(),
-  PresentAddress: yup.string().required('PresentAddress Is Required'),
-  Occupation: yup.string(),
-  NID: yup.string().matches(/^[0-9]{10}$/),
-  birth_certificate_number: yup.string('valid birth_certificate_number Please').matches(/^[0-9]{17}$/),
-  passport_num: yup.string('valid passport_num Please').matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
-  education: yup.string(),
-  member_form_serial: yup.number(),
-  member_receipt_no: yup.number(''),
-  Activities: yup.string(),
-  emergency_contact: yup.string('valid Number Please').matches(/^\+8801[1-9]\d{8}$/),
-}).required();
 
-  
-  // use state
+
+
+// use state
 const Member = () => {
   const [memberTypeData, setMemberTypeData] = useState();
   const [PrefixData, setPrefixData] = useState();
@@ -61,77 +28,123 @@ const Member = () => {
   const [upazila, setUpazila] = useState();
   const [Unit, setUnit] = useState();
   const [Blood, setBlood] = useState();
+  const [gender, setGender] = useState(null);
   // const [isImageSelected, setIsImageSelected] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    control,
-    setValue,
-    
-    formState: { errors },
-  } = useForm({resolver: yupResolver(schema)});
-  const onSubmit = (data) => {
 
-   const Memberinfo = {
-    Name: schema.cast(data.Name),
-    memberIdCard:schema.cast(data.memberIdCard),
-    enrollmentDate:schema.cast(data.enrollmentDate),
-    birthDate: schema.cast(data.birthDate),
-    email: data.email,
-    motherName:data.MotherName,
-    spouseName: data.SpouseName,
-    permanentAddress: data.PermanentAddress,
-    Occupation: data.Occupation,
-    birthCertificateNo: data.birth_certificate_number,
-    passportNo: data.passport_num,
-    memberFormSerial: data.member_form_serial,
-    moneyReceiptNo: data.member_receipt_no,
-    emergencyContactNo: data.emergency_contact,
-    contactNo:data.contactNumber,
-    fatherName:  data.FatherName,
-    presentAddress: data.PresentAddress,
-    nationalId: data.NID,
-    education: data.education,
-    projectActivities: data.Activities,
-    isAlive: data?.Is_Alive,
-    isMale: data.male,
-    isFemale: data.female,
-    upazilaTable: {
-      id: data.Upazila,
-      
-    },
-    memberType: {
-      id: data.MemberType
-    },
-    prefix: {
-      id: data.Prefix
-    },
-    unit: {
-      id: data.Unit
-    },
-    religion: {
-      id: data.Religion
-    },
-    bloodGroupTable: {
-      id: data.BloodGroup
-    },
-    memberRoleTable: [
-      {
-        id: data.managingBoardMember
-      },
-      {
-        id: data.unitExecutiveCommitteMemberr
-      }
-      ,
-      {
-        id : data.chairman
-      }
-    ]
+
+
+  const schema = yup.object().shape({
+    Prefix: yup.string(),
+    Name: yup.string().required('Name Address is required'),
+    Is_Alive: yup.boolean(),
+    MemberType: yup.string().required('MemberType Address is required'),
+    Unit: yup.string(),
+    Upazila: yup.string(),
+
+    memberIdCard: yup.string().required('Member ID Card is required'),
+    enrollmentDate: yup.date().nullable(),
+    contactNumber: yup.string(),
+    birthDate: yup.date().nullable(),
+    email: yup.string().email('Invalid email address'),
+    BloodGroup: yup.string(),
+    Religion: yup.string(),
+    FatherName: yup.string(),
+    MotherName: yup.string(),
+    SpouseName: yup.string(),
+    PresentAddress: yup.string(),
+
+
+    PermanentAddress: yup.string().required('Permanent Address is required'),
+    Occupation: yup.string(),
+    NID: yup.string(),
+    birth_certificate_number: yup.string(),
+    passport_num: yup.string(),
+    education: yup.string(),
+    member_form_serial: yup.string(),
+    member_receipt_no: yup.string(),
+    Activities: yup.string(),
+    emergency_contact: yup.string(),
+  });
+
+  const methods = useForm({
+    resolver: yupResolver(schema),
+
+  });
+
+  const { register, setError, handleSubmit, setValue, control, formState: { errors } } = methods;
+
+  const onSubmit = async (data) => {
+    try {
+      //submit data to backend
+      const Memberinfo = {
+        name: data.Name,
+        memberIdCard: data.memberIdCard,
+        enrollmentDate: data.enrollmentDate,
+        birthDate: data.birthDate,
+        email: data.email,
+        motherName:data.MotherName,
+        spouseName: data.SpouseName,
+        permanentAddress: data.PermanentAddress,
+        Occupation: data.Occupation,
+        birthCertificateNo: data.birth_certificate_number,
+        passportNo: data.passport_num,
+        memberFormSerial: data.member_form_serial,
+        moneyReceiptNo: data.member_receipt_no,
+        emergencyContactNo: data.emergency_contact,
+        contactNo:data.contactNumber,
+        fatherName:  data.FatherName,
+        presentAddress: data.PresentAddress,
+        nationalId: data.NID,
+        education: data.education,
+        projectActivities: data.Activities,
+        isAlive: data?.Is_Alive,
+        isMale: gender === "male" ? true : false,
+        isFemale: gender === "female" ? true : false,
+        upazilaTable: {
+            id: data.Upazila,
+        },
+        memberType: {
+            id: data.MemberType
+        },
+        prefix: {
+            id: data.Prefix
+        },
+        unit: {
+            id: data.Unit
+        },
+        religion: {
+            id: data.Religion
+        },
+        bloodGroupTable: {
+            id: data.BloodGroup
+        },
+        memberRoleTable: [
+            {
+                id: data.managingBoardMember ? 1 : 0 
+            },
+            {
+                id: data.unitExecutiveCommitteMemberr ? 2 : 0
+            },
+            {
+                id : data.chairman ? 3 : 0
+            }
+        ]
+    }
+    console.log(Memberinfo);
+
+    }
+    catch (error) {
+      console.log(error);
+
+      setError("afterSubmit", {
+        ...error,
+        message: error.message,
+      })
+    }
   }
 
-    console.log(Memberinfo);
-  };
-  console.log(errors);
+
+
 
   // Select field arrow svg replacement style
   const DropdownIndicator = (props) => {
@@ -354,6 +367,12 @@ const Member = () => {
     }
   }, [setValue]);
 
+
+  const handleGenderChange = (gender) => {
+    setGender(gender)
+   
+  }
+
   return (
     <>
       <div>
@@ -412,7 +431,7 @@ const Member = () => {
                   placeholder="Name"
                   {...register("Name")}
                 />
-                  <p className="text-red-500 text-sm">{errors.Name?.message}</p>
+                <p className="text-red-500 text-sm">{errors.Name?.message}</p>
               </div>
               {/* Is Alive checkbox */}
               <div className="flex lg:pt-6 items-center md:col-span-2 justify-start h-[41px] ">
@@ -456,7 +475,7 @@ const Member = () => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
                       }}
                     />
-                    
+
                   )}
                 />
                 <p className="text-red-500 text-sm">{errors.Member_Type?.message}</p>
@@ -492,7 +511,7 @@ const Member = () => {
                     />
                   )}
                 />
-                 <p className="text-red-500 text-sm">{errors.Unit?.message}</p>
+                <p className="text-red-500 text-sm">{errors.Unit?.message}</p>
               </div>
               <div className="md:flex md:flex-row flex-col items-center gap-[2px] lg:pt-5 ">
                 <h3 className="text-[#444444] text-[16px]">
@@ -523,7 +542,7 @@ const Member = () => {
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       4. Photo
                     </p>
-                   
+
                   </div>
                   <div className="w-full border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center p-5 xl:p-2">
                     <div>
@@ -536,7 +555,7 @@ const Member = () => {
                         }}
                         className="file-input w-full max-w-xs pl-0 mb-4"
                       />
-                       <p className="text-red-500 text-sm">{errors.image?.message}</p>
+                      <p className="text-red-500 text-sm">{errors.image?.message}</p>
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
@@ -618,7 +637,7 @@ const Member = () => {
                   type="text"
                   {...register("memberIdCard")}
                 />
-                 <p className="text-red-500 text-sm">{errors.memberIdCard?.message}</p>
+                <p className="text-red-500 text-sm">{errors.memberIdCard?.message}</p>
               </div>
               {/* 6. Enrollment date */}
               <div>
@@ -630,7 +649,7 @@ const Member = () => {
                   type="date"
                   {...register("enrollmentDate")}
                 />
-                    <p className="text-red-500 text-sm">{errors.enrollmentDate?.message}</p>
+                <p className="text-red-500 text-sm">{errors.enrollmentDate?.message}</p>
               </div>
               {/* 7. Contact Number */}
               <div>
@@ -642,7 +661,7 @@ const Member = () => {
                   type="text"
                   {...register("contactNumber")}
                 />
-                 <p className="text-red-500">{errors.contactNumber?.message}</p>
+                <p className="text-red-500">{errors.contactNumber?.message}</p>
               </div>
               {/*8. Birth date */}
               <div>
@@ -665,60 +684,66 @@ const Member = () => {
                   type="email"
                   {...register("email")}
                 />
-                 <p className="text-red-500 text-sm">{errors.email?.message}</p>
+                <p className="text-red-500 text-sm">{errors.email?.message}</p>
               </div>
               {/*10. Gender checkbox*/}
               <div>
-              <div className="">
                 <div className="">
-                  <div className="relative w-fit">
-                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                      7. Gender
-                    </p>
-                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                      *
-                    </span>
-                  </div>
-                  <div className="flex gap-16 justify-start">
-                    <div className="flex items-center h-[41px]">
-                      <div className="form-control">
-                        <label className="label cursor-pointer">
-                          <input
-                            {...register("female")}
-                            type="radio"
-                            name="radio-10"
-                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked
-                          />
-                          
-                          <span className="text-[#777777] text-[16px] ml-2">
-                            FeMale
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="flex items-center h-[41px]">
-                      <div className="form-control">
-                        <label className="label cursor-pointer">
-                          <input
-                            {...register("male")}
-                            type="radio"
 
-                            name="radio-10"
-                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked
-                          />
-                          <p className="text-red-500 text-sm">{errors.male?.message}</p>
-                          <span className="text-[#777777] text-[16px] ml-2">
-                            Male
-                          </span>
-                        </label>
+
+                  <div className="">
+                    <div className="relative w-fit">
+                      <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                        7. Gender
+                      </p>
+                      <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                        *
+                      </span>
+                    </div>
+                    <div className="flex gap-16 justify-start">
+                      <div className="flex items-center h-[41px]">
+                        <div className="form-control">
+                          <label className="label cursor-pointer">
+                            <input
+                              {...register("female")}
+                              type="radio"
+                              name="radio-10"
+                              value={"female"}
+                              className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                              checked={gender === "female"}
+                              onChange={() => handleGenderChange('female')}
+                            />
+
+                            <span className="text-[#777777] text-[16px] ml-2">
+                              Female
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="flex items-center h-[41px]">
+                        <div className="form-control">
+                          <label className="label cursor-pointer">
+                            <input
+                              {...register("male")}
+                              type="radio"
+                              name="radio-10"
+                              value={"male"}
+                              className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                              checked={gender === "male"}
+                              onChange={() => handleGenderChange('male')}
+                            />
+
+                            <span className="text-[#777777] text-[16px] ml-2">
+                              Male
+                            </span>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
-              </div>
-    
+
               </div>
               {/* 11. Blood Group */}
               <div>
@@ -734,7 +759,7 @@ const Member = () => {
                       className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
 
-                   
+
                       {...register("BloodGroup")}
 
                       options={bgOption}
@@ -878,7 +903,7 @@ const Member = () => {
                   type="text"
                   {...register("passport_num")}
                 />
-                      <p className="text-red-500 text-sm">{errors.passport_num?.message}</p>
+                <p className="text-red-500 text-sm">{errors.passport_num?.message}</p>
               </div>
               {/* 22. Education */}
               <div>
@@ -901,7 +926,7 @@ const Member = () => {
                   type="text"
                   {...register("member_form_serial")}
                 />
-                   <p className="text-red-500 text-sm">{errors.member_form_serial?.message}</p>
+                <p className="text-red-500 text-sm">{errors.member_form_serial?.message}</p>
               </div>
               {/* 24. Money Receipt No. */}
               <div>
@@ -913,7 +938,7 @@ const Member = () => {
                   type="text"
                   {...register("member_receipt_no")}
                 />
-                 <p className="text-red-500 text-sm">{errors.member_receipt_no?.message}</p>
+                <p className="text-red-500 text-sm">{errors.member_receipt_no?.message}</p>
               </div>
               {/* 25. Project Activities in Last 10 years */}
               <div>
@@ -939,7 +964,7 @@ const Member = () => {
                   type="text"
                   {...register("emergency_contact")}
                 />
-                 <p className="text-red-500 text-sm">{errors.emergency_contact?.message}</p>
+                <p className="text-red-500 text-sm">{errors.emergency_contact?.message}</p>
               </div>
               <div className="flex gap-6 mt-8 xl:mt-3">
                 <button className="bg-[#2AA778] w-[132px] h-[36px] rounded-[3px]">
