@@ -18,38 +18,38 @@ import {
 
 // Form data valedetio
 const schema = yup.object({
-  prefix: yup.string(),
-  Name: yup.string().required(),
-  Is_Alive: yup.boolean().oneOf([true]),
-  Member_Type: yup.string().required(),
-  Unit: yup.string().required(),
-  Upazila: yup.string(),
-  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
-  managingBoardMember: yup.boolean().oneOf([true]),
-  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
-  chairman: yup.boolean().oneOf([true]),
-  memberIdCard: yup.number(),
-  enrollmentDate: yup.date().max(new Date()),
-  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
-  birthDate: yup.date(),
-  email: yup.string().email(),
-  male: yup.string(),
-  female: yup.string(),
-  BloodGroup: yup.string(),
-  Religion: yup.string(),
-  FatherName: yup.string(),
-  MotherName: yup.string(),
-  SpouseName: yup.string(),
-  PresentAddress: yup.string().required(),
-  Occupation: yup.string(),
-  NID: yup.string().matches(/^[0-9]{10}$/),
-  birth_certificate_number: yup.string().matches(/^[0-9]{17}$/),
-  passport_num: yup.string().matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
-  education: yup.string(),
-  member_form_serial: yup.number(),
-  member_receipt_no: yup.number(),
-  Activities: yup.string(),
-  emergency_contact: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+  // prefix: yup.string(),
+  // Name: yup.string().required(),
+  // Is_Alive: yup.boolean().oneOf([true]),
+  // Member_Type: yup.string().required(),
+  // Unit: yup.string().required(),
+  // Upazila: yup.string(),
+  // image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
+  // managingBoardMember: yup.boolean().oneOf([true]),
+  // unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
+  // chairman: yup.boolean().oneOf([true]),
+  // memberIdCard: yup.number(),
+  // enrollmentDate: yup.date().max(new Date()),
+  // contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+  // birthDate: yup.date(),
+  // email: yup.string().email(),
+  // male: yup.string(),
+  // female: yup.string(),
+  // BloodGroup: yup.string(),
+  // Religion: yup.string(),
+  // FatherName: yup.string(),
+  // MotherName: yup.string(),
+  // SpouseName: yup.string(),
+  // PresentAddress: yup.string().required(),
+  // Occupation: yup.string(),
+  // NID: yup.string().matches(/^[0-9]{10}$/),
+  // birth_certificate_number: yup.string().matches(/^[0-9]{17}$/),
+  // passport_num: yup.string().matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
+  // education: yup.string(),
+  // member_form_serial: yup.number(),
+  // member_receipt_no: yup.number(),
+  // Activities: yup.string(),
+  // emergency_contact: yup.string().matches(/^\+8801[1-9]\d{8}$/),
 }).required();
 
   
@@ -73,47 +73,47 @@ const Member = () => {
   const onSubmit = (data) => {
 
    const Memberinfo = {
-     name: data.name,
+     name: data.Name,
     memberIdCard: data.memberIdCard,
     enrollmentDate: data.enrollmentDate,
     birthDate: data.birthDate,
     email: data.email,
-    motherName:data.motherName,
-    spouseName: data.spousesName,
-    permanentAddress: data.permanentAddressd,
+    motherName:data.MotherName,
+    spouseName: data.SpouseName,
+    permanentAddress: data.PermanentAddress,
     Occupation: data.Occupation,
     birthCertificateNo: data.birth_certificate_number,
     passportNo: data.passport_num,
     memberFormSerial: data.member_form_serial,
-    moneyReceiptNo: data.money_receiptno,
-    emergencyContactNo: data.emergency_contactno,
+    moneyReceiptNo: data.member_receipt_no,
+    emergencyContactNo: data.emergency_contact,
     contactNo:data.contactNumber,
-    fatherName:  data.fatherName,
+    fatherName:  data.FatherName,
     presentAddress: data.presentAddress,
     nationalId: data.NID,
     education: data.education,
-    projectActivities: data.projecta_ctivities,
-    isAlive: data?.is_alive,
+    projectActivities: data.Activities,
+    isAlive: data?.Is_Alive,
     isMale: data.male,
     isFemale: data.female,
     upazilaTable: {
-      id: data.affiliatedupazila,
+      id: data.Upazila,
       
     },
     memberType: {
-      id: data.membertype
+      id: data.MemberType
     },
     prefix: {
-      id: data.prefix
+      id: data.Prefix
     },
     unit: {
-      id: data.unit
+      id: data.Unit
     },
     religion: {
-      id: data.religion
+      id: data.Religion
     },
     bloodGroupTable: {
-      id: data.bloodGroup
+      id: data.BloodGroup
     },
     memberRoleTable: [
       {
@@ -387,7 +387,7 @@ const Member = () => {
                       components={{ DropdownIndicator }}
                       options={prefixOption}
                       placeholder="Select Prefix"
-                      {...register("prefix")}
+                      {...register("Prefix")}
                       styles={customStyles}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -449,7 +449,7 @@ const Member = () => {
                       className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={MemberTypeOption}
-                      {...register("Member_Type")}
+                      {...register("MemberType")}
                       placeholder="Select Member Type"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -475,7 +475,7 @@ const Member = () => {
                   </span>
                 </div>
                 <Controller
-                  name="unit"
+                  name="Unit"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
@@ -499,7 +499,7 @@ const Member = () => {
                   Affiliated Upazila
                 </h3>
                 <Controller
-                  name="affiliated_upazila"
+                  name="Upazila"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
