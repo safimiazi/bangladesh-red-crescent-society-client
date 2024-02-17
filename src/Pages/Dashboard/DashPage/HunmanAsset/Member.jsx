@@ -68,75 +68,80 @@ const Member = () => {
 
     const { register, setError, handleSubmit, setValue, control, formState: { errors } } = methods;
 
-  const onSubmit = async (data) => {
-    try {
-      //submit data to backend
-      const Memberinfo = {
-        name: data.Name,
-        memberIdCard: data.memberIdCard,
-        enrollmentDate: data.enrollmentDate,
-        birthDate: data.birthDate,
-        email: data.email,
-        motherName:data.MotherName,
-        spouseName: data.SpouseName,
-        permanentAddress: data.PermanentAddress,
-        Occupation: data.Occupation,
-        birthCertificateNo: data.birth_certificate_number,
-        passportNo: data.passport_num,
-        memberFormSerial: data.member_form_serial,
-        moneyReceiptNo: data.member_receipt_no,
-        emergencyContactNo: data.emergency_contact,
-        contactNo:data.contactNumber,
-        fatherName:  data.FatherName,
-        presentAddress: data.PresentAddress,
-        nationalId: data.NID,
-        education: data.education,
-        projectActivities: data.Activities,
-        isAlive: data?.Is_Alive,
-        isMale: gender === "male" ? true : false,
-        isFemale: gender === "female" ? true : false,
-        upazilaTable: {
-            id: data.Upazila,
-        },
-        memberType: {
-            id: data.MemberType
-        },
-        prefix: {
-            id: data.Prefix
-        },
-        unit: {
-            id: data.Unit
-        },
-        religion: {
-            id: data.Religion
-        },
-        bloodGroupTable: {
-            id: data.BloodGroup
-        },
-        memberRoleTable: [
-            {
-                id: data.managingBoardMember ? 1 : 0 
-            },
-            {
-                id: data.unitExecutiveCommitteMemberr ? 2 : 0
-            },
-            {
-                id : data.chairman ? 3 : 0
+    const onSubmit = async (data) => {
+        try {
+            //submit data to backend
+            const Memberinfo = {
+                name: data.Name,
+                memberIdCard: data.memberIdCard,
+                enrollmentDate: data.enrollmentDate,
+                birthDate: data.birthDate,
+                email: data.email,
+                motherName: data.MotherName,
+                spouseName: data.SpouseName,
+                permanentAddress: data.PermanentAddress,
+                Occupation: data.Occupation,
+                birthCertificateNo: data.birth_certificate_number,
+                passportNo: data.passport_num,
+                memberFormSerial: data.member_form_serial,
+                moneyReceiptNo: data.member_receipt_no,
+                emergencyContactNo: data.emergency_contact,
+                contactNo: data.contactNumber,
+                fatherName: data.FatherName,
+                presentAddress: data.PresentAddress,
+                nationalId: data.NID,
+                education: data.education,
+                projectActivities: data.Activities,
+                isAlive: data?.Is_Alive,
+                isMale: gender === "male" ? true : false,
+                isFemale: gender === "female" ? true : false,
+                upazilaTable: {
+                    id: parseInt(data.Upazila),
+                },
+                memberType: {
+                    id: parseInt(data.MemberType)
+                },
+                prefix: {
+                    id: parseInt(data.Prefix)
+                },
+                unit: {
+                    id: parseInt(data.Unit)
+                },
+                religion: {
+                    id: parseInt(data.Religion)
+                },
+                bloodGroupTable: {
+                    id: parseInt(data.BloodGroup)
+                },
+                memberRoleTable: [
+                    data.managingBoardMember && {
+                        id: 1
+                    },
+                    data.unitExecutiveCommitteMemberr && {
+                        id: 2 
+                    },
+                    data.chairman && {
+                        id: 3 
+                    }
+                ].filter(Boolean)
             }
-        ]
-    }
-    console.log(Memberinfo);
+            console.log(Memberinfo);
 
+            const response = await axoissecure.post(`/members`, Memberinfo)
+            if (response.status === 200) {
+                console.log('Data successfully submitted to the server');
+            } else {
+                console.error('Failed to submit data to the server');
+            }
+        }
+        catch (error) {
+            console.log(error);
+            setError("afterSubmit", {
+                ...error,
+                message: error.message,
+            })
+        }
     }
-    catch (error) {
-      console.log(error);
-
-      setError("afterSubmit", {
-        ...error,
-        message: error.message,
-      })
-    }
-  }
 
 
 
@@ -363,10 +368,10 @@ const Member = () => {
     }, [setValue]);
 
 
-  const handleGenderChange = (gender) => {
-    setGender(gender)
-   
-  }
+    const handleGenderChange = (gender) => {
+        setGender(gender)
+
+    }
 
     return (
         <>
