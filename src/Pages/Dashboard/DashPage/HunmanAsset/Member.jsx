@@ -89,7 +89,7 @@ const Member = () => {
     emergencyContactNo: data.emergency_contact,
     contactNo:data.contactNumber,
     fatherName:  data.FatherName,
-    presentAddress: data.presentAddress,
+    presentAddress: data.PresentAddress,
     nationalId: data.NID,
     education: data.education,
     projectActivities: data.Activities,
