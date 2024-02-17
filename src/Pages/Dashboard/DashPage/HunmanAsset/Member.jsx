@@ -16,40 +16,48 @@ import {
 
 
 
-// Form data valedetio
+// Form-data-valedetio
+
 const schema = yup.object({
-  Prefix: yup.string(),
-  Name: yup.string().required('Name Is Required'),
-  Is_Alive: yup.boolean().oneOf([true]),
-  MemberType: yup.string().required('Number Type Is Required'),
-  Unit: yup.string().required('Unit Is Required'),
-  Upazila: yup.string(),
-  image: yup.mixed().test(value => value && value.size <= 2024000), // 2 MB
-  managingBoardMember: yup.boolean().oneOf([true]),
-  unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
-  chairman: yup.boolean().oneOf([true]),
-  memberIdCard: yup.number(),
-  enrollmentDate: yup.date().max(new Date()),
-  contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
-  birthDate: yup.date(),
-  email: yup.string().email('Valid Email Please'),
-  male: yup.string(),
-  female: yup.string(),
-  BloodGroup: yup.string(),
-  Religion: yup.string(),
-  FatherName: yup.string(),
-  MotherName: yup.string(),
-  SpouseName: yup.string(),
-  PresentAddress: yup.string().required('PresentAddress Is Required'),
-  Occupation: yup.string(),
-  NID: yup.string().matches(/^[0-9]{10}$/),
-  birth_certificate_number: yup.string('valid birth_certificate_number Please').matches(/^[0-9]{17}$/),
-  passport_num: yup.string('valid passport_num Please').matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
-  education: yup.string(),
-  member_form_serial: yup.number(),
-  member_receipt_no: yup.number(''),
-  Activities: yup.string(),
-  emergency_contact: yup.string('valid Number Please').matches(/^\+8801[1-9]\d{8}$/),
+  // Prefix: yup.string(),
+  // Name: yup.string().required('Name Is Required'),
+  // Is_Alive: yup.boolean().oneOf([true]),
+  // MemberType: yup.string().required('Number Type Is Required'),
+  // Unit: yup.string().required('Unit Is Required'),
+  // Upazila: yup.string(),
+  // image: yup
+  // .mixed()
+  // .test('fileSize', 'File size is too large', (value) => {
+  //   return value ? value[0].size <= 2 * 1024 * 1024 : true; // 2 MB limit
+  // })
+  // .test('fileType', 'Unsupported file type', (value) => {
+  //   return value ? ['image/jpeg', 'image/png'].includes(value[0].type) : true;
+  // }),
+  // managingBoardMember: yup.boolean().oneOf([true]),
+  // unitExecutiveCommitteMemberr: yup.boolean().oneOf([true]),
+  // chairman: yup.boolean().oneOf([true]),
+  // memberIdCard: yup.number(),
+  // enrollmentDate: yup.date().max(new Date()),
+  // contactNumber: yup.string().matches(/^\+8801[1-9]\d{8}$/),
+  // birthDate: yup.date(),
+  // email: yup.string().email('Valid Email Please'),
+  // male: yup.string(),
+  // female: yup.string(),
+  // BloodGroup: yup.string(),
+  // Religion: yup.string(),
+  // FatherName: yup.string(),
+  // MotherName: yup.string(),
+  // SpouseName: yup.string(),
+  // PresentAddress: yup.string().required('PresentAddress Is Required'),
+  // Occupation: yup.string(),
+  // NID: yup.string().matches(/^[0-9]{10}$/),
+  // birth_certificate_number: yup.string('valid birth_certificate_number Please').matches(/^[0-9]{17}$/),
+  // passport_num: yup.string('valid passport_num Please').matches(/^[A-Z]{1}[0-9]{8}$/).length(9),
+  // education: yup.string(),
+  // member_form_serial: yup.number(),
+  // member_receipt_no: yup.number(''),
+  // Activities: yup.string(),
+  // emergency_contact: yup.string('valid Number Please').matches(/^\+8801[1-9]\d{8}$/),
 }).required();
 
   
@@ -73,10 +81,10 @@ const Member = () => {
   const onSubmit = (data) => {
 
    const Memberinfo = {
-    Name: schema.cast(data.Name),
-    memberIdCard:schema.cast(data.memberIdCard),
-    enrollmentDate:schema.cast(data.enrollmentDate),
-    birthDate: schema.cast(data.birthDate),
+    Name: data.Name,
+    memberIdCard:data.memberIdCard,
+    enrollmentDate:data.enrollmentDate,
+    birthDate: data.birthDate,
     email: data.email,
     motherName:data.MotherName,
     spouseName: data.SpouseName,
@@ -410,7 +418,7 @@ const Member = () => {
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   placeholder="Name"
-                  {...register("Name")}
+                  {...register("Name",{ required: true })}
                 />
                   <p className="text-red-500 text-sm">{errors.Name?.message}</p>
               </div>
@@ -449,7 +457,7 @@ const Member = () => {
                       className="custom-select w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
                       options={MemberTypeOption}
-                      {...register("MemberType")}
+                      {...register("MemberType",{ required: true })}
                       placeholder="Select Member Type"
                       styles={customStyles}
                       onChange={(selectedOption) => {
@@ -484,7 +492,7 @@ const Member = () => {
                       components={{ DropdownIndicator }}
                       options={unitOption}
                       placeholder="Select Unit"
-                      {...register("Unit")}
+                      {...register("Unit",{ required: true })}
                       styles={customStyles}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
@@ -616,7 +624,7 @@ const Member = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("memberIdCard")}
+                  {...register("memberIdCard",{ required: true })}
                 />
                  <p className="text-red-500 text-sm">{errors.memberIdCard?.message}</p>
               </div>
@@ -684,7 +692,7 @@ const Member = () => {
                       <div className="form-control">
                         <label className="label cursor-pointer">
                           <input
-                            {...register("female")}
+                            {...register("female",{ required: true })}
                             type="radio"
                             name="radio-10"
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
@@ -829,7 +837,7 @@ const Member = () => {
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("PermanentAddress")}
+                  {...register("PermanentAddress",{ required: true } )}
                 />
                 <p className="text-red-500 text-sm">{errors.PresentAddress?.message}</p>
               </div>
