@@ -84,9 +84,9 @@ const StockSummary = () => {
        fontSize: '15px',
        color: 'black',
        text:'center',
-       fontWeight: 700,
+       fontWeight: 600,
        border: '1px solid #F2F2F2' ,
-       backgroundColor: '#3C8DBC'
+       backgroundColor: '#2AA778'
      }}
      ,
 

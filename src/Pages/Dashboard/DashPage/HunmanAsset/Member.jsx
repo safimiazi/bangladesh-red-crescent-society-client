@@ -71,41 +71,64 @@ const Member = () => {
     formState: { errors },
   } = useForm({resolver: yupResolver(schema)});
   const onSubmit = (data) => {
-    const Memberinfo = {
-      prefix: data.prefix,
-      name: data.name,
-      is_alive: data.is_alive,
-      membertype: data.membertype,
-      unit: data.unit,
-      upazila: data.affiliated - upazila,
-      photo: data.photo,
-      managingboardmember: data.managingBoardMember,
-      unitexecutivecommitteemember: data.unitExecutiveCommitteMemberr,
-      chairman: data.chairman,
-      memberidcard: data.memberIdCard,
-      enrollmentdate: data.enrollmentDate,
-      contactno: data.contactNumber,
-      birthdate: data.birthDate,
-      email: data.email,
-      male: data.male,
-      female: data.female,
-      bloodgroup: data.bloodGroup,
-      religion: data.religion,
-      fathername: data.fatherName,
-      mothername: data.motherName,
-      spousesname: data.spousesName,
-      presentaddress: data.presentAddress,
-      permanentaddressd: data.permanentAddressd,
-      occupation: data.Occupation,
-      nationalid: data.NID,
-      birthvertificateno: data.birth_certificate_number,
-      passport: data.passport_num,
-      education: data.education,
-      memberformserial: data.member_form_serial,
-      moneyreceiptno: data.money_receiptno,
-      projectactivities: data.projecta_ctivities,
-      emergencycontactno: data.emergency_contactno,
-    };
+
+   const Memberinfo = {
+     name: data.name,
+    memberIdCard: data.memberIdCard,
+    enrollmentDate: data.enrollmentDate,
+    birthDate: data.birthDate,
+    email: data.email,
+    motherName:data.motherName,
+    spouseName: data.spousesName,
+    permanentAddress: data.permanentAddressd,
+    Occupation: data.Occupation,
+    birthCertificateNo: data.birth_certificate_number,
+    passportNo: data.passport_num,
+    memberFormSerial: data.member_form_serial,
+    moneyReceiptNo: data.money_receiptno,
+    emergencyContactNo: data.emergency_contactno,
+    contactNo:data.contactNumber,
+    fatherName:  data.fatherName,
+    presentAddress: data.presentAddress,
+    nationalId: data.NID,
+    education: data.education,
+    projectActivities: data.projecta_ctivities,
+    isAlive: data?.is_alive,
+    isMale: data.male,
+    isFemale: data.female,
+    upazilaTable: {
+      id: data.affiliatedupazila,
+      
+    },
+    memberType: {
+      id: data.membertype
+    },
+    prefix: {
+      id: data.prefix
+    },
+    unit: {
+      id: data.unit
+    },
+    religion: {
+      id: data.religion
+    },
+    bloodGroupTable: {
+      id: data.bloodGroup
+    },
+    memberRoleTable: [
+      {
+        id: data.managingBoardMember
+      },
+      {
+        id: data.unitExecutiveCommitteMemberr
+      }
+      ,
+      {
+        id : data.chairman
+      }
+    ]
+  }
+
     console.log(Memberinfo);
   };
   console.log(errors);
