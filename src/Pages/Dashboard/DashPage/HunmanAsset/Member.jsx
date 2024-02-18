@@ -80,8 +80,8 @@ const Member = () => {
         try {
             //submit data to backend
             const Memberinfo = {
-                name: data.Name,
-                memberIdCard: data.memberIdCard,
+                name: data.Name || null,
+                memberIdCard: data.memberIdCard || null,
                 enrollmentDate: data.enrollmentDate || null,
                 birthDate: data.birthDate || null,
                 email: data.email,
@@ -139,10 +139,10 @@ const Member = () => {
 
             const response = await axoissecure.post(`/members`, Memberinfo, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                 }
             });
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log('Data successfully submitted to the server');
             } else {
                 console.error('Failed to submit data to the server');
