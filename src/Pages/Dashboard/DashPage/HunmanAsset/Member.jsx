@@ -34,7 +34,7 @@ const Member = () => {
         Name: yup.string().required('Name Address is required'),
         Is_Alive: yup.boolean(),
         MemberType: yup.string().required('MemberType Address is required'),
-        Unit: yup.string().required('Unit is required'),
+        Unit: yup.string(),
         Upazila: yup.string(),
         memberIdCard: yup.string().required('Member ID Card is required'),
         enrollmentDate: yup.date().nullable(),
@@ -80,8 +80,8 @@ const Member = () => {
         try {
             //submit data to backend
             const Memberinfo = {
-                name: data.Name || null,
-                memberIdCard: data.memberIdCard || null,
+                name: data.Name,
+                memberIdCard: data.memberIdCard,
                 enrollmentDate: data.enrollmentDate || null,
                 birthDate: data.birthDate || null,
                 email: data.email,
@@ -139,7 +139,7 @@ const Member = () => {
 
             const response = await axoissecure.post(`/members`, Memberinfo, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'multipart/form-data',
                 }
             });
             if (response.status === 201) {
@@ -441,7 +441,7 @@ const Member = () => {
                                     placeholder="Name"
                                     {...register("Name")}
                                 />
-                                <p className="text-red-500 font-semibold text-sm">{errors.Name?.message}</p>
+                                <p className="text-red-500 text-sm">{errors.Name?.message}</p>
                             </div>
                             {/* Is Alive checkbox */}
                             <div className="flex lg:pt-6 items-center md:col-span-2 justify-start h-[41px] ">
@@ -488,8 +488,7 @@ const Member = () => {
 
                                     )}
                                 />
-                                 <p className="text-red-500 font-semibold text-sm">{errors.MemberType?.message}</p>
-                               
+                                <p className="text-red-500 text-sm">{errors.Member_Type?.message}</p>
                             </div>
                         </div>
 
@@ -522,8 +521,7 @@ const Member = () => {
                                         />
                                     )}
                                 />
-                                <p className="text-red-500 font-semibold text-sm">{errors.Unit?.message}</p>
-                               
+                                <p className="text-red-500 text-sm">{errors.Unit?.message}</p>
                             </div>
                             <div className="md:flex md:flex-row flex-col items-center gap-[2px] lg:pt-5 ">
                                 <h3 className="text-[#444444] text-[16px]">
@@ -649,7 +647,7 @@ const Member = () => {
                                     type="text"
                                     {...register("memberIdCard")}
                                 />
-                                 <p className="text-red-500 font-semibold text-sm">{errors.memberIdCard?.message}</p>
+                                <p className="text-red-500 text-sm">{errors.memberIdCard?.message}</p>
                             </div>
                             {/* 6. Enrollment date */}
                             <div>
@@ -661,7 +659,7 @@ const Member = () => {
                                     type="date"
                                     {...register("enrollmentDate")}
                                 />
-
+                                <p className="text-red-500 text-sm">{errors.enrollmentDate?.message}</p>
                             </div>
                             {/* 7. Contact Number */}
                             <div>
@@ -868,7 +866,7 @@ const Member = () => {
                                     type="text"
                                     {...register("PermanentAddress")}
                                 />
-                                <p className="text-red-500 font-semibold text-sm">{errors.PermanentAddress?.message}</p>
+                                <p className="text-red-500 text-sm">{errors.PresentAddress?.message}</p>
                             </div>
                             {/* 18. Occupation */}
                             <div>
