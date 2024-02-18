@@ -126,10 +126,10 @@ const Member = () => {
                         id: 1
                     },
                     data.unitExecutiveCommitteMemberr && {
-                        id: 2 
+                        id: 2
                     },
                     data.chairman && {
-                        id: 3 
+                        id: 3
                     }
                 ].filter(Boolean),
                 image: data.image,
@@ -362,7 +362,7 @@ const Member = () => {
                 label: singleData.name,
             }))) ||
         [];
-    
+
 
     const imgInp = useRef(null);
 
