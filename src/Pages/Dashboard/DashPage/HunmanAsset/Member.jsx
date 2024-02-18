@@ -34,7 +34,7 @@ const Member = () => {
         Name: yup.string().required('Name Address is required'),
         Is_Alive: yup.boolean(),
         MemberType: yup.string().required('MemberType Address is required'),
-        Unit: yup.string(),
+        Unit: yup.string().required('Unit is required'),
         Upazila: yup.string(),
         memberIdCard: yup.string().required('Member ID Card is required'),
         enrollmentDate: yup.date().nullable(),
@@ -69,49 +69,57 @@ const Member = () => {
     const { register, setError, handleSubmit, setValue, control, formState: { errors } } = methods;
 
     const onSubmit = async (data) => {
+
+        console.log(data.image);
+
+        // const formData = new FormData();
+        // formData.append('image', data?.image);
+
+        // console.log('form data',formData);
+
         try {
             //submit data to backend
             const Memberinfo = {
                 name: data.Name,
                 memberIdCard: data.memberIdCard,
-                enrollmentDate: data.enrollmentDate,
-                birthDate: data.birthDate,
+                enrollmentDate: data.enrollmentDate || null,
+                birthDate: data.birthDate || null,
                 email: data.email,
-                motherName: data.MotherName,
-                spouseName: data.SpouseName,
+                motherName: data.MotherName || null,
+                spouseName: data.SpouseName || null,
                 permanentAddress: data.PermanentAddress,
-                Occupation: data.Occupation,
-                birthCertificateNo: data.birth_certificate_number,
-                passportNo: data.passport_num,
-                memberFormSerial: data.member_form_serial,
-                moneyReceiptNo: data.member_receipt_no,
-                emergencyContactNo: data.emergency_contact,
-                contactNo: data.contactNumber,
-                fatherName: data.FatherName,
-                presentAddress: data.PresentAddress,
-                nationalId: data.NID,
-                education: data.education,
-                projectActivities: data.Activities,
-                isAlive: data?.Is_Alive,
+                Occupation: data.Occupation || null,
+                birthCertificateNo: data.birth_certificate_number || null,
+                passportNo: data.passport_num || null,
+                memberFormSerial: data.member_form_serial || null,
+                moneyReceiptNo: data.member_receipt_no || null,
+                emergencyContactNo: data.emergency_contact || null,
+                contactNo: data.contactNumber || null,
+                fatherName: data.FatherName || null,
+                presentAddress: data.PresentAddress || null,
+                nationalId: data.NID || null,
+                education: data.education || null,
+                projectActivities: data.Activities || null,
+                isAlive: data?.Is_Alive || null,
                 isMale: gender === "male" ? true : false,
                 isFemale: gender === "female" ? true : false,
                 upazilaTable: {
-                    id: parseInt(data.Upazila),
+                    id: parseInt(data.Upazila) || null,
                 },
                 memberType: {
-                    id: parseInt(data.MemberType)
+                    id: parseInt(data.MemberType),
                 },
                 prefix: {
-                    id: parseInt(data.Prefix)
+                    id: parseInt(data.Prefix) || null,
                 },
                 unit: {
-                    id: parseInt(data.Unit)
+                    id: parseInt(data.Unit) || null,
                 },
                 religion: {
-                    id: parseInt(data.Religion)
+                    id: parseInt(data.Religion) || null,
                 },
                 bloodGroupTable: {
-                    id: parseInt(data.BloodGroup)
+                    id: parseInt(data.BloodGroup) || null,
                 },
                 memberRoleTable: [
                     data.managingBoardMember && {
@@ -123,11 +131,17 @@ const Member = () => {
                     data.chairman && {
                         id: 3 
                     }
-                ].filter(Boolean)
+                ].filter(Boolean),
+                image: data.image,
             }
+
             console.log(Memberinfo);
 
-            const response = await axoissecure.post(`/members`, Memberinfo)
+            const response = await axoissecure.post(`/members`, Memberinfo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
             if (response.status === 200) {
                 console.log('Data successfully submitted to the server');
             } else {
@@ -135,7 +149,7 @@ const Member = () => {
             }
         }
         catch (error) {
-            console.log(error);
+            console.log(error.message);
             setError("afterSubmit", {
                 ...error,
                 message: error.message,
@@ -348,9 +362,7 @@ const Member = () => {
                 label: singleData.name,
             }))) ||
         [];
-
-
-
+    
 
     const imgInp = useRef(null);
 
@@ -361,16 +373,14 @@ const Member = () => {
                 const [file] = imgInp.current.files;
                 if (file) {
                     inputImgPreview.src = URL.createObjectURL(file);
-                    setValue("image", file); // Register and set the value of "image" field in React Hook Form
+                    setValue("image", file);
                 }
             };
         }
     }, [setValue]);
 
-
     const handleGenderChange = (gender) => {
         setGender(gender)
-
     }
 
     return (
@@ -385,7 +395,7 @@ const Member = () => {
                     </p>
                 </div>
                 <div>
-                    <form
+                    <form encType="multipart/form-data"
                         className="bg-white max-w-screen-2xl xl:mx-auto p-4 pb-24 mb-8 rounded-[5px] ml-5 mr-5 "
                         onSubmit={handleSubmit(onSubmit)}
                     >
@@ -431,7 +441,7 @@ const Member = () => {
                                     placeholder="Name"
                                     {...register("Name")}
                                 />
-                                <p className="text-red-500 text-sm">{errors.Name?.message}</p>
+                                <p className="text-red-500 font-semibold text-sm">{errors.Name?.message}</p>
                             </div>
                             {/* Is Alive checkbox */}
                             <div className="flex lg:pt-6 items-center md:col-span-2 justify-start h-[41px] ">
@@ -478,7 +488,8 @@ const Member = () => {
 
                                     )}
                                 />
-                                <p className="text-red-500 text-sm">{errors.Member_Type?.message}</p>
+                                 <p className="text-red-500 font-semibold text-sm">{errors.MemberType?.message}</p>
+                               
                             </div>
                         </div>
 
@@ -511,7 +522,8 @@ const Member = () => {
                                         />
                                     )}
                                 />
-                                <p className="text-red-500 text-sm">{errors.Unit?.message}</p>
+                                <p className="text-red-500 font-semibold text-sm">{errors.Unit?.message}</p>
+                               
                             </div>
                             <div className="md:flex md:flex-row flex-col items-center gap-[2px] lg:pt-5 ">
                                 <h3 className="text-[#444444] text-[16px]">
@@ -637,7 +649,7 @@ const Member = () => {
                                     type="text"
                                     {...register("memberIdCard")}
                                 />
-                                <p className="text-red-500 text-sm">{errors.memberIdCard?.message}</p>
+                                 <p className="text-red-500 font-semibold text-sm">{errors.memberIdCard?.message}</p>
                             </div>
                             {/* 6. Enrollment date */}
                             <div>
@@ -649,7 +661,7 @@ const Member = () => {
                                     type="date"
                                     {...register("enrollmentDate")}
                                 />
-                                <p className="text-red-500 text-sm">{errors.enrollmentDate?.message}</p>
+
                             </div>
                             {/* 7. Contact Number */}
                             <div>
@@ -856,7 +868,7 @@ const Member = () => {
                                     type="text"
                                     {...register("PermanentAddress")}
                                 />
-                                <p className="text-red-500 text-sm">{errors.PresentAddress?.message}</p>
+                                <p className="text-red-500 font-semibold text-sm">{errors.PermanentAddress?.message}</p>
                             </div>
                             {/* 18. Occupation */}
                             <div>
