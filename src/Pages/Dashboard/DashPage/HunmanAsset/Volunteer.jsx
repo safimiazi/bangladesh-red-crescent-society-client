@@ -6,51 +6,52 @@ import { Helmet } from "react-helmet";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { getBloodGroup, getReligion, getUnit, getUpazila } from "../../../../Api/HumanAsset/Selector/Selector";
+import axoissecure from "../../../../Hooks/Axoissecure";
 const Volunteer = () => {
 
 
   const [gender, setGender] = useState(null);
-  const[married,setMarried] = useState(null)
+  const [maritalStatus, setMaritalStatus] = useState('married');
   const [Religion, setReligion] = useState();
   const [upazila, setUpazila] = useState();
   const [Unit, setUnit] = useState();
   const [Blood, setBlood] = useState();
   // const [isImageSelected, setIsImageSelected] = useState(false);
 
+  console.log("hi", maritalStatus);
 
 
+  // Form data valedetio
+  const schema = yup.object().shape({
+    Registration: yup.string(),
+    Name: yup.string(),
+    volunteerType: yup.string().required('volunteerType  is required'),
+    Unit: yup.string().required('Unit is required'),
+    Upazila: yup.string(),
+    VolunteerPosition: yup.string().required('VolunteerPosition  is required'),
+    VolunteerID: yup.string().required('Volunteer ID is required'),
+    joinDate: yup.date().nullable(),
+    contactNumber: yup.string(),
+    emergencyNumber: yup.string(),
+    birthDate: yup.date().nullable(),
+    email: yup.string().email('Invalid email address'),
+    BloodGroup: yup.string(),
+    Religion: yup.string().required('Religion is required'),
+    FatherName: yup.string(),
+    MotherName: yup.string(),
+    SpouseName: yup.string(),
+    Present_Occupation: yup.string(),
+    address: yup.string(),
+    resource : yup.string(),
+    NID: yup.string(),
+    Birth_Certificate_No: yup.string(),
+    Passport: yup.string(),
+    insurance: yup.string(),
+    twitter: yup.string(),
+    facebook: yup.string(),
+    Education: yup.string(),
 
-// Form data valedetio
-const schema = yup.object().shape({
-  Registration: yup.string(),
-  Name: yup.string().required('Name Address is required'),
-  // volunteerType: yup.string().required('volunteerType  is required'),
-  // Unit: yup.string().required('Unit is required'),
-  // Upazila: yup.string(),
-  // VolunteerPosition :yup.string().required('VolunteerPosition  is required'), 
-  VolunteerID: yup.string().required('Volunteer ID is required'),
-  joinDate: yup.date().nullable(),
-  contactNumber: yup.string(),
-  emergencyNumber : yup.string(),
-  birthDate: yup.date().nullable(),
-  email: yup.string().email('Invalid email address'),
-  // BloodGroup: yup.string(),
-  // Religion: yup.string().required('Religion is required'),
-  FatherName: yup.string(),
-  MotherName: yup.string(),
-  SpouseName: yup.string(),
-  Present_Occupation: yup.string(),
-  address: yup.string(),
-  // resource : yup.string(),
-  NID: yup.string(),
-  Birth_Certificate_No: yup.string(),
-  Passport: yup.string(),
-  insurance: yup.string(),
-  twitter: yup.string(),
-  facebook: yup.string(),
-  Education : yup.string(),
-  
-});
+  });
 
 
 
@@ -63,57 +64,83 @@ const schema = yup.object().shape({
     control,
     setValue,
     formState: { errors },
-  } = useForm({resolver: yupResolver(schema)});
+  } = useForm({ resolver: yupResolver(schema) });
 
- 
-  
-  const onSubmit = (data) => {
-    const volunteer = {
-      name: data.Name,
-      joinDate: data.joinDate,
-      birthDate: data.birthDate,
-      email: data.email,
-      motherName:data.MotherName,
-      spouseName: data.SpouseName,
-      Present_Occupation: data.Present_Occupation,
-      
-      birthCertificateNo: data.Birth_Certificate_No,
-      passportNo: data.Passport,
-      Registration: data.Registration,
-      address: data.address,
-      twitter: data.twitter,
-      facebook: data.facebook,
-      insurance : data.insurance,
-      emergencyContactNo: data.emergencyNumber,
-      contactNo:data.contactNumber,
-      fatherName:  data.FatherName,
-      nationalId: data.NID,
-      education: data.Education,
-      isMale: gender === "male" ? true : false,
-      isFemale: gender === "female" ? true : false,
-      ismarried: married === "married" ? true : false,
-      isunmarried: married === "unmarried" ? true : false,
-      upazilaTable: {
-          id: data.Upazila,
-      },
 
- 
-      unit: {
-          id: data.Unit
-      },
-      religion: {
-          id: data.Religion
-      },
-      bloodGroupTable: {
-          id: data.BloodGroup
-      },
-      resourceOption: {
-        id: data.resource
-    },
 
-    };
+  const onSubmit = async (data) => {
 
-    console.log(volunteer);
+
+    try {
+      const volunteerData = {
+        name: data.Name,
+        volunteerType: data.volunteerType,
+        volunteerId: data.VolunteerID,
+        volunteerPosition: data.VolunteerPosition,
+
+        isMale: gender === "male" ? true : false,
+        isFemale: gender === "female" ? true : false,
+        ismarried: maritalStatus === "married" ? true : false,
+        isunmarried: maritalStatus === "unmarried" ? true : false,
+
+        registrationNo: data.Registration,
+        nationalId: data.NID,
+        education: data.Education,
+        dob: data.birthDate,
+        joiningDate: data.joinDate,
+        mobileNo: data.contactNumber,
+        emergencyContactNo: data.emergencyNumber,
+        email: data.email,
+        fathersName: data.FatherName,
+        mothersName: data.MotherName,
+        birthCertificateNo: data.Birth_Certificate_No,
+        passportNo: data.Passport,
+        presentOccupation: data.Present_Occupation,
+        address: data.address,
+        insurance: data.insurance,
+        twitter: data.twitter,
+        facebook: data.facebook,
+        image: data.image,
+        resourceType: {
+          id: parseInt(data?.resource) || null
+        },
+
+        bloodGroupTable: {
+          id: parseInt(data.BloodGroup) || null // Provide the actual ID of the blood group
+        },
+        unit: {
+          id: parseInt(data.Unit) || null // Provide the actual ID of the unit
+        },
+        upazilaTable: {
+          id: parseInt(data.Upazila) || null // Provide the actual ID of the Upazila
+        },
+        religion: {
+          id: parseInt(data.Religion) || null // Provide the actual ID of the religion
+        }
+      }
+
+      console.log(volunteerData);
+
+      // const response = await axoissecure.post(`/volunteer`, volunteerData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   }
+      // });
+      // if (response.status === 201) {
+      //   console.log('Data successfully submitted to the server');
+      // } else {
+      //   console.error('Failed to submit data to the server');
+      // }
+
+
+    } catch (error) {
+      console.log(error.message);
+    }
+
+
+
+
+
   };
   console.log(errors);
 
@@ -186,107 +213,107 @@ const schema = yup.object().shape({
 
 
 
-  
-    // get Unit
-    useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const data = await getUnit();
-              setUnit(data.uitType);
-              console.log(data);
-          } catch (error) {
-              console.error("Error fetching Prefix:", error);
-          }
-      };
 
-      fetchData();
+  // get Unit
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUnit();
+        setUnit(data.uitType);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching Prefix:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const unitOption =
-      (Unit &&
-          Unit.map((singleData) => ({
-              value: singleData.id,
-              label: singleData.name,
-          }))) ||
-      [];
+    (Unit &&
+      Unit.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
+    [];
 
 
-       // getReligion
-    useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const data = await getReligion();
-              setReligion(data.religionType);
-              console.log("data", data);
-          } catch (error) {
-              console.error("Error fetching member types:", error);
-          }
-      };
+  // getReligion
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getReligion();
+        setReligion(data.religionType);
+        console.log("data", data);
+      } catch (error) {
+        console.error("Error fetching member types:", error);
+      }
+    };
 
-      fetchData();
+    fetchData();
   }, []);
 
   const ReligionOption =
-      (Religion &&
-          Religion.map((singleData) => ({
-              value: singleData.id,
-              label: singleData.name,
-          }))) ||
-      [];
-
-//upazilaOption
-
-useEffect(() => {
-  const fetchData = async () => {
-      try {
-          const data = await getUpazila();
-          setUpazila(data.upazila);
-      } catch (error) {
-          console.error("Error fetching upazila:", error);
-      }
-  };
-
-  fetchData();
-}, []);
-
-const upazilaOption =
-  (upazila &&
-      upazila.map((singleData) => ({
-          value: singleData.id,
-          label: singleData.name,
+    (Religion &&
+      Religion.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
       }))) ||
-  [];
+    [];
+
+  //upazilaOption
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUpazila();
+        setUpazila(data.upazila);
+      } catch (error) {
+        console.error("Error fetching upazila:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const upazilaOption =
+    (upazila &&
+      upazila.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
+    [];
 
   // boold group
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const data = await getBloodGroup();
-            setBlood(data.bloodGroup);
-            console.log(data);
-        } catch (error) {
-            console.error("Error fetching bloodGroup:", error);
-        }
+      try {
+        const data = await getBloodGroup();
+        setBlood(data.bloodGroup);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching bloodGroup:", error);
+      }
     };
 
     fetchData();
-}, []);
+  }, []);
 
-const bgOption =
+  const bgOption =
     (Blood &&
-        Blood?.map((singleData) => ({
-            value: singleData.id,
-            label: singleData.name,
-        }))) ||
+      Blood?.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
     [];
 
 
-// resource
+  // resource
   const resourceOption = [
     { value: "Internal ", label: "Internal " },
     { value: "External", label: "External" },
-    
+
   ]
 
   // volunteerOption
@@ -298,13 +325,13 @@ const bgOption =
 
   // volunteerType
 
-  const volunteerType =[
+  const volunteerType = [
     { value: "Internal ", label: "Internal " },
     { value: "External", label: "External" },
   ]
-  
 
-  
+
+
   const imgInp = useRef(null);
 
   // For getting the value of the file input
@@ -322,15 +349,14 @@ const bgOption =
 
   // form data
 
-  
+
   const handleGenderChange = (gender) => {
     setGender(gender);
   };
 
-  const handlemariedChange = (married) => {
-    setMarried(married);
+  const handleMarriedChange = (value) => {
+    setMaritalStatus(value);
   };
-
 
   return (
     <>
@@ -390,7 +416,7 @@ const bgOption =
                     />
                   )}
                 />
-                    <p className="text-red-500 fon text-sm">{errors.unit?.message}</p>
+                <small className="text-red-500">{errors.Unit?.message}</small>
               </div>
 
               <div className="w-full mt-2">
@@ -429,7 +455,7 @@ const bgOption =
 
                 {/* 3. Volunteer Type< */}
                 <div>
-                <div className="relative w-fit">
+                  <div className="relative w-fit">
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       3. Volunteer Type
                     </p>
@@ -455,26 +481,26 @@ const bgOption =
                       />
                     )}
                   />
-                   <p className="text-red-500 text-sm">{errors.volunteer_Type?.message}</p>
+                  <small className="text-red-500">{errors.volunteerType?.message}</small>
                 </div>
               </div>
 
               {/* 4. Volunteer ID*/}
               <div className="mt-3">
-              <div className="relative w-fit">
-                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                      4. Volunteer_ID
-                    </p>
-                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                      *
-                    </span>
-                  </div>
+                <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    4. Volunteer_ID
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <input
                   className="w-full  h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("VolunteerID")}
                 />
-                 <p className="text-red-500 font-semibold text-sm">{errors.VolunteerID?.message}</p>
+                <small className="text-red-500">{errors.VolunteerID?.message}</small>
               </div>
 
               {/* second column according to the desktop view */}
@@ -520,7 +546,7 @@ const bgOption =
                       />
                     )}
                   />
-                   <p className="text-red-500 font-semibold text-sm">{errors.VolunteerPosition?.message}</p>
+                  <small className="text-red-500">{errors.VolunteerPosition?.message}</small>
                 </div>
               </div>
               <div className="">
@@ -563,7 +589,7 @@ const bgOption =
                             checked={gender === "female"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
-                          Female
+                            Female
                           </span>
                         </label>
                       </div>
@@ -576,7 +602,7 @@ const bgOption =
                   <div className="relative">
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       8. Photo{" "}
-                      
+
                     </p>
                   </div>
                   <div className="p-2 border border-[#E6E6E6] rounded-[3px] flex flex-col xl:flex-row items-center justify-center">
@@ -590,7 +616,7 @@ const bgOption =
                         }}
                         className="file-input w-full  pl-0 mb-4"
                       />
-                         
+
                       {/* <input accept="image/*" type='file' ref={imgInp} className="file-input w-full max-w-xs pl-0 mb-4" /> */}
                       <p className="text-[#BFBFBF] text-[13px]">
                         *Maximum allowed image size is 2 MB
@@ -612,11 +638,13 @@ const bgOption =
                   <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                     9. Birth Date
                   </p>
+
                   <input
-                    className="w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                    className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                     type="date"
                     {...register("birthDate")}
                   />
+
                 </div>
               </div>
               <div className="">
@@ -625,40 +653,38 @@ const bgOption =
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                       10. Marital Status{" "}
                     </p>
-                
+
                   </div>
                   <div className="flex gap-16 justify-start">
                     <div className="flex items-center h-[41px]">
                       <div className="form-control">
-                        <label className="label cursor-pointer">
+                        <label className={`label cursor-pointer ${maritalStatus === 'married' && 'checked'}`}>
                           <input
-                            {...register("marreid")}
                             type="radio"
-                            name="radio-11"
-                            onChange={() => handlemariedChange('marreid')}
-                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                             checked={gender === "marreid"}
+                            name="radio-17"
+                            value="married"
+                            onChange={() => handleMarriedChange('married')}
+                            className="hidden focus:ring-2 focus:ring-[#2AA778] checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                            checked={maritalStatus === 'married'}
                           />
-                          <span className="text-[#777777] text-[16px] ml-2">
-                            Married
-                          </span>
+                          <div className="radio checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]" />
+                          <span className="text-[#777777] text-[16px] ml-2">Married</span>
                         </label>
                       </div>
                     </div>
                     <div className="flex items-center h-[41px]">
                       <div className="form-control">
-                        <label className="label cursor-pointer">
+                        <label className={`label cursor-pointer ${maritalStatus === 'unmarried' && 'checked'}`}>
                           <input
-                            {...register("unmarreid")}
                             type="radio"
-                            name="radio-11"
-                            onChange={() => handlemariedChange('unmarreid')}
-                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked={gender === "unmarreid"}
+                            name="radio-17"
+                            value="unmarried"
+                            onChange={() => handleMarriedChange('unmarried')}
+                            className="hidden focus:ring-2 focus:ring-[#2AA778] checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                            checked={maritalStatus === 'unmarried'}
                           />
-                          <span className="text-[#777777] text-[16px] ml-2">
-                            Unmarried
-                          </span>
+                          <div className="radio checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]" />
+                          <span className="text-[#777777] text-[16px] ml-2">Unmarried</span>
                         </label>
                       </div>
                     </div>
@@ -671,14 +697,14 @@ const bgOption =
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-6 gap-x-5 mt-5">
               {/* 11. Religion */}
               <div>
-              <div className="relative w-fit">
-                    <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                      11. Religion
-                    </p>
-                    <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
-                      *
-                    </span>
-                  </div>
+                <div className="relative w-fit">
+                  <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
+                    11. Religion
+                  </p>
+                  <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                    *
+                  </span>
+                </div>
                 <Controller
                   name="Religion"
                   control={control}
@@ -690,14 +716,14 @@ const bgOption =
                       options={ReligionOption}
                       placeholder="Select Religion"
                       styles={customStyles}
-                         {...register("Religion")}
+                      {...register("Religion")}
                       onChange={(selectedOption) => {
                         field.onChange(selectedOption.value); // Pass only the value to react-hook-form
                       }}
                     />
                   )}
                 />
-                  <p className="text-red-500 font-semibold text-sm">{errors.Religion?.message}</p>
+                <small className="text-red-500">{errors.Religion?.message}</small>
               </div>
               {/* 12.BloodGroupOption */}
               <div>
@@ -729,11 +755,17 @@ const bgOption =
                 <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                   13. Joining Date
                 </p>
+
+
+
                 <input
-                  className="w-full pl-8 h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                  className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="date"
-                  {...register("birthDate")}
+                  {...register("joinDate")}
                 />
+
+
+
               </div>
 
               {/* 12. Mobile Number */}
@@ -759,7 +791,7 @@ const bgOption =
                   type="text"
                   {...register("emergencyNumber")}
                 />
-                   <p className="text-red-500 text-sm">{errors.emergencyNumber?.message}</p>
+                <small className="text-red-500">{errors.emergencyNumber?.message}</small>
               </div>
 
               {/*9. Email Address */}
@@ -804,7 +836,7 @@ const bgOption =
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
-                  {...register("SpouseName")}
+                  {...register("Education")}
                 />
               </div>
               {/* 20. National ID */}
@@ -817,7 +849,7 @@ const bgOption =
                   type="text"
                   {...register("NID")}
                 />
-                    <p className="text-red-500 text-sm">{errors.NID?.message}</p>
+                <p className="text-red-500 text-sm">{errors.NID?.message}</p>
               </div>
               {/* 21. Birth Certificate No*/}
               <div>
@@ -825,14 +857,14 @@ const bgOption =
                   <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                     21. Birth Certificate No
                   </p>
-                 
+
                 </div>
                 <input
                   className="w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                   type="text"
                   {...register("Birth_Certificate_No")}
                 />
-                    <p className="text-red-500 text-sm">{errors.Birth_Certificate_No?.message}</p>
+                <p className="text-red-500 text-sm">{errors.Birth_Certificate_No?.message}</p>
               </div>
               {/* 22. Passport No*/}
               <div>
@@ -913,18 +945,23 @@ const bgOption =
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
-                      {...register("resource")}
                       options={resourceOption}
+                      {...register("resource")}
                       placeholder="Resource Type"
                       styles={customStyles}
                       onChange={(selectedOption) => {
-                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
+                        field.onChange(selectedOption.value);
                       }}
                     />
                   )}
                 />
+
+
+
+
+
               </div>
             </div>
             <div className="flex flex-col mr-3 float-end xl:flex-row justify-between mt-6">
