@@ -13,7 +13,7 @@ import {
     getReligion,
     getUnit,
     getUpazila,
-} from "../../../../Api/HumanAsset/Selector/Selector";
+} from "../../../../Api/HumanAsset/Selector/HumanAssetSelector";
 import axoissecure from "../../../../Hooks/Axoissecure";
 
 

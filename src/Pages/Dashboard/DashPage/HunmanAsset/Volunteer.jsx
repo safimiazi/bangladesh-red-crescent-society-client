@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { getBloodGroup, getReligion, getUnit, getUpazila } from "../../../../Api/HumanAsset/Selector/Selector";
+import { getBloodGroup, getReligion, getUnit, getUpazila } from "../../../../Api/HumanAsset/Selector/HumanAssetSelector";
 import axoissecure from "../../../../Hooks/Axoissecure";
 const Volunteer = () => {
 
@@ -651,40 +651,44 @@ console.log("nnn", data?.Resource);
                 <div className="">
                   <div className="relative w-fit">
                     <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
-                      10. Marital Status{" "}
+                      10. Gender
                     </p>
-
+                    {/* <span className="text-[20px] text-[#FF000A] absolute -top-1 -right-3">
+                      *
+                    </span> */}
                   </div>
                   <div className="flex gap-16 justify-start">
                     <div className="flex items-center h-[41px]">
                       <div className="form-control">
-                        <label className={`label cursor-pointer ${maritalStatus === 'married' && 'checked'}`}>
+                        <label className="label cursor-pointer">
                           <input
+                            {...register("maried")}
                             type="radio"
-                            name="radio-17"
-                            value="married"
-                            onChange={() => handleMarriedChange('married')}
-                            className="hidden focus:ring-2 focus:ring-[#2AA778] checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked={maritalStatus === 'married'}
+                            name="radio-12"
+                            onChange={() => handleMarriedChange('maried')}
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                            checked={maritalStatus === "maried"}
                           />
-                          <div className="radio checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]" />
-                          <span className="text-[#777777] text-[16px] ml-2">Married</span>
+                          <span className="text-[#777777] text-[16px] ml-2">
+                          Maried
+                          </span>
                         </label>
                       </div>
                     </div>
                     <div className="flex items-center h-[41px]">
                       <div className="form-control">
-                        <label className={`label cursor-pointer ${maritalStatus === 'unmarried' && 'checked'}`}>
+                        <label className="label cursor-pointer">
                           <input
+                            {...register("unmaried")}
                             type="radio"
-                            name="radio-17"
-                            value="unmarried"
-                            onChange={() => handleMarriedChange('unmarried')}
-                            className="hidden focus:ring-2 focus:ring-[#2AA778] checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked={maritalStatus === 'unmarried'}
+                            name="radio-13"
+                            onChange={() => handleMarriedChange('unmaried')}
+                            className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
+                            checked={maritalStatus === "unmaried"}
                           />
-                          <div className="radio checked:bg-[#2AA778] checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]" />
-                          <span className="text-[#777777] text-[16px] ml-2">Unmarried</span>
+                          <span className="text-[#777777] text-[16px] ml-2">
+                          Unmaried
+                          </span>
                         </label>
                       </div>
                     </div>
