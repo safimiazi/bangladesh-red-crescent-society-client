@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Itemnav from "../../DashComponent/StockManagesment/Itemnav";
 import DataTable from "react-data-table-component";
 import { Helmet } from "react-helmet";
+import { getItemList } from "../../../../Api/Table/StockManagesmentTable";
 
 const Items = () => {
+
+  const[itemlist,setItemlist] = useState(null)
+  // get item list data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getItemList();
+        setItemlist(data.itemlist);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching Prefix:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
   const columns = [
     {
       name: "SL.",
@@ -27,37 +47,17 @@ const Items = () => {
     },
   ];
 
-  const data = [
-    {
-      id: 1,
-      sl: "ashikur",
-      warehouse: "ashikur@gmail.com",
-      item: "17",
-      available: "fnd",
-    },
-    {
-      id: 1,
-      sl: "ashikur",
-      warehouse: "ashikur@gmail.com",
-      item: "17",
-      available: "fnd",
-    },
-    {
-      id: 1,
-      sl: "ashikur",
-      warehouse: "ashikur@gmail.com",
-      item: "17",
-      available: "fnd",
-    },
-    {
-      id: 1,
-      sl: "ashikur",
-      warehouse: "ashikur@gmail.com",
-      item: "17",
-      available: "fnd",
-    },
-  ];
+  // data row
+  const data =
+  (itemlist &&
+    itemlist.map((list) => ({
+      item: list.item,
+      description: list.description,
+    }))) ||
+  [];
 
+
+ 
   // table style
   const customStyles = {
 

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { getBloodGroup, getReligion, getUnit, getUpazila } from "../../../../Api/HumanAsset/Selector/HumanAssetSelector";
+import { getBloodGroup, getReligion, getUnit, getUpazila, getVolunteerPosition, getVolunteerType } from "../../../../Api/HumanAsset/Selector/HumanAssetSelector";
 import axoissecure from "../../../../Hooks/Axoissecure";
 const Volunteer = () => {
 
@@ -16,6 +16,9 @@ const Volunteer = () => {
   const [upazila, setUpazila] = useState();
   const [Unit, setUnit] = useState();
   const [Blood, setBlood] = useState();
+  const [vulanteerposition, setVulanteerposition] = useState();
+  const [vulanteertype, setVulanteertype] = useState();
+  
   // const [isImageSelected, setIsImageSelected] = useState(false);
 
   console.log("hi", maritalStatus);
@@ -318,17 +321,52 @@ console.log("nnn", data?.Resource);
 
   // volunteerOption
 
-  const VolunteerOption = [
-    { value: 1, label: "Internal " },
-    { value: 2, label: "External" },
-  ]
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getVolunteerPosition();
+        setVulanteerposition(data.vulanteerposition);
+        console.log("data", data);
+      } catch (error) {
+        console.error("Error fetching member types:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const VolunteerOption =
+    (vulanteerposition &&
+      vulanteerposition.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
+    [];
+
 
   // volunteerType
 
-  const volunteerType = [
-    { value: 1, label: "Internal " },
-    { value: 2, label: "External" },
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getVolunteerType();
+        setVulanteertype(data.vulanteertype);
+        console.log("data", data);
+      } catch (error) {
+        console.error("Error fetching member types:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const volunteerType =
+    (vulanteertype &&
+      vulanteertype.map((singleData) => ({
+        value: singleData.id,
+        label: singleData.name,
+      }))) ||
+    [];
 
 
 
@@ -662,15 +700,15 @@ console.log("nnn", data?.Resource);
                       <div className="form-control">
                         <label className="label cursor-pointer">
                           <input
-                            {...register("maried")}
+                            {...register("married")}
                             type="radio"
                             name="radio-12"
-                            onChange={() => handleMarriedChange('maried')}
+                            onChange={() => handleMarriedChange('married')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked={maritalStatus === "maried"}
+                            checked={maritalStatus === "married"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
-                          Maried
+                          Married
                           </span>
                         </label>
                       </div>
@@ -679,15 +717,15 @@ console.log("nnn", data?.Resource);
                       <div className="form-control">
                         <label className="label cursor-pointer">
                           <input
-                            {...register("unmaried")}
+                            {...register("unmarried")}
                             type="radio"
                             name="radio-13"
-                            onChange={() => handleMarriedChange('unmaried')}
+                            onChange={() => handleMarriedChange('unmarried')}
                             className="radio checked:bg-[#2AA778]  checked:min-w-[26.93px] rounded-lg bg-slate-200 min-h-[24.96px]"
-                            checked={maritalStatus === "unmaried"}
+                            checked={maritalStatus === "unmarried"}
                           />
                           <span className="text-[#777777] text-[16px] ml-2">
-                          Unmaried
+                          Unmarried
                           </span>
                         </label>
                       </div>

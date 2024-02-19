@@ -62,7 +62,7 @@ export const getBloodGroup = async () => {
 //VolunteerPosition 
 export const getVolunteerPosition = async () => {
 
-    const{data} = await axoissecure.get(`/volunteerposition`)
+    const{data} = await axoissecure.get(`volunteer-position`)
     console.log("data", data);
    return data
 }
@@ -71,7 +71,7 @@ export const getVolunteerPosition = async () => {
 //VolunteerType
 export const getVolunteerType = async () => {
 
-    const{data} = await axoissecure.get(`/volunteertype`)
+    const{data} = await axoissecure.get(`volunteer-type`)
     console.log("data", data);
    return data
 }
