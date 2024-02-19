@@ -42,7 +42,7 @@ const Volunteer = () => {
     SpouseName: yup.string(),
     Present_Occupation: yup.string(),
     address: yup.string(),
-    resource : yup.string(),
+    Resource: yup.string(),
     NID: yup.string(),
     Birth_Certificate_No: yup.string(),
     Passport: yup.string(),
@@ -69,7 +69,7 @@ const Volunteer = () => {
 
 
   const onSubmit = async (data) => {
-
+console.log("nnn", data?.Resource);
 
     try {
       const volunteerData = {
@@ -102,7 +102,7 @@ const Volunteer = () => {
         facebook: data.facebook,
         image: data.image,
         resourceType: {
-          id: parseInt(data?.resource) || null
+          id: data?.Resource || null
         },
 
         bloodGroupTable: {
@@ -310,24 +310,24 @@ const Volunteer = () => {
 
 
   // resource
-  const resourceOption = [
+  const ResourceOption = [
     { value: "Internal ", label: "Internal " },
-    { value: "External", label: "External" },
+    { value: "Internal ", label: "External" },
 
   ]
 
   // volunteerOption
 
   const VolunteerOption = [
-    { value: "Internal ", label: "Internal " },
-    { value: "External", label: "External" },
+    { value: 1, label: "Internal " },
+    { value: 2, label: "External" },
   ]
 
   // volunteerType
 
   const volunteerType = [
-    { value: "Internal ", label: "Internal " },
-    { value: "External", label: "External" },
+    { value: 1, label: "Internal " },
+    { value: 2, label: "External" },
   ]
 
 
@@ -939,30 +939,31 @@ const Volunteer = () => {
                 <p className="text-[15px] text-[#777777] mb-1 ml-[2px]">
                   28. Resource Type
                 </p>
+            
+
+
                 <Controller
-                  name="resource"
+                  name="Resource"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <Select
-                      className="custom-select w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
+                      className="custom-select  w-full h-[40px] border border-[#E6E6E6] rounded-[3px]"
                       components={{ DropdownIndicator }}
-                      options={resourceOption}
-                      {...register("resource")}
-                      placeholder="Resource Type"
+                      options={ResourceOption}
+                      placeholder="Select Resource"
                       styles={customStyles}
+                      {...register("Resource")}
                       onChange={(selectedOption) => {
-                        field.onChange(selectedOption.value);
+                        field.onChange(selectedOption.value); // Pass only the value to react-hook-form
                       }}
                     />
                   )}
                 />
 
-
-
-
-
               </div>
+
+
             </div>
             <div className="flex flex-col mr-3 float-end xl:flex-row justify-between mt-6">
               <div className="flex gap-6 mt-8 xl:mt-3">
