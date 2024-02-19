@@ -49,12 +49,33 @@ export const getUpazila = async () => {
    return data
 }
 
+//BloodGroup
 export const getBloodGroup = async () => {
 
     const{data} = await axoissecure.get(`/blood-group`)
     console.log("data", data);
    return data
 }
+
+// volunteer Form Selectot----------------------------------------
+
+//VolunteerPosition 
+export const getVolunteerPosition = async () => {
+
+    const{data} = await axoissecure.get(`/volunteerposition`)
+    console.log("data", data);
+   return data
+}
+
+
+//VolunteerType
+export const getVolunteerType = async () => {
+
+    const{data} = await axoissecure.get(`/volunteertype`)
+    console.log("data", data);
+   return data
+}
+
 
 
 
