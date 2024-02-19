@@ -7,8 +7,9 @@ import { MdArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { getItemGroup } from "../../../../Api/HumanAsset/Selector/StockManagesmentSelector";
 const AddItem = () => {
-
+  const [itemgroup, setItemgroup] = useState(null);
 // Form data valedetio
 const schema = yup.object({
   ItemGroup: yup.string(),
@@ -106,13 +107,30 @@ const schema = yup.object({
   // React Select filed provided options there
 
 
-  const ItemGroup = [
-    { value: "School Bag", label: "School Bag" },
-    { value: "Blanket", label: "Blanket" },
-    { value: "Turkish Tent", label: "Turkish Tent" },
-    { value: "Large Sacks", label: "Large Sacks" },
-   
-  ];
+
+    // ItemGroup
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const data = await getItemGroup();
+          setItemgroup(data.bloodGroup);
+          console.log(data);
+        } catch (error) {
+          console.error("Error fetching bloodGroup:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+  
+    const ItemGroup =
+      (itemgroup &&
+        itemgroup?.map((singleData) => ({
+          value: singleData.id,
+          label: singleData.name,
+        }))) ||
+      [];
 
 
 
