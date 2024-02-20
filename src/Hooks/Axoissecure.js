@@ -8,4 +8,4 @@ const axoissecure = axios.create({
     
 })
 
-export default axoissecure
+export default axoissecure;
